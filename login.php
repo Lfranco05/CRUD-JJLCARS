@@ -91,6 +91,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
             </div>
         </div>
 
+        <div class="form-group">
+           <label for="rol">Seleccionar Rol:</label>
+           <select name="rol" id="rol" required>
+                <option value="" disabled selected>Selecciona un rol</option>
+                <option value="gerente">Gerente</option>
+                <option value="vendedor">Vendedor</option>
+                <option value="cliente">Cliente</option>
+            </select>
+        </div>
+
         <div class="form-check">
             <input type="checkbox" name="recordar" id="recordar" <?php echo isset($_COOKIE['remember_user']) ? 'checked' : ''; ?>>
             <label for="recordar">Recordarme</label>
