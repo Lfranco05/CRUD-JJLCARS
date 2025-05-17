@@ -1,0 +1,85 @@
+/* Estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #ecf0f1;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.main-container {
+    margin-left: 250px;
+    padding: 30px;
+    min-height: calc(100vh - 60px);
+    margin-top: 60px;
+}
+
+.welcome-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-card h1 {
+    font-size: 48px;
+    color: #3498db;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.welcome-card p {
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+.summary-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.summary-card h3 {
+    color: #2c3e50;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.summary-value {
+    font-size: 48px;
+    color: #3498db;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.summary-card p {
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+.logo-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.logo-image {
+    max-width: 300px;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+    .main-container {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
