@@ -45,7 +45,7 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JJLCARS</title>
+    <title>TIENDA DE CARROS - JJLCARS</title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
     <link rel="stylesheet" type="text/css" href="../css/principal.css">
@@ -72,7 +72,7 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
             </div>
 
             <div class="logo-container">
-                <img src="../img/logo.jpeg" alt="Logo JJLCARS" class="logo-image">
+                <img src="../img/logo.jpg" alt="Logo JJLCARS" class="logo-image">
             </div>
         </div>
     </div>

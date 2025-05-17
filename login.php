@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
 
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
-    <p class="login-subtitle">Sistema de Usuarios</p>
+    <p class="login-subtitle">TIENDA DE CARROS - JJLCARS</p>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
