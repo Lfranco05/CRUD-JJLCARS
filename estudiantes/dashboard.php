@@ -35,7 +35,7 @@ $resultado_recientes = mysqli_query($connec, $sql_recientes);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Universidad San Pablo</title>
+    <title>Proyección de Ventas - JJLCARS</title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
     <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
@@ -49,13 +49,13 @@ $resultado_recientes = mysqli_query($connec, $sql_recientes);
         <?php include('../barras/barra_lateral.php'); ?>
         
         <div class="main-container">
-            <h1>Dashboard de Alumnos</h1>
+            <h1>Proyección de Ventas</h1>
             
             <div class="stats-container">
                 <div class="stat-card">
                     <i class="fas fa-users"></i>
                     <div class="stat-info">
-                        <h3>Total Alumnos</h3>
+                        <h3>Total de Clientes</h3>
                         <p><?php echo $total_alumnos; ?></p>
                     </div>
                 </div>
@@ -63,7 +63,7 @@ $resultado_recientes = mysqli_query($connec, $sql_recientes);
                 <div class="stat-card">
                     <i class="fas fa-chart-line"></i>
                     <div class="stat-info">
-                        <h3>Promedio General</h3>
+                        <h3>Promedio General de Ventas</h3>
                         <p><?php echo number_format($promedio_general, 2); ?></p>
                     </div>
                 </div>
@@ -71,23 +71,23 @@ $resultado_recientes = mysqli_query($connec, $sql_recientes);
 
             <div class="charts-container">
                 <div class="chart-card">
-                    <h3>Alumnos por Carrera</h3>
+                    <h3>Carros en Ventas</h3>
                     <canvas id="carrerasChart"></canvas>
                 </div>
                 
                 <div class="chart-card">
-                    <h3>Alumnos por Semestre</h3>
+                    <h3>Carros Más Vendidos</h3>
                     <canvas id="semestresChart"></canvas>
                 </div>
             </div>
 
             <div class="recent-container">
-                <h3>Alumnos Recientes</h3>
+                <h3>Clientes de JJLCARS</h3>
                 <div class="table-container">
                     <table>
                         <thead>
                             <tr>
-                                <th>Carnet</th>
+                                <th>Teléfono</th>
                                 <th>Nombre</th>
                                 <th>Carrera</th>
                                 <th>Semestre</th>
