@@ -66,6 +66,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
                 </div>
             </div>
 
+            <div class="form-group">
+           <label for="rol">Seleccionar Rol:</label>
+           <select name="rol" id="rol" required>
+                <option value="" disabled selected>Selecciona un rol</option>
+                <option value="gerente">Gerente</option>
+                <option value="vendedor">Vendedor</option>
+                <option value="cliente">Cliente</option>
+            </select>
+            </div>
+
+
             <div class="button-group">
                 <button type="submit" name="registrar" class="register-btn">
                     <i class="fas fa-user-plus"></i> Registrar
