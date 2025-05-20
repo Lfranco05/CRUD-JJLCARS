@@ -16,7 +16,7 @@ if (!empty($buscar)) {
     $where = "WHERE nombre LIKE '%$buscar%' OR correo LIKE '%$buscar%' OR carrera LIKE '%$buscar%'";
 }
 
-$sql = "SELECT * FROM contacto $where ORDER BY fecha_envio DESC";
+$sql = "SELECT * FROM contacto $where ORDER BY fecha_registro DESC";
 $resultado = mysqli_query($connec, $sql);
 
 // Contar total de mensajes
@@ -63,10 +63,10 @@ $total_mensajes = mysqli_fetch_assoc($resultado_total)['total'];
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Carrera</th>
-                            <th>Fecha</th>
-                            <th>Acciones</th>
+                            <th>Mensaje</th>
+                            <th>Fecha de creacion</th>
+                            <th>Mas detalles</th>
+                            <th>Estatus</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,9 +75,8 @@ $total_mensajes = mysqli_fetch_assoc($resultado_total)['total'];
                                 <td><?php echo htmlspecialchars($mensaje['id']); ?></td>
                                 <td><?php echo htmlspecialchars($mensaje['nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($mensaje['correo']); ?></td>
-                                <td><?php echo htmlspecialchars($mensaje['telefono']); ?></td>
-                                <td><?php echo htmlspecialchars($mensaje['carrera']); ?></td>
-                                <td><?php echo date('d/m/Y H:i', strtotime($mensaje['fecha_envio'])); ?></td>
+                                <td><?php echo htmlspecialchars($mensaje['mensaje']); ?></td>
+                                <td><?php echo date('d/m/Y H:i', strtotime($mensaje['fecha_registro'])); ?></td>
                                 <td class="actions">
                                     <a href="ver_mensaje.php?id=<?php echo $mensaje['id']; ?>" class="btn btn-info">
                                         <i class="fas fa-eye"></i> Ver
@@ -102,5 +101,4 @@ $total_mensajes = mysqli_fetch_assoc($resultado_total)['total'];
 </div>
 </body>
 </html>
-
-//hola
+ 

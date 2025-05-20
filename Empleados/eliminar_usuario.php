@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
 
 // Verificar si se proporcionó un ID
 if (!isset($_GET['id']) || empty($_GET['id'])) {
-    header("Location: usuarios.php");
+    header("Location: empleados.php");
     exit();
 }
 
@@ -22,9 +22,9 @@ mysqli_stmt_bind_param($stmt, "i", $id);
 $resultado = mysqli_stmt_execute($stmt);
 
 if ($resultado) {
-    echo "<script>alert('Usuario eliminado exitosamente'); location.href='usuarios.php';</script>";
+    echo "<script>alert('Usuario eliminado exitosamente'); location.href='empleados.php';</script>";
 } else {
-    echo "<script>alert('Error al eliminar el usuario: " . mysqli_error($connec) . "'); location.href='usuarios.php';</script>";
+    echo "<script>alert('Error al eliminar el usuario: " . mysqli_error($connec) . "'); location.href='empleados.php';</script>";
 }
 
 mysqli_stmt_close($stmt);

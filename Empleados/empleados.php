@@ -18,7 +18,7 @@ $buscar = isset($_GET['buscar']) ? trim(strtolower($_GET['buscar'])) : '';
 
 // Contar el total de usuarios (para paginación)
 if (!empty($buscar)) {
-    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM usuario WHERE LOWER(username) LIKE ? OR LOWER(nom_usuario) LIKE ?");
+    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM usuarios WHERE LOWER(Usuario) LIKE ? OR LOWER(Nombre) LIKE ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($countStmt, "ss", $searchTerm, $searchTerm);
     mysqli_stmt_execute($countStmt);
@@ -26,7 +26,7 @@ if (!empty($buscar)) {
     mysqli_stmt_fetch($countStmt);
     mysqli_stmt_close($countStmt);
 } else {
-    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM usuario");
+    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM usuarios");
     $row = mysqli_fetch_assoc($countQuery);
     $total_usuarios = $row['total'];
 }
@@ -34,18 +34,12 @@ if (!empty($buscar)) {
 $total_pages = ceil($total_usuarios / $limit);
 
 // Obtener los usuarios con paginación usando prepared statements
-// Modificar la consulta de búsqueda
 if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, username, nom_usuario 
-        FROM usuario WHERE 
-        LOWER(username) LIKE ? OR 
-        LOWER(nom_usuario) LIKE ? 
-        LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, Usuario, Nombre FROM usuarios WHERE LOWER(Usuario) LIKE ? OR LOWER(Nombre) LIKE ? LIMIT ? OFFSET ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($stmt, "ssii", $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    // Modificar la consulta SQL para incluir los campos adicionales
-    $stmt = mysqli_prepare($connec, "SELECT id, username, nom_usuario FROM usuario LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, Usuario, Nombre FROM usuarios LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
@@ -73,8 +67,7 @@ mysqli_stmt_close($stmt);
 <body>
     <div class="wrapper">
         <?php 
-        // Actualizar la ruta del avatar en la sesión
-        $avatar_path = isset($_SESSION['avatar_path']) ? '../' . $_SESSION['avatar_path'] : '../avatars/1744068538_foto para curriculum 3.png';
+        $avatar_path = isset($_SESSION['avatar_path']) ? '../' . $_SESSION['avatar_path'] : '../avatars/default.png';
         ?>
         <?php include('../barras/navbar.php'); ?>
         <?php include('../barras/barra_lateral.php'); ?>
@@ -82,10 +75,10 @@ mysqli_stmt_close($stmt);
         <div class="main-container">
             <h1>Lista de Usuarios</h1>
             <div class="search-form">
-                <form method="get" action="usuarios.php">
+                <form method="get" action="empleados.php">
                     <input type="text" name="buscar" placeholder="Buscar usuario" value="<?php echo htmlspecialchars($buscar); ?>">
                     <input type="submit" value="Buscar">
-                    <a href="usuarios.php" class="back">Mostrar todos</a>
+                    <a href="empleados.php" class="back">Mostrar todos</a>
                 </form>
             </div>
             <table>
@@ -101,8 +94,8 @@ mysqli_stmt_close($stmt);
                     <?php while ($fila = mysqli_fetch_assoc($resultado)) { ?>
                         <tr>
                             <td><?php echo htmlspecialchars($fila['id']); ?></td>
-                            <td><?php echo htmlspecialchars($fila['username']); ?></td>
-                            <td><?php echo htmlspecialchars($fila['nom_usuario']); ?></td>
+                            <td><?php echo htmlspecialchars($fila['Usuario']); ?></td>
+                            <td><?php echo htmlspecialchars($fila['Nombre']); ?></td>
                             <td>
                                 <a href="ver_usuario.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
                                     <i class="fas fa-eye"></i> Ver
@@ -119,7 +112,7 @@ mysqli_stmt_close($stmt);
                     <?php } ?>
                     <?php if (mysqli_num_rows($resultado) == 0) { ?>
                         <tr>
-                            <td colspan="3">No se encontraron usuarios.</td>
+                            <td colspan="4">No se encontraron usuarios.</td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -127,12 +120,12 @@ mysqli_stmt_close($stmt);
             <p class="total-users">Total de usuarios: <?php echo $total_usuarios; ?></p>
             <div class="pagination">
                 <?php if ($page > 1) { ?>
-                    <a href="usuarios.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
+                    <a href="empleados.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
                 <?php } else { ?>
                     <a href="#" class="disabled">Anterior</a>
                 <?php } ?>
                 <?php if ($page < $total_pages) { ?>
-                    <a href="usuarios.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
+                    <a href="empleados.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
                 <?php } else { ?>
                     <a href="#" class="disabled">Siguiente</a>
                 <?php } ?>
@@ -142,6 +135,5 @@ mysqli_stmt_close($stmt);
     <div class="logo-container">
         <img src="../img/logo.jpeg" alt="Logo Universidad San Pablo" class="logo-image">
     </div>
-</div>
 </body>
 </html>

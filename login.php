@@ -3,7 +3,7 @@ session_start();
 include("conexion.php");
 
 if (isset($_SESSION["usuarioingresando"]) && $_SESSION["usuarioingresando"] === true) {
-    header("Location: inicio/principal.php");  // Modificada esta línea
+    header("Location: inicio/principal.php");
     exit();
 }
 
@@ -12,35 +12,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $username = mysqli_real_escape_string($connec, trim($_POST['username']));
     $password = mysqli_real_escape_string($connec, trim($_POST['password']));
     
-    // Buscar el usuario en la base de datos
-    $sql = "SELECT id, username, nom_usuario, password, avatar FROM usuario WHERE username = ?";
+    // Buscar el usuario en la tabla 'usuarios'
+    $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario FROM usuarios WHERE Usuario = ?";
     $stmt = mysqli_prepare($connec, $sql);
     mysqli_stmt_bind_param($stmt, "s", $username);
     mysqli_stmt_execute($stmt);
     $resultado = mysqli_stmt_get_result($stmt);
     
     if ($fila = mysqli_fetch_assoc($resultado)) {
-        // Verificar la contraseña hasheada
-        if (password_verify($password, $fila['password'])) {
+        // Comparar contraseñas sin hash
+        if ($password === $fila['password']) {
             // Iniciar sesión
             $_SESSION['usuarioingresando'] = true;
             $_SESSION['id'] = $fila['id'];
-            $_SESSION['username'] = $fila['username'];
-            $_SESSION['nom_usuario'] = $fila['nom_usuario'];
-            $_SESSION['avatar'] = $fila['avatar'];
-            
-            // Manejar la opción "Recordarme"
+            $_SESSION['Usuario'] = $fila['Usuario'];
+            $_SESSION['Nombre'] = $fila['Nombre'];
+            $_SESSION['TipoUsuario'] = $fila['TipoUsuario'];
+            $_SESSION['correo'] = $fila['correo'];
+
+            // Manejo de "Recordarme"
             if (isset($_POST['recordar'])) {
-                // Establecer cookies por 30 días
                 setcookie('remember_user', $username, time() + (30 * 24 * 60 * 60), '/');
                 setcookie('remember_pass', base64_encode($password), time() + (30 * 24 * 60 * 60), '/');
             } else {
-                // Si no se marca "Recordarme", eliminar las cookies existentes
                 setcookie('remember_user', '', time() - 3600, '/');
                 setcookie('remember_pass', '', time() - 3600, '/');
             }
-            
-            // Redirigir al usuario
+
             header("Location: inicio/principal.php");
             exit();
         } else {
@@ -49,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     } else {
         echo "<script>alert('Usuario o contraseña incorrectos');</script>";
     }
-    
+
     mysqli_stmt_close($stmt);
 }
 ?>

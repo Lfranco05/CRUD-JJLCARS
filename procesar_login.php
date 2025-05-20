@@ -35,33 +35,45 @@ if (empty($username) || empty($password)) {
     exit();
 }
 
-// Consulta preparada
-$sql = "SELECT id, username, nom_usuario, password, avatar FROM usuario WHERE username = ?";
+// Consulta preparada en la tabla 'usuarios'
+$sql = "SELECT id, Usuario, Nombre, password, TipoUsuario, correo FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $sql);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
 
 if ($fila = mysqli_fetch_assoc($resultado)) {
-    if (password_verify($password, $fila['password'])) {
+    // Comparar contraseña sin hash
+    if ($password === $fila['password']) {
         $_SESSION['usuarioingresando'] = true;
         $_SESSION['id'] = $fila['id'];
-        $_SESSION['username'] = $fila['username'];
-        $_SESSION['nom_usuario'] = $fila['nom_usuario'];
-        
-        // Manejar la opción "Recordarme"
+        $_SESSION['Usuario'] = $fila['Usuario'];
+        $_SESSION['Nombre'] = $fila['Nombre'];
+        $_SESSION['TipoUsuario'] = $fila['TipoUsuario'];
+        $_SESSION['correo'] = $fila['correo'];
+
+        // Recordarme
         if (isset($_POST['recordar'])) {
-            // Establecer cookies por 30 días
             setcookie('remember_user', $username, time() + (30 * 24 * 60 * 60), '/');
             setcookie('remember_pass', base64_encode($password), time() + (30 * 24 * 60 * 60), '/');
         } else {
-            // Si no se marca "Recordarme", eliminar las cookies existentes
             setcookie('remember_user', '', time() - 3600, '/');
             setcookie('remember_pass', '', time() - 3600, '/');
         }
-        
+
         header("Location: inicio/principal.php");
         exit();
+    } else {
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Contraseña incorrecta',
+                confirmButtonColor: '#3085d6'
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+        </script>";
     }
 } else {
     echo "<script>

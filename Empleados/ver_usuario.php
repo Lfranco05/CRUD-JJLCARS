@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
 
 // Verificar si se proporcionó un ID
 if (!isset($_GET['id'])) {
-    header("Location: usuarios.php");
+    header("Location: empleados.php");
     exit();
 }
 
@@ -25,7 +25,7 @@ mysqli_stmt_close($stmt);
 
 // Verificar si se encontró el usuario
 if (!$usuario) {
-    header("Location: usuarios.php");
+    header("Location: empleados.php");
     exit();
 }
 ?>
@@ -68,7 +68,7 @@ if (!$usuario) {
                 </div>
 
                 <div class="botones-accion">
-                    <a href="usuarios.php" class="btn-volver">
+                    <a href="empleados.php" class="btn-volver">
                         <i class="fas fa-arrow-left"></i> Volver
                     </a>
                 </div>

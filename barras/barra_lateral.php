@@ -14,9 +14,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include_once(__DIR__ . "/../conexion.php");
 
-// Obtener avatar del usuario
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
-$query = "SELECT avatar FROM usuario WHERE username = ?";
+// Verificar si el usuario está autenticado
+$username = $_SESSION['Usuario'] ?? ''; // Adaptado a nueva variable de sesión
+
+// Obtener avatar y nombre del usuario
+$query = "SELECT Nombre FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $query);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
@@ -24,13 +26,16 @@ $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
 // Ruta del avatar
-$default_avatar = 'default.png';
-$avatar_path = '../' . (!empty($user['avatar']) ? $user['avatar'] : 'avatars/' . $default_avatar);
-if (!file_exists(__DIR__ . '/../' . ($user['avatar'] ?? 'avatars/' . $default_avatar))) {
-    $avatar_path = '../avatars/' . $default_avatar;
-}
+// $default_avatar = 'avatars/default.png';
+// $avatar_rel = !empty($user['avatar']) ? $user['avatar'] : $default_avatar;
+// $avatar_path = '../' . $avatar_rel;
 
-$nom_usuario = isset($_SESSION['username']) ? $_SESSION['username'] : 'Usuario';
+// if (!file_exists(__DIR__ . '/../' . $avatar_rel)) {
+//     $avatar_path = '../' . $default_avatar;
+// }
+
+// Nombre para mostrar
+$nom_usuario = $user['Nombre'] ?? $username;
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
@@ -58,22 +63,23 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </nav>
 
     <div class="menu-section">
-            <h3>PANEL</h3>
-            <a href="../estudiantes/dashboard.php" class="<?php echo $current_page == 'dashboard.php' ? 'active' : ''; ?>">
-                <i class="fas fa-chart-line"></i> Proyecciones de ventas
-            </a>
-            <a href="../estudiantes/estudiantes.php" class="<?php echo $current_page == 'estudiantes.php' ? 'active' : ''; ?>">
-                <i class="fas fa-graduation-cap"></i> Clientes
-            </a>
-            <a href="../contactos/contactos.php" class="<?php echo $current_page == 'contactos.php' ? 'active' : ''; ?>">
-                <i class="fas fa-envelope"></i> Citas Programadas
-            </a>
-        </div>
+        <h3>PANEL</h3>
+        <a href="../clientes/dashboard.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
+            <i class="fas fa-chart-line"></i> Proyecciones de ventas
+        </a>
+        <a href="../clientes/ventas.php" class="<?php echo $current_page == 'ventas.php' ? 'active' : ''; ?>">
+            <i class="fas fa-graduation-cap"></i> Clientes
+        </a>
+        <a href="../contactos/contactos.php" class="<?php echo $current_page == 'contactos.php' ? 'active' : ''; ?>">
+            <i class="fas fa-envelope"></i> Citas Programadas
+        </a>
+    </div>
 
     <div class="menu-section">
         <h3>VENTAS</h3>
-        <a href="../usuarios/usuarios.php" class="<?php echo $current_page == 'usuarios.php' ? 'active' : ''; ?>">
-                <i class="fas fa-users"></i> Empleados
+        <a href="../Empleados/empleados.php" class="<?php echo $current_page == 'empleados.php' ? 'active' : ''; ?>">
+            <i class="fas fa-users"></i> Empleados
+        </a>
         <a href="../ventas/ventas.php" class="<?php echo $current_page == 'ventas.php' ? 'active' : ''; ?>">
             <i class="fas fa-shopping-cart"></i> Ventas
         </a>

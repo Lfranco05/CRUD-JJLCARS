@@ -18,7 +18,7 @@ $buscar = isset($_GET['buscar']) ? trim(strtolower($_GET['buscar'])) : '';
 
 // Contar el total de estudiantes
 if (!empty($buscar)) {
-    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM alumno WHERE 
+    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM usuarios WHERE 
         LOWER(nombre) LIKE ? OR 
         LOWER(telefono) LIKE ? OR 
         LOWER(direccion) LIKE ? OR 
@@ -31,7 +31,7 @@ if (!empty($buscar)) {
     mysqli_stmt_fetch($countStmt);
     mysqli_stmt_close($countStmt);
 } else {
-    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM alumno");
+    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM usuarios");
     $row = mysqli_fetch_assoc($countQuery);
     $total_estudiantes = $row['total'];
 }
@@ -41,17 +41,17 @@ $total_pages = ceil($total_estudiantes / $limit);
 // Obtener los estudiantes con paginación
 if (!empty($buscar)) {
     $stmt = mysqli_prepare($connec, "SELECT id, nombre, telefono, direccion, carrera, semestre, estado 
-        FROM alumno WHERE 
+        FROM usuarios WHERE 
         LOWER(nombre) LIKE ? OR 
-        LOWER(telefono) LIKE ? OR 
-        LOWER(direccion) LIKE ? OR 
-        LOWER(carrera) LIKE ? OR 
-        LOWER(semestre) LIKE ? 
+        -- LOWER(correo) LIKE ? OR 
+        -- LOWER(direccion) LIKE ? OR 
+        -- LOWER(carrera) LIKE ? OR 
+        -- LOWER(semestre) LIKE ? 
         LIMIT ? OFFSET ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($stmt, "sssssii", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, telefono, direccion, carrera, semestre, estado FROM alumno LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre FROM usuarios LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
@@ -88,10 +88,10 @@ mysqli_stmt_close($stmt);
         <div class="main-container">
             <h1>Listado de Clientes</h1>
             <div class="search-form">
-                <form method="get" action="estudiantes.php">
+                <form method="get" action="ventas.php">
                     <input type="text" name="buscar" placeholder="Buscar estudiante" value="<?php echo htmlspecialchars($buscar); ?>">
                     <input type="submit" value="Buscar">
-                    <a href="estudiantes.php" class="back">Mostrar todos</a>
+                    <a href="ventas.php" class="back">Mostrar todos</a>
                 </form>
                 <a href="agregar_estudiante.php" class="new-student-btn">
                     <i class="fas fa-user-plus"></i> Nuevo Estudiante
@@ -105,24 +105,18 @@ mysqli_stmt_close($stmt);
                             <th>Nombre</th>
                             <th>Teléfono</th>
                             <th>Dirección</th>
-                            <th>Carrera</th>
-                            <th>Semestre</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
+                            <th>Gestionar</th>
+                      
                     </thead>
                     <tbody>
                         <?php while ($fila = mysqli_fetch_assoc($resultado)) { ?>
                             <tr>
                                 <td><?php echo htmlspecialchars($fila['id']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['nombre']); ?></td>
-                                <td><?php echo htmlspecialchars($fila['telefono']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['direccion']); ?></td>
-                                <td><?php echo htmlspecialchars($fila['carrera']); ?></td>
-                                <td><?php echo htmlspecialchars($fila['semestre']); ?></td>
-                                <td><?php echo htmlspecialchars($fila['estado']); ?></td>
+                         
                                 <td>
-                                    <a href="ver_estudiantes.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
+                                    <a href="ver_ventas.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
                                         <i class="fas fa-eye"></i> Ver
                                     </a>
                                     <a href="modificar_estudiante.php?id=<?php echo urlencode($fila['id']); ?>" class="modify">
@@ -146,12 +140,12 @@ mysqli_stmt_close($stmt);
             <p class="total-users">Total de estudiantes: <?php echo $total_estudiantes; ?></p>
             <div class="pagination">
                 <?php if ($page > 1) { ?>
-                    <a href="estudiantes.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
+                    <a href="ventas.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
                 <?php } else { ?>
                     <a href="#" class="disabled">Anterior</a>
                 <?php } ?>
                 <?php if ($page < $total_pages) { ?>
-                    <a href="estudiantes.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
+                    <a href="ventas.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
                 <?php } else { ?>
                     <a href="#" class="disabled">Siguiente</a>
                 <?php } ?>

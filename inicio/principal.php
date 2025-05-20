@@ -3,37 +3,33 @@ session_start();
 include('../conexion.php');
 
 // Verificar si el usuario está autenticado
-if (!isset($_SESSION['username'])) {
-    header('Location: login.php');
+if (!isset($_SESSION['Usuario'])) {
+    header('Location: ../login.php');
     exit();
 }
 
 // Obtener información del usuario
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    $stmt = $connec->prepare("SELECT nom_usuario FROM usuario WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->bind_result($nom_usuario);
-    $stmt->fetch();
-    $stmt->close();
-    
-    if (!$nom_usuario) {
-        $nom_usuario = $username;
-    }
-} else {
-    $nom_usuario = 'Usuario';
+$username = $_SESSION['Usuario'];
+$stmt = $connec->prepare("SELECT Nombre FROM usuarios WHERE Usuario = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->bind_result($nombre_usuario);
+$stmt->fetch();
+$stmt->close();
+
+if (!$nombre_usuario) {
+    $nombre_usuario = $username;
 }
 
 // Contar el total de usuarios
-$stmt = $connec->prepare("SELECT COUNT(*) FROM usuario");
+$stmt = $connec->prepare("SELECT COUNT(*) FROM usuarios");
 $stmt->execute();
 $stmt->bind_result($total_usuarios);
 $stmt->fetch();
 $stmt->close();
 
 // Configurar la ruta del avatar
-$_SESSION['avatar_path'] = isset($_SESSION['avatar_path']) ? $_SESSION['avatar_path'] : 'avatars/1744068538_foto para curriculum 3.png';
+$_SESSION['avatar_path'] = isset($_SESSION['avatar_path']) ? $_SESSION['avatar_path'] : 'avatars/default_avatar.png';
 
 if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatars/') === false) {
     $_SESSION['avatar_path'] = 'avatars/' . $_SESSION['avatar_path'];
@@ -60,7 +56,7 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
         
         <div class="main-container">
             <div class="welcome-card">
-                <h1>Bienvenido, <?php echo htmlspecialchars($nom_usuario); ?></h1>
+                <h1>Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?></h1>
                 <p>Usuario: <?php echo htmlspecialchars($username); ?></p>
                 <p>La hora del sistema es: <span id="hora"></span></p>
             </div>
