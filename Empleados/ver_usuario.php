@@ -16,15 +16,15 @@ if (!isset($_GET['id'])) {
 
 // Obtener los datos del usuario
 $id = mysqli_real_escape_string($connec, $_GET['id']);
-$stmt = mysqli_prepare($connec, "SELECT * FROM usuario WHERE id = ?");
+$stmt = mysqli_prepare($connec, "SELECT * FROM Usuarios WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
-$usuario = mysqli_fetch_assoc($resultado);
+$Usuarios = mysqli_fetch_assoc($resultado);
 mysqli_stmt_close($stmt);
 
 // Verificar si se encontró el usuario
-if (!$usuario) {
+if (!$Usuarios) {
     header("Location: empleados.php");
     exit();
 }
@@ -54,17 +54,17 @@ if (!$usuario) {
                 
                 <div class="detalle-campo">
                     <span class="detalle-etiqueta">ID:</span>
-                    <div class="detalle-valor"><?php echo htmlspecialchars($usuario['id']); ?></div>
+                    <div class="detalle-valor"><?php echo htmlspecialchars($usuarios['id']); ?></div>
                 </div>
 
                 <div class="detalle-campo">
                     <span class="detalle-etiqueta">Username:</span>
-                    <div class="detalle-valor"><?php echo htmlspecialchars($usuario['username']); ?></div>
+                    <div class="detalle-valor"><?php echo htmlspecialchars($usuarios['username']); ?></div>
                 </div>
 
                 <div class="detalle-campo">
                     <span class="detalle-etiqueta">Nombre:</span>
-                    <div class="detalle-valor"><?php echo htmlspecialchars($usuario['nom_usuario']); ?></div>
+                    <div class="detalle-valor"><?php echo htmlspecialchars($usuarios['nom_usuario']); ?></div>
                 </div>
 
                 <div class="botones-accion">

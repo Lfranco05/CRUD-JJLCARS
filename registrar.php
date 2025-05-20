@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
     $Nombre = mysqli_real_escape_string($connec, trim($_POST['nom_usuario']));
     $password = mysqli_real_escape_string($connec, trim($_POST['password']));
     $TipoUsuario = mysqli_real_escape_string($connec, trim($_POST['rol']));
-    $correo = mysqli_real_escape_string($connec, trim($_POST['correo']));
+    // $correo = mysqli_real_escape_string($connec, trim($_POST['correo']));
 
     // Verificar si el usuario ya existe
     $verificar = mysqli_query($connec, "SELECT * FROM usuarios WHERE Usuario = '$Usuario'");
@@ -17,9 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
     }
     
     // Preparar el INSERT
-    $sql = "INSERT INTO usuarios (Usuario, password, Nombre, TipoUsuario, correo) VALUES (?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO usuarios (Usuario, password, Nombre, TipoUsuario) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($connec, $sql);
-    mysqli_stmt_bind_param($stmt, "sssss", $Usuario, $password, $Nombre, $TipoUsuario, $correo);
+    mysqli_stmt_bind_param($stmt, "ssss", $Usuario, $password, $Nombre, $TipoUsuario);
+
 
     if (mysqli_stmt_execute($stmt)) {
         echo "<script>alert('Usuario registrado exitosamente'); window.location.href='login.php';</script>";

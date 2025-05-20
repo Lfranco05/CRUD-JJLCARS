@@ -3,7 +3,7 @@ session_start();
 require_once 'conexion.php';
 
 if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === 0) {
-    $username = $_SESSION['username'];
+    $Usuario = $_SESSION['Usuario'];
     $upload_dir = 'avatars/';
 
     // Crear el directorio si no existe
@@ -33,8 +33,8 @@ if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === 0) {
 
     // Mover archivo y actualizar BD
     if (move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar_path)) {
-        $stmt = $connec->prepare("UPDATE usuario SET avatar = ? WHERE username = ?");
-        $stmt->bind_param("ss", $avatar_path, $username);
+        $stmt = $connec->prepare("UPDATE usuarios SET avatar = ? WHERE Usuario = ?");
+        $stmt->bind_param("ss", $avatar_path, $Usuario);
         $stmt->execute();
 
         // Guardar ruta actualizada en sesión

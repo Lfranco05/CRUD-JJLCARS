@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
             $_SESSION['Usuario'] = $fila['Usuario'];
             $_SESSION['Nombre'] = $fila['Nombre'];
             $_SESSION['TipoUsuario'] = $fila['TipoUsuario'];
-            $_SESSION['correo'] = $fila['correo'];
+            // $_SESSION['correo'] = $fila['correo'];
 
             // Manejo de "Recordarme"
             if (isset($_POST['recordar'])) {
