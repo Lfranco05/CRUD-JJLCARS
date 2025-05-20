@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #ecf0f1;
+    background-color: #f2f2f2;
     min-height: 100vh;
 }
 
@@ -23,14 +23,14 @@ body {
     margin-top: 60px;
     padding: 20px;
     min-height: calc(100vh - 60px);
-    background-color: #ecf0f1;
+    background-color: #f2f2f2;
 }
 
 /* Formulario */
 .form-container {
     background: #ffffff;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
     padding: 30px;
     width: 100%;
     max-width: 800px;
@@ -38,12 +38,12 @@ body {
 }
 
 .form-title {
-    color: #2c3e50;
+    color: #2d2d2d;
     text-align: center;
     font-size: 24px;
     margin-bottom: 30px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid #a0a0a0;
 }
 
 .form-group {
@@ -52,7 +52,7 @@ body {
 
 .form-group label {
     display: block;
-    color: #2c3e50;
+    color: #3a3a3a;
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 10px;
@@ -62,16 +62,18 @@ body {
 .form-group select {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    color: #2c3e50;
-    transition: border-color 0.3s ease;
+    color: #2d2d2d;
+    background-color: #fafafa;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #3498db;
+    border-color: #888;
+    background-color: #fff;
     outline: none;
 }
 
@@ -98,21 +100,21 @@ body {
 }
 
 .btn-submit {
-    background: #3498db;
+    background: #6c6c6c;
     color: white;
 }
 
 .btn-cancel {
-    background: #e74c3c;
+    background: #999999;
     color: white;
 }
 
 .btn-submit:hover {
-    background: #2980b9;
+    background: #555;
     transform: translateY(-2px);
 }
 
 .btn-cancel:hover {
-    background: #c0392b;
+    background: #777;
     transform: translateY(-2px);
 }

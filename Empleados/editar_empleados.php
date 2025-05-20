@@ -1,5 +1,5 @@
 <?php
-include("conexion.php");
+include("../conexion.php");
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ include("conexion.php");
     <div class="form-container">
     <?php
         if(isset($_POST['enviar'])){
-            $carnet=$_POST['carnet'];
+            $usuario=$_POST['usuario'];
             $nombre=$_POST['nombre'];
             $telefono=$_POST['telefono'];
             $direccion=$_POST['direccion'];
@@ -44,8 +44,8 @@ include("conexion.php");
             mysqli_close($connec);
     
         }else{  
-            $carnet=$_GET['carnet'];
-            $sql="select * from alumnos where carnet ='".$carnet."'";
+            $usuario=$_GET['Usuario'];
+            $sql="select * from Usuarios where carnet ='".$usuario."'";
             $resultado=mysqli_query($connec,$sql);
             $fila=mysqli_fetch_assoc($resultado);
             $nombre=$fila["nombre"];            

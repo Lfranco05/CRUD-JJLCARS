@@ -97,13 +97,13 @@ mysqli_stmt_close($stmt);
                             <td><?php echo htmlspecialchars($fila['Usuario']); ?></td>
                             <td><?php echo htmlspecialchars($fila['Nombre']); ?></td>
                             <td>
-                                <a href="ver_usuario.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
+                                <a href="ver_empleados.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
                                     <i class="fas fa-eye"></i> Ver
                                 </a>
                                 <a href="modificar_usuario.php?id=<?php echo urlencode($fila['id']); ?>" class="modify">
                                     <i class="fas fa-edit"></i> Modificar
                                 </a>
-                                <a href="eliminar_usuario.php?id=<?php echo urlencode($fila['id']); ?>" class="delete" 
+                                <a href="eliminar_empleados.php?id=<?php echo urlencode($fila['id']); ?>" class="delete" 
                                    onclick="return confirm('¿Estás seguro de eliminar este usuario?');">
                                     <i class="fas fa-trash-alt"></i> Eliminar
                                 </a>

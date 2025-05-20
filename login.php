@@ -7,12 +7,10 @@ if (isset($_SESSION["usuarioingresando"]) && $_SESSION["usuarioingresando"] === 
     exit();
 }
 
-// Procesar el formulario cuando se envía
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $username = mysqli_real_escape_string($connec, trim($_POST['username']));
     $password = mysqli_real_escape_string($connec, trim($_POST['password']));
-    
-    // Buscar el usuario en la tabla 'usuarios'
+    // valida y compara al usuario para el incio de sesion.
     $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario FROM usuarios WHERE Usuario = ?";
     $stmt = mysqli_prepare($connec, $sql);
     mysqli_stmt_bind_param($stmt, "s", $username);
@@ -58,11 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     <meta charset="UTF-8">
     <title>Login de Usuarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Enlaza el CSS especializado para el login -->
-    <link rel="stylesheet" type="text/css" href="login.css">
-    <!-- SweetAlert2 (opcional si lo usas en esta página) -->
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Font Awesome para los iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="login-body">
