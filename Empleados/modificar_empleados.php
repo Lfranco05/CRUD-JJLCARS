@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Modificar Usuario</title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
-    <link rel="stylesheet" type="text/css" href="../css/modificar_empleados.css">
+    <link rel="stylesheet" type="text/css" href="../css/empleados_css/modificar_empleados.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>

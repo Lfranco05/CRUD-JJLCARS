@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Agregar Empleado</title>
-    <link rel="stylesheet" href="../css/agregar_empleados.css" />
+    <link rel="stylesheet" href="../css/empleados_css/agregar_empleados.css" />
     <script>
         window.onload = function() {
             document.querySelector('[name="nombre"]').focus();

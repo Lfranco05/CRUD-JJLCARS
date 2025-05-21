@@ -1,0 +1,72 @@
+.user-view-form {
+  background: #f0f1f3;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  padding: 40px;
+  max-width: 600px;
+  margin: 40px auto;
+  color: #1e1e1e;
+}
+
+.user-view-form .form-title {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  color: #666;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.form-group input {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 12px 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  cursor: default;
+}
+
+.form-group input:read-only {
+  background-color: #f8f8f8;
+  border-left: 4px solid #999;
+}
+
+.form-buttons {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-volver {
+  background: #4a4a4a;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-volver:hover {
+  background: #2c2c2c;
+  transform: translateY(-2px);
+}
