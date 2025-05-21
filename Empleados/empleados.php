@@ -73,7 +73,7 @@ mysqli_stmt_close($stmt);
                     <input type="text" name="buscar" placeholder="Buscar usuario" value="<?php echo htmlspecialchars($buscar); ?>">
                     <input type="submit" value="Buscar">
                     <a href="empleados.php" class="back">Mostrar todos</a>
-                     <a href="empleados.php" class="back">Agregar empleado</a>
+                    <a href="agregar_empleados.php" class="back">Agregar empleado</a>
                 </form>
             </div>
             <table>
@@ -125,9 +125,6 @@ mysqli_stmt_close($stmt);
                 <?php } ?>
             </div>
         </div>
-    </div>
-    <div class="logo-container">
-        <img src="../img/logo.jpeg" alt="Logo Universidad San Pablo" class="logo-image">
     </div>
 </body>
 </html>

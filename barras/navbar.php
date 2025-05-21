@@ -30,8 +30,7 @@
                 </span>
             </div>
             <a href="../logout.php" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i>
-                Cerrar Sesión
+           <i class="fa-solid fa-power-off"></i>
             </a>
         </div>
     </nav>

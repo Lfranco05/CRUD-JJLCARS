@@ -5,16 +5,17 @@
     right: 0;
     height: 60px;
     z-index: 1001;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #ffffff; /* Blanco puro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06); /* Sombra más suave y extendida */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 24px;
+    border-bottom: 1px solid #e0e0e0; /* Línea divisoria sutil */
 }
 
 .navbar-brand {
-    color: #2c3e50;
+    color: #1f1f1f; /* Texto oscuro */
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;
@@ -24,13 +25,13 @@
 
 .navbar-brand img {
     height: 40px;
-    margin-right: 10px;
+    margin-right: 12px;
 }
 
 .navbar-right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
 }
 
 .user-info {
@@ -40,25 +41,27 @@
 }
 
 .user-name {
-    color: #2c3e50;
+    color: #4b4b4b; /* Gris oscuro */
     font-weight: 500;
+    font-size: 14px;
 }
 
 .logout-btn {
-    background: #e74c3c;
+    background: #b00020; /* Rojo oscuro suave */
     color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
+    padding: 8px 16px;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .logout-btn:hover {
-    background: #c0392b;
+    background: #8a0018; /* Rojo más oscuro */
     transform: translateY(-2px);
 }
 
