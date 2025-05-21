@@ -39,22 +39,6 @@ if (!empty($user['avatar'])) {
     }
 
 
-<div class="sidebar">
-    <div class="profile">
-        <div class="avatar-container">
-            <form id="avatarForm" action="../upload_avatar.php" method="post" enctype="multipart/form-data">
-                <label for="avatarUpload">
-                    <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Avatar de usuario">
-                    <div class="avatar-overlay">
-                        <div class="upload-btn"><i class="fas fa-camera"></i></div>
-                    </div>
-                </label>
-                <input type="file" id="avatarUpload" name="avatar" accept="image/*" style="display: none;">
-            </form>
-        </div>
-        <p class="profile-name"><?php echo htmlspecialchars($nom_usuario); ?></p>
-    </div>
-
     <nav class="menu-section">
         <h3>PERFIL ADMINISTRADOR</h3>
         <a href="../inicio/principal.php" class="<?php echo $current_page == 'principal.php' ? 'active' : ''; ?>">
