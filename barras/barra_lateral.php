@@ -15,17 +15,20 @@ if (session_status() === PHP_SESSION_NONE) {
 include_once(__DIR__ . "/../conexion.php");
 
 // Verificar si el usuario está autenticado
-$username = $_SESSION['Usuario'] ?? ''; // Adaptado a nueva variable de sesión
+$username = $_SESSION['Usuario'] ?? '';
 
 // Obtener avatar y nombre del usuario
-$query = "SELECT Nombre FROM usuarios WHERE Usuario = ?";
+$query = "SELECT Nombre, avatar FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $query);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
-// Ruta por defecto
+// Nombre del usuario
+$nom_usuario = $user['Nombre'] ?? $username;
+
+// Ruta por defecto del avatar
 $default_avatar = '../avatars/default.png';
 $avatar_path = $default_avatar;
 
@@ -37,7 +40,27 @@ if (!empty($user['avatar'])) {
     if (file_exists($avatar_absoluto)) {
         $avatar_path = $avatar_relativo;
     }
+}
 
+// Página actual
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+
+<div class="sidebar">
+    <div class="profile">
+        <div class="avatar-container">
+            <form id="avatarForm" action="../upload_avatar.php" method="post" enctype="multipart/form-data">
+                <label for="avatarUpload">
+                    <img src="<?php echo htmlspecialchars($avatar_path); ?>" alt="Avatar de usuario">
+                    <div class="avatar-overlay">
+                        <div class="upload-btn"><i class="fas fa-camera"></i></div>
+                    </div>
+                </label>
+                <input type="file" id="avatarUpload" name="avatar" accept="image/*" style="display: none;">
+            </form>
+        </div>
+        <p class="profile-name"><?php echo htmlspecialchars($nom_usuario); ?></p>
+    </div>
 
     <nav class="menu-section">
         <h3>PERFIL ADMINISTRADOR</h3>
@@ -92,4 +115,3 @@ document.getElementById('avatarUpload').addEventListener('change', function () {
 </script>
 </body>
 </html>
-
