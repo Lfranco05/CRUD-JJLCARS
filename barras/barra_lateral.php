@@ -15,27 +15,34 @@ if (session_status() === PHP_SESSION_NONE) {
 include_once(__DIR__ . "/../conexion.php");
 
 // Verificar si el usuario está autenticado
-$username = $_SESSION['Usuario'] ?? ''; // Adaptado a nueva variable de sesión
+$username = $_SESSION['Usuario'] ?? '';
 
 // Obtener avatar y nombre del usuario
-$query = "SELECT Nombre FROM usuarios WHERE Usuario = ?";
+$query = "SELECT Nombre, avatar FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $query);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
-// Ruta del avatar
-// $default_avatar = 'avatars/default.png';
-// $avatar_rel = !empty($user['avatar']) ? $user['avatar'] : $default_avatar;
-// $avatar_path = '../' . $avatar_rel;
-
-// if (!file_exists(__DIR__ . '/../' . $avatar_rel)) {
-//     $avatar_path = '../' . $default_avatar;
-// }
-
-// Nombre para mostrar
+// Nombre del usuario
 $nom_usuario = $user['Nombre'] ?? $username;
+
+// Ruta por defecto del avatar
+$default_avatar = '../avatars/default.png';
+$avatar_path = $default_avatar;
+
+if (!empty($user['avatar'])) {
+    $avatar_rel = ltrim($user['avatar'], '/'); // evita doble slash
+    $avatar_absoluto = __DIR__ . '/../' . $avatar_rel;
+    $avatar_relativo = '../' . $avatar_rel;
+
+    if (file_exists($avatar_absoluto)) {
+        $avatar_path = $avatar_relativo;
+    }
+}
+
+// Página actual
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
