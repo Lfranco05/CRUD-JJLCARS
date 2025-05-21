@@ -7,61 +7,53 @@
 }
 
 body {
-    background-color: #ecf0f1;
+    background-color: #f4f4f4;
     min-height: 100vh;
-    padding-top: 60px; /* Añadido para compensar la navbar */
+    padding-top: 60px;
+    color: #2f2f2f;
 }
 
-/* Barra lateral - eliminamos la duplicación y ajustamos la posición */
+/* Barra lateral */
 .sidebar {
     width: 250px;
     height: calc(100vh - 60px);
     position: fixed;
     top: 60px;
     left: 0;
-    background-color: #2c3e50;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #2f2f2f;
     padding: 20px;
+    border-right: 1px solid #e0e0e0;
     z-index: 100;
     overflow-y: auto;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.06);
 }
 
-/* Contenedor principal - ajustado el margen y posición */
+/* Contenedor principal */
 .main-container {
     margin-left: 250px;
     padding: 20px;
     min-height: calc(100vh - 60px);
-    position: relative;
-    z-index: 1;
-}
-
-/* Tabla y contenido */
-.table-container {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
+    background-color: #f9f9f9;
 }
 
 /* Título */
 h1 {
-    color: #2c3e50;
+    color: #2f2f2f;
     margin-bottom: 20px;
     font-size: 24px;
 }
 
-/* Tabla y contenido */
+/* Contenedor tabla */
 .table-container {
-    background: white;
+    background: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     overflow-x: auto;
     margin-bottom: 20px;
 }
 
+/* Tabla */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -69,7 +61,7 @@ table {
 }
 
 th {
-    background-color: #3498db;
+    background-color: #4f4f4f;
     color: white;
     padding: 15px;
     text-align: left;
@@ -77,58 +69,62 @@ th {
 
 td {
     padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
 }
 
 tr:hover {
-    background-color: #f5f6fa;
+    background-color: #f0f0f0;
 }
 
-/* Botones de acción */
+/* Botones */
 .view, .modify, .delete {
     padding: 6px 12px;
     margin: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
     color: white;
     display: inline-flex;
     align-items: center;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
 }
 
 .view {
-    background-color: #3498db;
+    background-color: #7f8c8d;
 }
 
 .view:hover {
-    background-color: #2980b9;
+    background-color: #6c7a7b;
 }
 
 .modify {
-    background-color: #2ecc71;
+    background-color: #4f4f4f;
 }
 
 .modify:hover {
-    background-color: #27ae60;
+    background-color: #3a3a3a;
 }
 
 .delete {
-    background-color: #e74c3c;
+    background-color: #bdc3c7;
+    color: #2f2f2f;
 }
 
 .delete:hover {
-    background-color: #c0392b;
+    background-color: #aeb4b8;
 }
 
 .view i, .modify i, .delete i {
     margin-right: 5px;
 }
 
-/* Formulario de búsqueda */
+/* Formulario búsqueda */
 .search-form {
-    background: white;
-    padding: 20px;
+    background: #ffffff;
+    padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
 }
 
@@ -140,8 +136,8 @@ tr:hover {
 
 .search-form input[type="text"] {
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     flex: 1;
 }
 
@@ -149,18 +145,27 @@ tr:hover {
 .search-form .back {
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
     color: white;
     text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
 .search-form input[type="submit"] {
-    background-color: #3498db;
+    background-color: #4f4f4f;
+}
+
+.search-form input[type="submit"]:hover {
+    background-color: #3a3a3a;
 }
 
 .search-form .back {
-    background-color: #95a5a6;
+    background-color: #7f8c8d;
+}
+
+.search-form .back:hover {
+    background-color: #6c7a7b;
 }
 
 /* Paginación */
@@ -172,22 +177,28 @@ tr:hover {
 .pagination a {
     padding: 8px 16px;
     margin: 0 4px;
-    border-radius: 4px;
+    border-radius: 6px;
     text-decoration: none;
     color: white;
-    background-color: #3498db;
+    background-color: #4f4f4f;
     display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #3a3a3a;
 }
 
 .pagination a.disabled {
-    background-color: #95a5a6;
+    background-color: #ccc;
     cursor: not-allowed;
+    color: #666;
 }
 
 /* Total usuarios */
 .total-users {
     margin-top: 15px;
-    color: #2c3e50;
+    color: #4f4f4f;
     font-weight: 600;
     text-align: right;
 }
@@ -214,4 +225,28 @@ tr:hover {
         margin-bottom: 5px;
         text-align: center;
     }
+    /* ICONOS PERRONES BUAJAJAJ */
+}
+.action-icon {
+    font-size: 18px;
+    margin: 0 8px;
+    color: #444;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.action-icon:hover {
+    color: #000;
+}
+
+.action-icon .fa-eye {
+    color: #3498db;
+}
+
+.action-icon .fa-edit {
+    color: #f39c12;
+}
+
+.action-icon .fa-trash-alt {
+    color: #e74c3c;
 }

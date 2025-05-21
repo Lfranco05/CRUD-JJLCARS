@@ -1,0 +1,166 @@
+:root {
+    --primary-color: #4b4b4b;    
+    --primary-hover: #2c2c2c;         
+    --danger-color: #b00020;           
+    --danger-hover: #8a0018;         
+    --background-color: #f4f4f4;       
+    --text-color: #1f1f1f;              
+    --form-bg: #ffffff;                 
+    --input-border: #d0d0d0;            
+    --label-color: #666666;           
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.08); 
+}
+
+/* Estilos base necesarios */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    min-height: 100vh;
+    padding-top: 60px;
+    color: var(--text-color);
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 250px;
+    height: calc(100vh - 60px);
+    position: fixed;
+    top: 60px;
+    left: 0;
+    background-color: #2c3e50;
+    color: #ffffff;
+    padding: 20px;
+    z-index: 100;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1001;
+    background-color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Contenedor principal */
+.main-container {
+    margin-left: 250px;
+    padding: 20px;
+    min-height: calc(100vh - 60px);
+    background-color: var(--background-color);
+}
+
+/* Formulario */
+.form-container {
+    background: var(--form-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-title {
+    color: var(--text-color);
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.form-group {
+    background: #fdfdfd;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.form-group:hover {
+    background: #f7f7f7;
+}
+
+.form-group label {
+    display: block;
+    color: var(--label-color);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.form-group input {
+    width: 100%;
+    color: var(--text-color);
+    font-size: 16px;
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-hover);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Botones */
+.form-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn-guardar,
+.btn-cancelar {
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-guardar {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-cancelar {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-guardar:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1.5px);
+}
+
+.btn-cancelar:hover {
+    background: var(--danger-hover);
+    transform: translateY(-1.5px);
+}
+
+.btn-guardar i,
+.btn-cancelar i {
+    margin-right: 8px;
+}

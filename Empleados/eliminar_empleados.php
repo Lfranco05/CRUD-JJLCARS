@@ -2,13 +2,11 @@
 session_start();
 include("../conexion.php");
 
-// Verificar si el usuario está autenticado
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
     header("Location: login.php");
     exit();
 }
 
-// Verificar si se proporcionó un ID
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header("Location: empleados.php");
     exit();
@@ -17,7 +15,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 $id = mysqli_real_escape_string($connec, $_GET['id']);
 
 
-$stmt = mysqli_prepare($connec, "DELETE FROM Usuarios WHERE id = ?");
+$stmt = mysqli_prepare($connec, "DELETE FROM empleados WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 $resultado = mysqli_stmt_execute($stmt);
 

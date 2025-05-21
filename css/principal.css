@@ -7,8 +7,9 @@
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #f4f4f4;
     min-height: 100vh;
+    color: #2f2f2f;
 }
 
 /* Contenedor principal */
@@ -17,49 +18,64 @@ body {
     padding: 30px;
     min-height: calc(100vh - 60px);
     margin-top: 60px;
+    background-color: #f9f9f9;
 }
 
+/* Tarjeta de bienvenida */
 .welcome-card {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease;
+}
+
+.welcome-card:hover {
+    transform: translateY(-3px);
 }
 
 .welcome-card h1 {
-    font-size: 48px;
-    color: #3498db;
+    font-size: 42px;
+    color: #2f2f2f;
     font-weight: bold;
     margin: 15px 0;
 }
 
 .welcome-card p {
     color: #7f8c8d;
-    font-size: 16px;
+    font-size: 18px;
+    margin-top: 10px;
 }
 
+/* Tarjeta resumen */
 .summary-card {
-    background: rgba(255, 255, 255, 0.701);
+    background: #ffffff;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
     text-align: center;
     margin-bottom: 30px;
+    transition: box-shadow 0.3s ease;
+}
+
+.summary-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .summary-card h3 {
-    color: #2c3e50;
+    color: #4f4f4f;
     font-size: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
 .summary-value {
-    font-size: 48px;
-    color: #3498db;
-    font-weight: bold;
-    margin: 15px 0;
+    font-size: 44px;
+    color: #2f2f2f;
+    font-weight: 700;
+    margin: 10px 0;
 }
 
 .summary-card p {
@@ -67,19 +83,39 @@ body {
     font-size: 16px;
 }
 
+/* Contenedor de logo */
 .logo-container {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .logo-image {
-    max-width: 300px;
+    max-width: 260px;
     height: auto;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
 }
 
+.logo-image:hover {
+    opacity: 1;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
     .main-container {
         margin-left: 0;
-        padding: 15px;
+        padding: 20px;
+    }
+
+    .welcome-card h1 {
+        font-size: 32px;
+    }
+
+    .summary-value {
+        font-size: 36px;
+    }
+
+    .logo-image {
+        max-width: 200px;
     }
 }
