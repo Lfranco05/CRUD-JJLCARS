@@ -15,20 +15,17 @@ if (session_status() === PHP_SESSION_NONE) {
 include_once(__DIR__ . "/../conexion.php");
 
 // Verificar si el usuario está autenticado
-$username = $_SESSION['Usuario'] ?? '';
+$username = $_SESSION['Usuario'] ?? ''; // Adaptado a nueva variable de sesión
 
 // Obtener avatar y nombre del usuario
-$query = "SELECT Nombre, avatar FROM usuarios WHERE Usuario = ?";
+$query = "SELECT Nombre FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $query);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
 $user = mysqli_fetch_assoc($result);
 
-// Nombre del usuario
-$nom_usuario = $user['Nombre'] ?? $username;
-
-// Ruta por defecto del avatar
+// Ruta por defecto
 $default_avatar = '../avatars/default.png';
 $avatar_path = $default_avatar;
 
@@ -40,11 +37,7 @@ if (!empty($user['avatar'])) {
     if (file_exists($avatar_absoluto)) {
         $avatar_path = $avatar_relativo;
     }
-}
 
-// Página actual
-$current_page = basename($_SERVER['PHP_SELF']);
-?>
 
 <div class="sidebar">
     <div class="profile">
@@ -115,3 +108,4 @@ document.getElementById('avatarUpload').addEventListener('change', function () {
 </script>
 </body>
 </html>
+
