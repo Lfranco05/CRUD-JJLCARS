@@ -67,22 +67,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="main-container">
             <div class="form-container">
-                <h2 class="form-title">Modificar Usuario</h2>
+                <h2 class="form-title">Modificar empleado</h2>
                 <form method="POST" action="">
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
 
                     <div class="form-group">
-                        <label><i class="fa-regular fa-star"></i> Nombre de Usuario:</label>
+                        <label><i class="fa-regular fa-star"></i> Usuario</label>
                         <input type="text" name="Usuario" value="<?php echo htmlspecialchars($usuario['Usuario']); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-cube"></i> Nombre Completo:</label>
+                        <label><i class="fa-solid fa-cube"></i> Nombre</label>
                         <input type="text" name="Nombre" value="<?php echo htmlspecialchars($usuario['Nombre']); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-chart-simple"></i> Tipo de Usuario:</label>
+                        <label><i class="fa-solid fa-chart-simple"></i> Tipo de Usuario</label>
                         <input type="text" name="TipoUsuario" value="<?php echo htmlspecialchars($usuario['TipoUsuario']); ?>" required>
                     </div>
 

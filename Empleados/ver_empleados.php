@@ -49,20 +49,20 @@ if (!$Usuarios) {
 
         <div class="main-container">
             <div class="detalles-container">
-                <h2 class="detalles-titulo"><i class="fas fa-id-badge"></i> Detalles del Empleado</h2>
+                <h2 class="detalles-titulo"><i class="fa-solid fa-file-shield"></i> Detalles del Empleado</h2>
 
                 <div class="detalle-item">
-                    <label><i class="fas fa-user"></i> Nombre:</label>
+                    <label><i class="fa-regular fa-star"></i> Nombre</label>
                     <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['nombre']); ?></div>
                 </div>
 
                 <div class="detalle-item">
-                    <label><i class="fas fa-user-circle"></i> Usuario:</label>
+                    <label><i class="fa-solid fa-cube"></i> Usuario</label>
                     <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['usuario']); ?></div>
                 </div>
 
                 <div class="detalle-item">
-                    <label><i class="fas fa-user-tag"></i> Tipo de Usuario:</label>
+                    <label><i class="fa-solid fa-chart-simple"></i> Tipo de Usuario</label>
                     <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['TipoUsuario']); ?></div>
                 </div>
 
