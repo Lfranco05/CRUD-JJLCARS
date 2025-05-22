@@ -30,11 +30,11 @@ if (!empty($buscar)) {
 $total_pages = ceil($total_vehiculos / $limit);
 
 if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, fecha_agregado FROM vehiculos WHERE LOWER(marca) LIKE ? OR LOWER(modelo) LIKE ? LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario FROM vehiculos WHERE LOWER(marca) LIKE ? OR LOWER(modelo) LIKE ? LIMIT ? OFFSET ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($stmt, "ssii", $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, fecha_agregado FROM vehiculos LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario FROM vehiculos LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
@@ -57,6 +57,7 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="../css/barra_lateral.css">
     <link rel="stylesheet" href="../css/vehiculos_css/vehiculos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Vehículos JJLCARS</title>
 </head>
 <body>
     <div class="wrapper">
@@ -82,32 +83,35 @@ mysqli_stmt_close($stmt);
                         <th>Descripción</th>
                         <th>Precio</th>
                         <th>Imagen</th>
-                        <th>Fecha Agregado</th>
+                        <th>Fecha de actualización</th>
+                        <th>Inventario</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($fila = mysqli_fetch_assoc($resultado)) { ?>
+                    <?php if(mysqli_num_rows($resultado) > 0): ?>
+                        <?php while ($fila = mysqli_fetch_assoc($resultado)) { ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($fila['id']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['marca']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['modelo']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
+                                <td>$<?php echo number_format($fila['precio'], 2); ?></td>
+                                <td><img src="../imagenes/<?php echo htmlspecialchars($fila['imagenes']); ?>" width="80" alt="Imagen vehículo"></td>
+                                <td><?php echo htmlspecialchars($fila['fecha_agregado']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['inventario']); ?></td>
+                                <td>
+                                    <a href="ver_vehiculos.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Ver"><i class="fas fa-eye"></i></a>
+                                    <a href="modificar_vehiculos.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Modificar"><i class="fas fa-edit"></i></a>
+                                    <a href="eliminar_vehiculos.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar este vehículo?');"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    <?php else: ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($fila['id']); ?></td>
-                            <td><?php echo htmlspecialchars($fila['marca']); ?></td>
-                            <td><?php echo htmlspecialchars($fila['modelo']); ?></td>
-                            <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
-                            <td>$<?php echo number_format($fila['precio'], 2); ?></td>
-                            <td><img src="../imagenes_vehiculos/<?php echo htmlspecialchars($fila['imagen']); ?>" width="80"></td>
-                            <td><?php echo htmlspecialchars($fila['fecha_agregado']); ?></td>
-                            <td>
-                                <a href="ver_vehiculo.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Ver"><i class="fas fa-eye"></i></a>
-                                <a href="modificar_vehiculo.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Modificar"><i class="fas fa-edit"></i></a>
-                                <a href="eliminar_vehiculo.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Eliminar" onclick="return confirm('¿Estás seguro de eliminar este vehículo?');"><i class="fas fa-trash-alt"></i></a>
-                            </td>
+                            <td colspan="9">Ninguna coincidencia</td>
                         </tr>
-                    <?php } ?>
-                    <?php if (mysqli_num_rows($resultado) == 0) { ?>
-                        <tr>
-                            <td colspan="8">Ninguna coincidencia</td>
-                        </tr>
-                    <?php } ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
             <p class="total-users">Vehículos disponibles: <?php echo $total_vehiculos; ?></p>

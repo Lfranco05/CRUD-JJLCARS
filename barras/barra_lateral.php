@@ -90,9 +90,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a href="../ventas/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
             <i class="fas fa-shopping-cart"></i> Ventas
         </a>
-        <a href="../vendedores/vendedores.php" class="<?php echo $current_page == 'vendedores.php' ? 'active' : ''; ?>">
-            <i class="fas fa-user-tie"></i> Vendedores
-        </a>
     </div>
 
     <div class="menu-section">
@@ -101,7 +98,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <i class="fas fa-car"></i> Vehículos
         </a>
         <a href="../marcas/marcas.php" class="<?php echo $current_page == 'marcas.php' ? 'active' : ''; ?>">
-            <i class="fas fa-tags"></i> Marcas
+            <i class="fas fa-tags"></i> Inventario
         </a>
     </div>
 </div>

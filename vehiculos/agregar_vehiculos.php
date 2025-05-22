@@ -6,28 +6,26 @@ if (isset($_POST['enviar'])) {
     $modelo = $_POST['modelo'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
+    $inventario = $_POST['inventario'];
     $fecha_agregado = date('Y-m-d');
 
     $imagen = $_FILES['imagen']['name'];
     $imagenTmp = $_FILES['imagen']['tmp_name'];
     $rutaImagen = "imagenes/" . basename($imagen);
 
-    // Subir imagen a la tablita esa cosa fea.
     if (move_uploaded_file($imagenTmp, "../" . $rutaImagen)) {
-        $stmt = mysqli_prepare($connec, "INSERT INTO vehiculos (marca, modelo, descripcion, precio, imagen, fecha_agregado) VALUES (?, ?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt, "sssdss", $marca, $modelo, $descripcion, $precio, $rutaImagen, $fecha_agregado);
+        $stmt = mysqli_prepare($connec, "INSERT INTO vehiculos (marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "sssdsis", $marca, $modelo, $descripcion, $precio, $rutaImagen, $fecha_agregado, $inventario);
         $resultado = mysqli_stmt_execute($stmt);
 
         if ($resultado) {
             echo "<script>
                 alert('Vehículo agregado correctamente.');
-                window.opener.location.reload();
-                window.close();
+                window.location.href = 'vehiculos.php';
             </script>";
         } else {
             echo "<script>
                 alert('Error al guardar el vehículo.');
-                window.close();
             </script>";
         }
 
@@ -35,7 +33,6 @@ if (isset($_POST['enviar'])) {
     } else {
         echo "<script>
             alert('Error al subir la imagen.');
-            window.close();
         </script>";
     }
 
@@ -72,6 +69,11 @@ if (isset($_POST['enviar'])) {
             <div class="form-group">
                 <label for="precio">Precio:</label>
                 <input type="number" step="0.01" name="precio" required>
+            </div>
+
+            <div class="form-group">
+                <label for="inventario">Inventario:</label>
+                <input type="number" name="inventario" required>
             </div>
 
             <div class="form-group">

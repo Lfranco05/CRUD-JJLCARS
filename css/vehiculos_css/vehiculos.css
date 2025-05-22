@@ -148,7 +148,7 @@ tbody td img:hover {
 /* === Íconos de acciones === */
 .action-icon {
     margin-right: 10px;
-    color: #7b2ff7;
+    color: #4b5563;
     transition: color 0.2s ease, transform 0.2s ease;
     font-size: 16px;
     cursor: pointer;

@@ -1,0 +1,62 @@
+<?php
+include("../conexion.php");
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "ID inválido.";
+    exit();
+}
+
+$id = (int)$_GET['id'];
+
+$stmt = mysqli_prepare($connec, "SELECT marca, modelo, descripcion, precio, imagen, fecha_agregado FROM vehiculos WHERE id = ?");
+mysqli_stmt_bind_param($stmt, "i", $id);
+mysqli_stmt_execute($stmt);
+$resultado = mysqli_stmt_get_result($stmt);
+$vehiculo = mysqli_fetch_assoc($resultado);
+mysqli_stmt_close($stmt);
+
+if (!$vehiculo) {
+    echo "Vehículo no encontrado.";
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Vehículo</title>
+    <link rel="stylesheet" type="text/css" href="../css/vehiculos_css/ver_vehiculos.css">
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Detalles del Vehículo</h2>
+        <div class="vehiculo-info">
+            <label>Marca:</label>
+            <p><?= htmlspecialchars($vehiculo['marca']) ?></p>
+
+            <label>Modelo:</label>
+            <p><?= htmlspecialchars($vehiculo['modelo']) ?></p>
+
+            <label>Descripción:</label>
+            <p><?= htmlspecialchars($vehiculo['descripcion']) ?></p>
+
+            <label>Precio:</label>
+            <p>$<?= number_format($vehiculo['precio'], 2) ?></p>
+
+            <label>Fecha en la que fue agregado:</label>
+            <p><?= htmlspecialchars($vehiculo['fecha_agregado']) ?></p>
+
+            <?php if (!empty($vehiculo['imagen']) && file_exists("../imagenes/" . $vehiculo['imagen'])): ?>
+                <label>Imagen:</label>
+                <img src="../imagenes/<?= htmlspecialchars($vehiculo['imagen']) ?>" alt="Imagen del vehículo">
+            <?php else: ?>
+                <p><em>Sin imagen disponible</em></p>
+            <?php endif; ?>
+        </div>
+        <div class="btn-volver">
+            <a href="vehiculos.php">Volver</a>
+        </div>
+    </div>
+</body>
+</html>
