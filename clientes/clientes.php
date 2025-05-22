@@ -88,10 +88,10 @@ mysqli_stmt_close($stmt);
         <div class="main-container">
             <h1>Listado de Clientes</h1>
             <div class="search-form">
-                <form method="get" action="ventas.php">
+                <form method="get" action="clientes.php">
                     <input type="text" name="buscar" placeholder="Buscar estudiante" value="<?php echo htmlspecialchars($buscar); ?>">
                     <input type="submit" value="Buscar">
-                    <a href="ventas.php" class="back">Mostrar todos</a>
+                    <a href="clientes.php" class="back">Mostrar todos</a>
                 </form>
                 <a href="agregar_estudiante.php" class="new-student-btn">
                     <i class="fas fa-user-plus"></i> Nuevo Estudiante
@@ -116,7 +116,7 @@ mysqli_stmt_close($stmt);
                                 <td><?php echo htmlspecialchars($fila['direccion']); ?></td>
                          
                                 <td>
-                                    <a href="ver_ventas.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
+                                    <a href="clientes.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
                                         <i class="fas fa-eye"></i> Ver
                                     </a>
                                     <a href="modificar_estudiante.php?id=<?php echo urlencode($fila['id']); ?>" class="modify">
@@ -140,12 +140,12 @@ mysqli_stmt_close($stmt);
             <p class="total-users">Total de estudiantes: <?php echo $total_estudiantes; ?></p>
             <div class="pagination">
                 <?php if ($page > 1) { ?>
-                    <a href="ventas.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
+                    <a href="clientes.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
                 <?php } else { ?>
                     <a href="#" class="disabled">Anterior</a>
                 <?php } ?>
                 <?php if ($page < $total_pages) { ?>
-                    <a href="ventas.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
+                    <a href="clientes.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
                 <?php } else { ?>
                     <a href="#" class="disabled">Siguiente</a>
                 <?php } ?>

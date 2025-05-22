@@ -74,7 +74,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a href="../clientes/dashboard.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
             <i class="fas fa-chart-line"></i> Proyecciones de ventas
         </a>
-        <a href="../clientes/ventas.php" class="<?php echo $current_page == 'ventas.php' ? 'active' : ''; ?>">
+        <a href="../clientes/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
             <i class="fas fa-graduation-cap"></i> Clientes
         </a>
         <a href="../contactos/contactos.php" class="<?php echo $current_page == 'contactos.php' ? 'active' : ''; ?>">
@@ -87,7 +87,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a href="../Empleados/empleados.php" class="<?php echo $current_page == 'empleados.php' ? 'active' : ''; ?>">
             <i class="fas fa-users"></i> Empleados
         </a>
-        <a href="../ventas/ventas.php" class="<?php echo $current_page == 'ventas.php' ? 'active' : ''; ?>">
+        <a href="../ventas/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
             <i class="fas fa-shopping-cart"></i> Ventas
         </a>
         <a href="../vendedores/vendedores.php" class="<?php echo $current_page == 'vendedores.php' ? 'active' : ''; ?>">
