@@ -97,7 +97,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a href="../vehiculos/vehiculos.php" class="<?php echo $current_page == 'vehiculos.php' ? 'active' : ''; ?>">
             <i class="fas fa-car"></i> Vehículos
         </a>
-        <a href="../marcas/marcas.php" class="<?php echo $current_page == 'marcas.php' ? 'active' : ''; ?>">
+        <a href="../inventario/inventario.php" class="<?php echo $current_page == 'inventario.php' ? 'active' : ''; ?>">
             <i class="fas fa-tags"></i> Inventario
         </a>
     </div>
