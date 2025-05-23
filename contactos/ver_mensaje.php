@@ -31,10 +31,9 @@ if (!$mensaje) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ver Mensaje - Universidad San Pablo</title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
-    <link rel="stylesheet" type="text/css" href="../css/ver_mensaje.css">
+    <link rel="stylesheet" type="text/css" href="../css/contactos_css/ver_mensaje.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -56,16 +55,6 @@ if (!$mensaje) {
                 <div class="mensaje-campo">
                     <span class="campo-etiqueta">Correo:</span>
                     <div class="campo-valor"><?php echo htmlspecialchars($mensaje['correo']); ?></div>
-                </div>
-
-                <div class="mensaje-campo">
-                    <span class="campo-etiqueta">Teléfono:</span>
-                    <div class="campo-valor"><?php echo htmlspecialchars($mensaje['telefono']); ?></div>
-                </div>
-
-                <div class="mensaje-campo">
-                    <span class="campo-etiqueta">Carrera:</span>
-                    <div class="campo-valor"><?php echo htmlspecialchars($mensaje['carrera']); ?></div>
                 </div>
 
                 <div class="mensaje-campo">

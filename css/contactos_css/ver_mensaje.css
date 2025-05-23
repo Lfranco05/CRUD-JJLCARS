@@ -1,0 +1,78 @@
+/* ver_mensaje.css */
+
+body {
+    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.mensaje-container {
+    background: #fff;
+    border-radius: 16px;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.mensaje-container h2 {
+    text-align: center;
+    color: #7b2ff7;
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.mensaje-campo {
+    margin-bottom: 20px;
+}
+
+.campo-etiqueta {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.campo-valor {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    color: #444;
+}
+
+.mensaje-texto {
+    white-space: pre-wrap;
+}
+
+.botones-accion {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-volver {
+    background-color: #7b2ff7;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-volver:hover {
+    background-color: #6a24d9;
+    transform: scale(1.05);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

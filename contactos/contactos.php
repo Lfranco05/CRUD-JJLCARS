@@ -33,7 +33,7 @@ $total_mensajes = mysqli_fetch_assoc($resultado_total)['total'];
     <title>Citas Programadas - JJLCARS</title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
-    <link rel="stylesheet" type="text/css" href="../css/contactos.css">
+    <link rel="stylesheet" type="text/css" href="../css/contactos_css/contactos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>

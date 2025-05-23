@@ -60,10 +60,10 @@ mysqli_stmt_close($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Usuario</title>
+    <title>Modificar Vehículo</title>
     <link rel="stylesheet" type="text/css" href="../css/navbar.css">
     <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
-        <link rel="stylesheet" type="text/css" href="../css/vehiculos_css/modificar_vehiculos.css">
+    <link rel="stylesheet" type="text/css" href="../css/vehiculos_css/modificar_vehiculos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -93,7 +93,7 @@ mysqli_stmt_close($stmt);
 
             <div class="form-buttons">
                 <input type="submit" value="Guardar Cambios">
-                <a href="vehiculos.php">Cancelar</a>
+                <a href="vehiculos.php" class="cancel-btn">Cancelar</a>
             </div>
         </form>
     </div>

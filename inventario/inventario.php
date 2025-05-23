@@ -22,7 +22,7 @@ if (!$resultado) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/barra_lateral.css">
-    <link rel="stylesheet" href="../css/vehiculos_css/inventario.css">
+    <link rel="stylesheet" href="../css/inventario_css/inventario.css">
     <title>Inventario de Vehículos</title>
 </head>
 <body>
