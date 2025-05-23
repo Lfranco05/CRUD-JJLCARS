@@ -11,7 +11,7 @@ if (isset($_POST['enviar'])) {
 
     $imagen = $_FILES['imagen']['name'];
     $imagenTmp = $_FILES['imagen']['tmp_name'];
-    $rutaImagen = "imagenes/" . basename($imagen);
+    $rutaImagen = "" . basename($imagen);
 
     if (move_uploaded_file($imagenTmp, "../" . $rutaImagen)) {
         $stmt = mysqli_prepare($connec, "INSERT INTO vehiculos (marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario) VALUES (?, ?, ?, ?, ?, ?, ?)");
