@@ -97,7 +97,7 @@ mysqli_stmt_close($stmt);
                                 <td><?php echo htmlspecialchars($fila['modelo']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
                                 <td>$<?php echo number_format($fila['precio'], 2); ?></td>
-                                <td><img src="../imagenes/<?php echo htmlspecialchars($fila['imagenes']); ?>" width="80" alt="Imagen vehículo"></td>
+                                <td><img src="../imagenes/<?php echo htmlspecialchars($fila['imagen']); ?>" width="80" alt="Imagen vehículo"></td>
                                 <td><?php echo htmlspecialchars($fila['fecha_agregado']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['inventario']); ?></td>
                                 <td>
