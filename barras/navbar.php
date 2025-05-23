@@ -6,7 +6,6 @@
 <body>
     <nav class="navbar">
         <a href="../inicio/principal.php" class="navbar-brand">
-            <img src="../img/logo.jpg" alt="Logo Universidad">
             JJLCARS
         </a>
         

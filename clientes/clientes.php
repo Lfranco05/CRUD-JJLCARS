@@ -60,7 +60,7 @@ mysqli_stmt_close($stmt);
     <title>Clientes - JJLCARS</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/barra_lateral.css">
-    <link rel="stylesheet" href="../css/clientes_css/clientes.css">
+    <link rel="stylesheet" href="../../css/clientes_css/clientes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -100,8 +100,9 @@ mysqli_stmt_close($stmt);
                                 <td><?php echo htmlspecialchars($fila['correo']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['telefono']); ?></td>
                                 <td>
-                                    <a href="modificar_cliente.php?id=<?php echo $fila['id']; ?>" class="modify"><i class="fas fa-edit"></i></a>
-                                    <a href="eliminar_cliente.php?id=<?php echo $fila['id']; ?>" class="delete" onclick="return confirm('¿Estás seguro de eliminar este cliente?');"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="ver_clientes.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Ver"><i class="fas fa-eye"></i></a>
+                                    <a href="modificar_clientes.php?id=<?php echo $fila['id']; ?>" class="modify"><i class="fas fa-edit"></i></a>
+                                    <a href="eliminar_clientes.php?id=<?php echo $fila['id']; ?>" class="delete" onclick="return confirm('¿Estás seguro de eliminar este cliente?');"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         <?php endwhile; ?>

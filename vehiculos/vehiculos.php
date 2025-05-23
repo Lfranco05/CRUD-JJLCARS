@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../conexion.php");
-
+// Esta es la seguridad de inicio, evita saltarnos el iniciar sesion desde el link
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
     header("Location: login.php");
     exit();
@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
 $limit = 5;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
-
+// pues esto busca dah
 $buscar = isset($_GET['buscar']) ? trim(strtolower($_GET['buscar'])) : '';
 
 if (!empty($buscar)) {

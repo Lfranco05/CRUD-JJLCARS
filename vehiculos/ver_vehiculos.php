@@ -24,11 +24,18 @@ if (!$vehiculo) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ver Vehículo</title>
-    <link rel="stylesheet" type="text/css" href="../css/vehiculos_css/ver_vehiculos.css">
-    </style>
+    <title>Detalles del vehiculo</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/barra_lateral.css">
+    <link rel="stylesheet" href="../css/vehiculos_css/ver_vehiculos.css">
+    
 </head>
-<body>
+<div class="wrapper">
+        <?php 
+        include('../barras/navbar.php');
+        include('../barras/barra_lateral.php');
+        ?>
+    <body>
     <div class="container">
         <h2>Detalles del Vehículo</h2>
         <div class="vehiculo-info">

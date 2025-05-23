@@ -67,6 +67,10 @@ mysqli_stmt_close($stmt);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="wrapper">
+    <?php include('../barras/navbar.php'); ?>
+    <?php include('../barras/barra_lateral.php'); ?>
+    
     <div class="form-container">
         <h2>Modificar Vehículo</h2>
         <form method="post" enctype="multipart/form-data">

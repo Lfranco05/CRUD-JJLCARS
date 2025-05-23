@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include_once(__DIR__ . "/../conexion.php");
 
-// Verificar si el usuario está autenticado
+// Verificar si el usuario completo la verificacion
 $username = $_SESSION['Usuario'] ?? '';
 
 // Obtener avatar y nombre del usuario
@@ -28,7 +28,7 @@ $user = mysqli_fetch_assoc($result);
 // Nombre del usuario
 $nom_usuario = $user['Nombre'] ?? $username;
 
-// Ruta por defecto del avatar
+// Ruta para el avatar
 $default_avatar = '../avatars/default.png';
 $avatar_path = $default_avatar;
 
@@ -42,7 +42,7 @@ if (!empty($user['avatar'])) {
     }
 }
 
-// Página actual
+// Pagina de incio
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
