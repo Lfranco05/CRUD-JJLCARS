@@ -10,6 +10,7 @@ if (isset($_SESSION["usuarioingresando"]) && $_SESSION["usuarioingresando"] === 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $username = mysqli_real_escape_string($connec, trim($_POST['username']));
     $password = mysqli_real_escape_string($connec, trim($_POST['password']));
+
     // valida y compara al usuario para el incio de sesion.
     $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario FROM usuarios WHERE Usuario = ?";
     $stmt = mysqli_prepare($connec, $sql);
@@ -18,15 +19,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $resultado = mysqli_stmt_get_result($stmt);
     
     if ($fila = mysqli_fetch_assoc($resultado)) {
-        // Comparar contraseñas sin hash
+        // Comparar contraseñas sin hash, falta implementar el cifrado hash papitos
         if ($password === $fila['password']) {
-            // Iniciar sesión
+            
+            //Esta cosa de aca hace el login chavos. 
+
             $_SESSION['usuarioingresando'] = true;
             $_SESSION['id'] = $fila['id'];
             $_SESSION['Usuario'] = $fila['Usuario'];
             $_SESSION['Nombre'] = $fila['Nombre'];
             $_SESSION['TipoUsuario'] = $fila['TipoUsuario'];
-            // $_SESSION['correo'] = $fila['correo'];
 
             // Manejo de "Recordarme"
             if (isset($_POST['recordar'])) {
@@ -56,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     <meta charset="UTF-8">
     <title>Login de Usuarios</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/login_css/login.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>

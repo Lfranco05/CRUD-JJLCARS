@@ -2,66 +2,54 @@
 session_start();
 include("../conexion.php");
 
-// Verificar si el usuario está autenticado
+// Esta es la seguridad de inicio, evita saltarnos el iniciar sesion desde el link
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
     header("Location: login.php");
     exit();
 }
 
-// Configuración de paginación
 $limit = 5;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Obtener el término de búsqueda si existe
+// Búsqueda del cliente buajaj
 $buscar = isset($_GET['buscar']) ? trim(strtolower($_GET['buscar'])) : '';
 
-// Contar el total de estudiantes
 if (!empty($buscar)) {
-    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM usuarios WHERE 
+    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM clientes WHERE 
         LOWER(nombre) LIKE ? OR 
-        LOWER(telefono) LIKE ? OR 
-        LOWER(direccion) LIKE ? OR 
-        LOWER(carrera) LIKE ? OR 
-        LOWER(semestre) LIKE ?");
+        LOWER(usuario) LIKE ? OR 
+        LOWER(correo) LIKE ? OR 
+        LOWER(telefono) LIKE ?");
     $searchTerm = "%$buscar%";
-    mysqli_stmt_bind_param($countStmt, "sssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm);
+    mysqli_stmt_bind_param($countStmt, "ssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm);
     mysqli_stmt_execute($countStmt);
-    mysqli_stmt_bind_result($countStmt, $total_estudiantes);
+    mysqli_stmt_bind_result($countStmt, $total_clientes);
     mysqli_stmt_fetch($countStmt);
     mysqli_stmt_close($countStmt);
 } else {
-    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM usuarios");
-    $row = mysqli_fetch_assoc($countQuery);
-    $total_estudiantes = $row['total'];
+    $res = mysqli_query($connec, "SELECT COUNT(*) AS total FROM clientes");
+    $row = mysqli_fetch_assoc($res);
+    $total_clientes = $row['total'];
 }
 
-$total_pages = ceil($total_estudiantes / $limit);
+$total_pages = ceil($total_clientes / $limit);
 
-// Obtener los estudiantes con paginación
+// Obtener datos
 if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, telefono, direccion, carrera, semestre, estado 
-        FROM usuarios WHERE 
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, telefono FROM clientes WHERE 
         LOWER(nombre) LIKE ? OR 
-        -- LOWER(correo) LIKE ? OR 
-        -- LOWER(direccion) LIKE ? OR 
-        -- LOWER(carrera) LIKE ? OR 
-        -- LOWER(semestre) LIKE ? 
-        LIMIT ? OFFSET ?");
-    $searchTerm = "%$buscar%";
-    mysqli_stmt_bind_param($stmt, "sssssii", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
+        LOWER(usuario) LIKE ? OR 
+        LOWER(correo) LIKE ? OR 
+        LOWER(telefono) LIKE ? LIMIT ? OFFSET ?");
+    mysqli_stmt_bind_param($stmt, "ssssii", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre FROM usuarios LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, telefono FROM clientes LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
-
-if (!$resultado) {
-    die("Error en la consulta SQL: " . mysqli_error($connec));
-}
-
 mysqli_stmt_close($stmt);
 ?>
 
@@ -69,90 +57,73 @@ mysqli_stmt_close($stmt);
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes - JJLCARS</title>
-    <link rel="stylesheet" type="text/css" href="../css/navbar.css">
-    <link rel="stylesheet" type="text/css" href="../css/barra_lateral.css">
-    <link rel="stylesheet" type="text/css" href="../css/estudiantes.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <link rel="stylesheet" href="../css/barra_lateral.css">
+    <link rel="stylesheet" href="../css/clientes_css/clientes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="wrapper">
-        <?php 
-        // Actualizar la ruta del avatar en la sesión
-        $avatar_path = isset($_SESSION['avatar_path']) ? '../' . $_SESSION['avatar_path'] : '../avatar/1744068538_foto para curriculum 3.png';
-        ?>
         <?php include('../barras/navbar.php'); ?>
         <?php include('../barras/barra_lateral.php'); ?>
-        
+
         <div class="main-container">
             <h1>Listado de Clientes</h1>
+
             <div class="search-form">
                 <form method="get" action="clientes.php">
-                    <input type="text" name="buscar" placeholder="Buscar estudiante" value="<?php echo htmlspecialchars($buscar); ?>">
+                    <input type="text" name="buscar" placeholder="Buscar cliente" value="<?php echo htmlspecialchars($buscar); ?>">
                     <input type="submit" value="Buscar">
                     <a href="clientes.php" class="back">Mostrar todos</a>
                 </form>
-                <a href="agregar_estudiante.php" class="new-student-btn">
-                    <i class="fas fa-user-plus"></i> Nuevo Estudiante
-                </a>
             </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Teléfono</th>
-                            <th>Dirección</th>
-                            <th>Gestionar</th>
-                      
-                    </thead>
-                    <tbody>
-                        <?php while ($fila = mysqli_fetch_assoc($resultado)) { ?>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (mysqli_num_rows($resultado) > 0): ?>
+                        <?php while ($fila = mysqli_fetch_assoc($resultado)): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($fila['id']); ?></td>
+                                <td><?php echo $fila['id']; ?></td>
                                 <td><?php echo htmlspecialchars($fila['nombre']); ?></td>
-                                <td><?php echo htmlspecialchars($fila['direccion']); ?></td>
-                         
+                                <td><?php echo htmlspecialchars($fila['usuario']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['correo']); ?></td>
+                                <td><?php echo htmlspecialchars($fila['telefono']); ?></td>
                                 <td>
-                                    <a href="clientes.php?id=<?php echo urlencode($fila['id']); ?>" class="view">
-                                        <i class="fas fa-eye"></i> Ver
-                                    </a>
-                                    <a href="modificar_estudiante.php?id=<?php echo urlencode($fila['id']); ?>" class="modify">
-                                        <i class="fas fa-edit"></i> Modificar
-                                    </a>
-                                    <a href="eliminar_estudiante.php?id=<?php echo urlencode($fila['id']); ?>" class="delete" 
-                                       onclick="return confirm('¿Estás seguro de eliminar este estudiante?');">
-                                        <i class="fas fa-trash-alt"></i> Eliminar
-                                    </a>
+                                    <a href="modificar_cliente.php?id=<?php echo $fila['id']; ?>" class="modify"><i class="fas fa-edit"></i></a>
+                                    <a href="eliminar_cliente.php?id=<?php echo $fila['id']; ?>" class="delete" onclick="return confirm('¿Estás seguro de eliminar este cliente?');"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
-                        <?php } ?>
-                        <?php if (mysqli_num_rows($resultado) == 0) { ?>
-                            <tr>
-                                <td colspan="8">No se encontraron estudiantes.</td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-            <p class="total-users">Total de estudiantes: <?php echo $total_estudiantes; ?></p>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr><td colspan="6">No se encontraron clientes.</td></tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+
+            <p class="total-users">Total de clientes: <?php echo $total_clientes; ?></p>
             <div class="pagination">
-                <?php if ($page > 1) { ?>
-                    <a href="clientes.php?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
-                <?php } else { ?>
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
+                <?php else: ?>
                     <a href="#" class="disabled">Anterior</a>
-                <?php } ?>
-                <?php if ($page < $total_pages) { ?>
-                    <a href="clientes.php?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
-                <?php } else { ?>
+                <?php endif; ?>
+                <?php if ($page < $total_pages): ?>
+                    <a href="?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
+                <?php else: ?>
                     <a href="#" class="disabled">Siguiente</a>
-                <?php } ?>
+                <?php endif; ?>
             </div>
-        </div>
-        <div class="logo-container">
-            <img src="../img/logo.jpeg" alt="Logo Universidad San Pablo" class="logo-image">
         </div>
     </div>
 </body>

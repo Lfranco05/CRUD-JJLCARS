@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
 }
 
 // Consultas para estadísticas
-$sql_total = "SELECT COUNT(*) as total FROM alumno";
+$sql_total = "SELECT COUNT(*) as total FROM usuarios";
 $resultado_total = mysqli_query($connec, $sql_total);
 $total_alumnos = mysqli_fetch_assoc($resultado_total)['total'];
 

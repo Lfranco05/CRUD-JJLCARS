@@ -75,10 +75,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <i class="fas fa-chart-line"></i> Proyecciones de ventas
         </a>
         <a href="../clientes/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
-            <i class="fas fa-graduation-cap"></i> Clientes
+            <i class="fa-regular fa-circle-user"></i> Clientes
         </a>
         <a href="../contactos/contactos.php" class="<?php echo $current_page == 'contactos.php' ? 'active' : ''; ?>">
-            <i class="fas fa-envelope"></i> Citas Programadas
+           <i class="fa-regular fa-address-book"></i> Citas Programadas
         </a>
     </div>
 
