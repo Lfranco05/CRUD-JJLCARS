@@ -23,7 +23,7 @@
                         echo htmlspecialchars($user['nom_usuario'] ?? $username);
                         $stmt->close();
                     } else {
-                        echo 'Usuario';
+                        echo '';
                     }
                     ?>
                 </span>

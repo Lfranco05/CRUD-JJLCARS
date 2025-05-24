@@ -2,13 +2,13 @@
 session_start();
 include('../conexion.php');
 
-// Verificar si el usuario está autenticado
+// Seguridad de login va muchis
 if (!isset($_SESSION['Usuario'])) {
     header('Location: ../login.php');
     exit();
 }
 
-// Obtener información del usuario
+// Obtener información usuarios
 $username = $_SESSION['Usuario'];
 $stmt = $connec->prepare("SELECT Nombre FROM usuarios WHERE Usuario = ?");
 $stmt->bind_param("s", $username);
@@ -62,17 +62,59 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
             </div>
 
             <div class="summary-card">
-                <h3>Total Usuarios</h3>
-                <div class="summary-value"><?php echo $total_usuarios; ?></div>
-                <p>Usuarios registrados en el sistema</p>
-            </div>
+            <div class="info-card hidden">
 
-            <div class="logo-container">
-                <img src="../img/logo.jpg" alt="Logo JJLCARS" class="logo-image">
-            </div>
+
+    <p>Lo mejor de nostros</p>
+
+    <!-- CARRUSEL DENTRO DE LA OPCION DE INICIO -->
+
+    <div class="carrusel">
+    <button class="carrusel-btn prev"><i class="fas fa-chevron-left"></i></button>
+    <div class="carrusel-track">
+        <div class="carrusel-item">
+            <img src="../carros/BMW 3 Series 2025.jpg" alt="BMW 3 Series 2025">
+            <h4>BMW 3 Series 2025</h4>
+            <p>Elegancia alemana y tecnología de última generación en un sedán deportivo.</p>
+        </div>
+        <div class="carrusel-item">
+            <img src="../carros/chevrolet-tahoe.jpg" alt="Chevrolet Tahoe">
+            <h4>Chevrolet Tahoe</h4>
+            <p>Gran espacio y potencia para aventuras familiares o trabajo pesado.</p>
+        </div>
+        <div class="carrusel-item">
+            <img src="../carros/Ferrari1.jpg" alt="Ferrari">
+            <h4>Ferrari</h4>
+            <p>Diseño italiano con alto rendimiento y un rugido inconfundible.</p>
+        </div>
+        <div class="carrusel-item">
+            <img src="../carros/Silverado 2025 .jpg" alt="Silverado 2025">
+            <h4>Silverado 2025</h4>
+            <p>Pickup robusta con diseño renovado y capacidad extrema.</p>
+        </div>
+        <div class="carrusel-item">
+            <img src="../carros/Silverado 2025 .jpg" alt="Silverado 2025">
+            <h4>Silverado 2025</h4>
+            <p>Pickup robusta con diseño renovado y capacidad extrema.</p>
+        </div>
+        <div class="carrusel-item">
+            <img src="../carros/Silverado 2025 .jpg" alt="Silverado 2025">
+            <h4>Silverado 2025</h4>
+            <p>Pickup robusta con diseño renovado y capacidad extrema.</p>
+        </div>
+    </div>
+    <button class="carrusel-btn next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+
+</div>
+    <h2></h2>
+    <h2>Sobre JJLCARS</h2>
+    <img src="../img/logo.jpeg" alt="Imagen de la empresa" class="empresa-img">
         </div>
     </div>
 </div>
+    <!-- Implementacion de hora del sistema -->
     <script>
         function actualizarHora() {
             var fecha = new Date();
@@ -95,5 +137,58 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
             setInterval(actualizarHora, 1000);
         };
     </script>
+
+    <!-- Moviemiento de raton para desplegar esta opcion  -->
+    <script>
+    window.addEventListener('scroll', function () {
+        const infoCard = document.querySelector('.info-card');
+        const rect = infoCard.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        if (rect.top < windowHeight - 100 && rect.bottom > 100) {
+            infoCard.classList.add('visible');
+        } else {
+            infoCard.classList.remove('visible');
+        }
+    });
+    </script>
+
+    <!-- Carrusel dentro de la pagina de incio  -->
+
+<script>
+    const track = document.querySelector('.carrusel-track');
+    const items = document.querySelectorAll('.carrusel-item');
+    const btnPrev = document.querySelector('.carrusel-btn.prev');
+    const btnNext = document.querySelector('.carrusel-btn.next');
+
+    let index = 0;
+    const total = items.length;
+
+    function updateCarrusel() {
+        const width = items[0].offsetWidth;
+        track.style.transform = `translateX(-${index * width}px)`;
+    }
+
+    btnPrev.addEventListener('click', () => {
+        index = (index - 1 + total) % total;
+        updateCarrusel();
+    });
+
+    btnNext.addEventListener('click', () => {
+        index = (index + 1) % total;
+        updateCarrusel();
+    });
+
+    // Loop infinito automático cada 4 segundos
+    setInterval(() => {
+        index = (index + 1) % total;
+        updateCarrusel();
+    }, 4000);
+
+    window.addEventListener('resize', updateCarrusel);
+    window.addEventListener('load', updateCarrusel);
+</script>
+
+
 </body>
 </html>

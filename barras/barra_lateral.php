@@ -64,7 +64,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <nav class="menu-section">
         <h3>PERFIL ADMINISTRADOR</h3>
-        <a href="../inicio/principal.php" class="<?php echo $current_page == 'principal.php' ? 'active' : ''; ?>">
+        <a href="../inicio/principal.php" class="<?php echo $current_page == '../inicio/principal.php' ? 'active' : ''; ?>">
             <i class="fas fa-home"></i> Inicio
         </a>
     </nav>

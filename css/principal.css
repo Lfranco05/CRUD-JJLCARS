@@ -143,3 +143,81 @@ body {
     opacity: 1;
 
 }
+/* Carrusel dentro de la pagina de inicio, Dios mio dame fuerza */
+.info-card {
+    background: #ffffff;
+    color: #fff;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.info-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.empresa-img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+}
+
+.carrusel {
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carrusel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+/* Cajas del carrusel, donde van metidos los carros  */
+.carrusel-item {
+    min-width: 100%;
+    box-sizing: content-box;
+    padding: 2rem;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 1rem;
+    color: white;
+}
+/* El tamano de las imagenes */
+.carrusel-item img {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: contain;  /* esta cosa de aca hace que la imagen no salga cortada */
+    margin: 0 auto 1rem;
+    display: block;
+    border-radius: 0.5rem;
+}
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(141, 155, 155);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.carrusel-btn.prev { left: 10px; }
+.carrusel-btn.next { right: 10px; }
+
+.carrusel-btn:hover {
+    background: rgb(141, 155, 155);
+}
