@@ -1,223 +1,180 @@
-/* Estilos base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body {
-    background-color: #f4f4f4;
-    min-height: 100vh;
-    color: #2f2f2f;
-    overflow-x: hidden;
-}
-
-/* Contenedor principal */
-.main-container {
-    margin-left: 250px;
-    padding: 30px;
-    min-height: calc(100vh - 60px);
-    margin-top: 60px;
-    background-color: #f9f9f9;
-    animation: fadeInUp 0.6s ease both;
-}
-
-/* Animación principal */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Tarjeta de bienvenida */
-.welcome-card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    margin-bottom: 40px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: slideFade 0.7s ease forwards;
-    animation-delay: 0.1s;
-}
-
-.welcome-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-}
-
-.welcome-card h1 {
-    font-size: 42px;
-    color: #2f2f2f;
-    font-weight: bold;
-    margin: 15px 0;
-}
-
-.welcome-card p {
-    color: #7f8c8d;
-    font-size: 18px;
-    margin-top: 10px;
-}
-
-/* Tarjeta resumen */
-.summary-card {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-    text-align: center;
+/* === Estilo para el video de bienvenida === */
+.video-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    height: 300px;
     margin-bottom: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: slideFade 0.7s ease forwards;
+    animation: fadeIn 1s ease-in-out;
 }
 
-.summary-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
-.summary-card h3 {
-    color: #4f4f4f;
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.summary-value {
-    font-size: 44px;
-    color: #7b2ff7;
-    font-weight: 700;
-    margin: 10px 0;
-    animation: pulseColor 2.5s infinite;
-}
-
-.summary-card p {
-    color: #7f8c8d;
-    font-size: 16px;
-}
-
-@keyframes slideFade {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulseColor {
-    0%, 100% {
-        color: #7b2ff7;
-    }
-    50% {
-        color: #9c5fff;
-    }
-}
-
-/* logo */
-.logo-container {
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
     text-align: center;
-    margin-top: 40px;
-    animation: fadeInUp 1s ease both;
-    animation-delay: 0.3s;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
-.logo-image {
-    max-width: 260px;
-    height: auto;
-    opacity: 0.9;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.logo-image:hover {
-    transform: scale(1.03);
-    opacity: 1;
-
-}
-/* Carrusel dentro de la pagina de inicio, Dios mio dame fuerza */
-.info-card {
-    background: #ffffff;
+.overlay-text h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
     color: #fff;
-    padding: 2rem;
-    margin-top: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    animation: fadeInDown 0.8s ease-in-out;
 }
 
-.info-card.visible {
+.overlay-text p {
+    font-size: 18px;
+    color: #f3f4f6;
+    animation: fadeInUp 0.8s ease-in-out 0.2s;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.oculto-inicio {
+    opacity: 0;
+    transform: translateY(40px);
+    pointer-events: none;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.oculto-inicio.visible {
     opacity: 1;
     transform: translateY(0);
+    pointer-events: auto;
 }
 
-.empresa-img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 1rem;
-    border-radius: 0.5rem;
-}
 
+/* === Carrusel pantalla de inicio, boton inicio === */
 .carrusel {
     position: relative;
     overflow: hidden;
-    margin-top: 2rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 40px;
+    border-radius: 20px;
+    box-shadow: 0 6px 18px rgba(15, 6, 6, 0.1);
+    background: #ffffff;
+    padding: 20px;
 }
 
 .carrusel-track {
     display: flex;
-    transition: transform 0.5s ease;
-    width: 100%;
+    transition: transform 0.6s ease-in-out;
+    will-change: transform;
 }
-/* Cajas del carrusel, donde van metidos los carros  */
+
 .carrusel-item {
     min-width: 100%;
-    box-sizing: content-box;
-    padding: 2rem;
+    box-sizing: border-box;
+    padding: 20px;
     text-align: center;
-    background: #ffffff;
-    border-radius: 1rem;
-    color: white;
 }
-/* El tamano de las imagenes */
+
 .carrusel-item img {
     width: 100%;
-    max-width: 500px;
-    height: 300px;
-    object-fit: contain;  /* esta cosa de aca hace que la imagen no salga cortada */
-    margin: 0 auto 1rem;
-    display: block;
-    border-radius: 0.5rem;
+    max-height: 280px;
+    object-fit: contain;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgb(255, 255, 255);
+}
+
+.carrusel-item h4 {
+    font-size: 20px;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.carrusel-item p {
+    font-size: 14px;
+    color: #4b5563;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .carrusel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: rgb(141, 155, 155);
+    background: rgba(0,0,0,0.5);
     border: none;
-    padding: 0.5rem 1rem;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 50%;
     cursor: pointer;
     z-index: 10;
-    border-radius: 50%;
+    transition: background 0.3s;
 }
 
-.carrusel-btn.prev { left: 10px; }
-.carrusel-btn.next { right: 10px; }
-
 .carrusel-btn:hover {
-    background: rgb(141, 155, 155);
+    background: rgba(0,0,0,0.8);
+}
+
+.carrusel-btn.prev {
+    left: 10px;
+}
+
+.carrusel-btn.next {
+    right: 10px;
+}
+
+/* === Historia,mision,vision,saber que mas poner === */
+.info-card.empresa {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    margin-top: 3rem;
+    animation: fadeInUp 0.8s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.empresa-img {
+    width: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 1rem;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.empresa h2 {
+    text-align: center;
+    color: #7b2ff7;
+    margin-bottom: 1rem;
+}
+
+.empresa-contenido h3 {
+    margin-top: 1.5rem;
+    color: #9c4dff;
+}
+
+.empresa-contenido p {
+    margin: 0.5rem 0 1.5rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }

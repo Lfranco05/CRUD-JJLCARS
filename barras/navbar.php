@@ -5,7 +5,8 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="../inicio/principal.php" class="navbar-brand">
+        <!-- <img src="../img/logo.jpg" alt="Imagen de la empresa" class="empresa-img">
+        <a href="../inicio/principal.php" class="navbar-brand"> -->
             JJLCARS
         </a>
         

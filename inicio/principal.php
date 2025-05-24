@@ -55,22 +55,23 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
         ?>
         
         <div class="main-container">
-            <div class="welcome-card">
-                <h1>Bienvenido, <?php echo htmlspecialchars($nombre_usuario); ?></h1>
-                <p>Usuario: <?php echo htmlspecialchars($username); ?></p>
-                <p>La hora del sistema es: <span id="hora"></span></p>
-            </div>
+           <div class="welcome-card video-card">
+    <video autoplay muted loop playsinline>
+        <source src="../carros/fondo_inicioSesion.mp4" type="video/mp4">
+    </video>
+    <div class="overlay-text">
+        <h1>JJLCARS</h1>
+        <p>Calidad es lo que nos caracteriza.</p>
+    </div>
+        </div>
 
-            <div class="summary-card">
-            <div class="info-card hidden">
+    <div>
 
-
-    <p>Lo mejor de nostros</p>
+    <div>    
 
     <!-- CARRUSEL DENTRO DE LA OPCION DE INICIO -->
 
     <div class="carrusel">
-    <button class="carrusel-btn prev"><i class="fas fa-chevron-left"></i></button>
     <div class="carrusel-track">
         <div class="carrusel-item">
             <img src="../carros/BMW 3 Series 2025.jpg" alt="BMW 3 Series 2025">
@@ -92,102 +93,98 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
             <h4>Silverado 2025</h4>
             <p>Pickup robusta con diseño renovado y capacidad extrema.</p>
         </div>
-        <div class="carrusel-item">
-            <img src="../carros/Silverado 2025 .jpg" alt="Silverado 2025">
-            <h4>Silverado 2025</h4>
-            <p>Pickup robusta con diseño renovado y capacidad extrema.</p>
-        </div>
-        <div class="carrusel-item">
-            <img src="../carros/Silverado 2025 .jpg" alt="Silverado 2025">
-            <h4>Silverado 2025</h4>
-            <p>Pickup robusta con diseño renovado y capacidad extrema.</p>
-        </div>
-    </div>
-    <button class="carrusel-btn next"><i class="fas fa-chevron-right"></i></button>
+
     </div>
 
 
-</div>
-    <h2></h2>
+    <div class="info-card empresa">
     <h2>Sobre JJLCARS</h2>
-    <img src="../img/logo.jpeg" alt="Imagen de la empresa" class="empresa-img">
-        </div>
-    </div>
-</div>
-    <!-- Implementacion de hora del sistema -->
-    <script>
-        function actualizarHora() {
-            var fecha = new Date();
-            var hora = fecha.getHours();
-            var minutos = fecha.getMinutes();
-            var segundos = fecha.getSeconds();
-            var ampm = hora >= 12 ? 'PM' : 'AM';
-            
-            hora = hora % 12;
-            hora = hora ? hora : 12;
-            minutos = minutos < 10 ? '0' + minutos : minutos;
-            segundos = segundos < 10 ? '0' + segundos : segundos;
-            
-            var horaActual = hora + ':' + minutos + ':' + segundos + ' ' + ampm;
-            document.getElementById('hora').innerHTML = horaActual;
-        }
+    <img src="../img/logo.jpg" alt="Imagen de la empresa" class="empresa-img">
 
-        window.onload = function() {
-            actualizarHora();
-            setInterval(actualizarHora, 1000);
-        };
-    </script>
+    <div class="empresa-contenido">
+        <h3>Nuestra Historia</h3>
+        <p>
+            JJLCARS nació en 2025 con la visión de revolucionar el mercado automotriz digital. Lo que comenzó como un pequeño catálogo de autos en línea, se transformó rápidamente en una de las plataformas más confiables para encontrar vehículos nuevos y seminuevos con transparencia, calidad y confianza.
+        </p>
+
+        <h3>Misión</h3>
+        <p>
+            Ofrecer a nuestros clientes la mejor experiencia al momento de buscar, comparar y adquirir vehículos, proporcionando atención personalizada, confianza y un catálogo actualizado con las mejores opciones del mercado.
+        </p>
+
+        <h3>Visión</h3>
+        <p>
+            Ser la plataforma líder en soluciones automotrices digitales en América Latina, innovando constantemente para conectar a las personas con el vehículo de sus sueños.
+        </p>
+    </div>
+    </div>
+
 
     <!-- Moviemiento de raton para desplegar esta opcion  -->
     <script>
     window.addEventListener('scroll', function () {
-        const infoCard = document.querySelector('.info-card');
-        const rect = infoCard.getBoundingClientRect();
+    document.querySelectorAll('.oculto-inicio').forEach(el => {
+        const rect = el.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
         if (rect.top < windowHeight - 100 && rect.bottom > 100) {
-            infoCard.classList.add('visible');
-        } else {
-            infoCard.classList.remove('visible');
+            el.classList.add('visible');
         }
+    });
     });
     </script>
 
+
     <!-- Carrusel dentro de la pagina de incio  -->
 
-<script>
+    <script>
     const track = document.querySelector('.carrusel-track');
-    const items = document.querySelectorAll('.carrusel-item');
-    const btnPrev = document.querySelector('.carrusel-btn.prev');
-    const btnNext = document.querySelector('.carrusel-btn.next');
+    let items = document.querySelectorAll('.carrusel-item');
+    let index = 1; // empieza en 1 por el primer clon
+    let interval;
 
-    let index = 0;
-    const total = items.length;
-
-    function updateCarrusel() {
-        const width = items[0].offsetWidth;
-        track.style.transform = `translateX(-${index * width}px)`;
+    function cloneItems() {
+    const firstClone = items[0].cloneNode(true);
+    const lastClone = items[items.length - 1].cloneNode(true);
+    firstClone.classList.add('clone');
+    lastClone.classList.add('clone');
+    track.appendChild(firstClone);
+    track.insertBefore(lastClone, items[0]);
+    items = document.querySelectorAll('.carrusel-item');
     }
 
-    btnPrev.addEventListener('click', () => {
-        index = (index - 1 + total) % total;
-        updateCarrusel();
-    });
+    function updateCarrusel(animate = true) {
+    const width = items[0].offsetWidth + 20; // incluye el gap si tienes uno
+    track.style.transition = animate ? 'transform 0.6s ease-in-out' : 'none';
+    track.style.transform = `translateX(-${index * width}px)`;
+    }
 
-    btnNext.addEventListener('click', () => {
-        index = (index + 1) % total;
-        updateCarrusel();
-    });
-
-    // Loop infinito automático cada 4 segundos
-    setInterval(() => {
-        index = (index + 1) % total;
+    function startAutoScroll() {
+    interval = setInterval(() => {
+        index++;
         updateCarrusel();
     }, 4000);
+    }
 
-    window.addEventListener('resize', updateCarrusel);
-    window.addEventListener('load', updateCarrusel);
-</script>
+    track.addEventListener('transitionend', () => {
+    if (items[index].classList.contains('clone')) {
+        const realIndex = index === 0 ? items.length - 2 : 1;
+        index = realIndex;
+        updateCarrusel(false); 
+    }
+    });
+
+    window.addEventListener('load', () => {
+    cloneItems();
+    updateCarrusel(false);
+    startAutoScroll();
+    });
+
+    window.addEventListener('resize', () => {
+    updateCarrusel(false);
+    });
+    </script>
+
 
 
 </body>
