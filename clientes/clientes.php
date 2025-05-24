@@ -24,7 +24,7 @@ if (!empty($buscar)) {
     mysqli_stmt_fetch($countStmt);
     mysqli_stmt_close($countStmt);
 
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, TipoUsuario FROM clientes WHERE LOWER(nombre) LIKE ? OR LOWER(usuario) LIKE ? OR LOWER(correo) LIKE ? LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, TipoCliente FROM clientes WHERE LOWER(nombre) LIKE ? OR LOWER(usuario) LIKE ? OR LOWER(correo) LIKE ? LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "sssii", $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
 
 } else {
@@ -34,7 +34,7 @@ if (!empty($buscar)) {
     $total_clientes = $row['total'];
 
     // Obtener datos sin búsqueda con paginación
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, TipoUsuario FROM clientes LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, Nombre, usuario, correo, TipoCliente FROM clientes LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 

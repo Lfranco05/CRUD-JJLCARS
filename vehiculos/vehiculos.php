@@ -30,11 +30,11 @@ if (!empty($buscar)) {
 $total_pages = ceil($total_vehiculos / $limit);
 
 if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario FROM vehiculos WHERE LOWER(marca) LIKE ? OR LOWER(modelo) LIKE ? LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, inventario FROM vehiculos WHERE LOWER(marca) LIKE ? OR LOWER(modelo) LIKE ? LIMIT ? OFFSET ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($stmt, "ssii", $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario FROM vehiculos LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, marca, modelo, descripcion, precio, imagen, inventario FROM vehiculos LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
@@ -97,8 +97,7 @@ mysqli_stmt_close($stmt);
                                 <td><?php echo htmlspecialchars($fila['modelo']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['descripcion']); ?></td>
                                 <td>$<?php echo number_format($fila['precio'], 2); ?></td>
-                                <td><img src="../imagenes/<?php echo htmlspecialchars($fila['imagen']); ?>" width="80" alt="Imagen vehículo"></td>
-                                <td><?php echo htmlspecialchars($fila['fecha_agregado']); ?></td>
+                                <td><img src="../Imagen/<?php echo htmlspecialchars($fila['imagen']); ?>" width="80" alt="Imagen vehículo"></td>
                                 <td><?php echo htmlspecialchars($fila['inventario']); ?></td>
                                 <td>
                                     <a href="ver_vehiculos.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Ver"><i class="fas fa-eye"></i></a>

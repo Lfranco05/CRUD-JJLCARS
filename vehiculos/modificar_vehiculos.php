@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Manejo de imagen
     if (!empty($_FILES['imagen']['name'])) {
         $imagen = basename($_FILES['imagen']['name']);
-        $rutaDestino = "../imagenes/" . $imagen;
+        $rutaDestino = "../Imagen/" . $imagen;
         move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino);
     } else {
         // Mantener la imagen actual si no se sube una nueva
@@ -90,7 +90,7 @@ mysqli_stmt_close($stmt);
             <input type="number" name="inventario" value="<?= htmlspecialchars($inventario) ?>" required>
 
             <label>Imagen actual:</label><br>
-            <img class="preview" src="../imagenes/<?= htmlspecialchars($imagen) ?>" alt="Imagen actual del vehículo"><br>
+            <img class="preview" src="../Imagen/<?= htmlspecialchars($imagen) ?>" alt="Imagen actual del vehículo"><br>
 
             <label>Cambiar imagen:</label>
             <input type="file" name="imagen" accept="image/*">

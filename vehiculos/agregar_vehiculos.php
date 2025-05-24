@@ -10,7 +10,7 @@ if (isset($_POST['enviar'])) {
     $fecha_agregado = date('Y-m-d');
 
    $nombreImagen = basename($_FILES['imagen']['name']);
-    $rutaDestino = "../imagenes/" . $nombreImagen;
+    $rutaDestino = "../Imagen/" . $nombreImagen;
 
     if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
     $stmt = mysqli_prepare($connec, "INSERT INTO vehiculos (marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario) VALUES (?, ?, ?, ?, ?, ?, ?)");
