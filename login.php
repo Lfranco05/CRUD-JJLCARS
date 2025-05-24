@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $username = mysqli_real_escape_string($connec, trim($_POST['username']));
     $password = mysqli_real_escape_string($connec, trim($_POST['password']));
 
-    // valida y compara al usuario para el incio de sesion.
     $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario FROM usuarios WHERE Usuario = ?";
     $stmt = mysqli_prepare($connec, $sql);
     mysqli_stmt_bind_param($stmt, "s", $username);
@@ -19,25 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $resultado = mysqli_stmt_get_result($stmt);
     
     if ($fila = mysqli_fetch_assoc($resultado)) {
-        // Comparar contraseñas sin hash, falta implementar el cifrado hash papitos
         if ($password === $fila['password']) {
-            
-            //Esta cosa de aca hace el login chavos. 
-
             $_SESSION['usuarioingresando'] = true;
             $_SESSION['id'] = $fila['id'];
             $_SESSION['Usuario'] = $fila['Usuario'];
             $_SESSION['Nombre'] = $fila['Nombre'];
             $_SESSION['TipoUsuario'] = $fila['TipoUsuario'];
-
-            // Manejo de "Recordarme"
-            if (isset($_POST['recordar'])) {
-                setcookie('remember_user', $username, time() + (30 * 24 * 60 * 60), '/');
-                setcookie('remember_pass', base64_encode($password), time() + (30 * 24 * 60 * 60), '/');
-            } else {
-                setcookie('remember_user', '', time() - 3600, '/');
-                setcookie('remember_pass', '', time() - 3600, '/');
-            }
 
             header("Location: inicio/principal.php");
             exit();
@@ -64,22 +50,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
 </head>
 <body class="login-body">
 
+<!-- Video del carrito -->
+<video autoplay muted loop class="video-background">
+    <source src="FondoLogin/FondoLogin.mp4" type="video/mp4">
+</video>
+
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
-    <p class="login-subtitle">TIENDA DE CARROS - JJLCARS</p>
+    <p class="login-subtitle">JJLCARS</p>
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
         <div class="form-group">
             <label for="user">Usuario:</label>
-            <input type="text" id="user" name="username" placeholder="Ingresa tu usuario" required 
-                value="<?php echo isset($_COOKIE['remember_user']) ? $_COOKIE['remember_user'] : ''; ?>">
+            <input type="text" id="user" name="username" placeholder="Ingresa tu usuario" required>
         </div>
 
         <div class="form-group">
             <label for="contrasena">Contraseña:</label>
             <div class="password-container">
-                <input type="password" id="contrasena" name="password" placeholder="Ingresa tu contraseña" required
-                    value="<?php echo isset($_COOKIE['remember_pass']) ? base64_decode($_COOKIE['remember_pass']) : ''; ?>">
+                <input type="password" id="contrasena" name="password" placeholder="Ingresa tu contraseña" required>
                 <span class="toggle-password" onclick="togglePasswordVisibility()">
                     <i id="toggleIcon" class="fa-solid fa-eye"></i>
                 </span>
@@ -92,15 +81,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
                 <option value="" disabled selected>Selecciona un rol</option>
                 <option value="gerente">Gerente</option>
                 <option value="vendedor">Vendedor</option>
-                <option value="cliente">Cliente</option>
             </select>
         </div>
 
-        <div class="form-check">
-            <input type="checkbox" name="recordar" id="recordar" <?php echo isset($_COOKIE['remember_user']) ? 'checked' : ''; ?>>
-            <label for="recordar">Recordarme</label>
-        </div>
-        <!-- Contenedor para ambos botones -->
         <div class="button-group">
             <button type="submit" name="enviar" class="login-btn">Ingresar</button>
             <a href="registrar.php" class="register-btn">Crear Cuenta</a>
