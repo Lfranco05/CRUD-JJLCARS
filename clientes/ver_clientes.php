@@ -17,7 +17,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $id = (int) $_GET['id'];
 
 
-$stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, telefono FROM clientes WHERE id = ?");
+$stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo FROM clientes WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
@@ -52,7 +52,7 @@ mysqli_stmt_close($stmt);
                 <div class="detail-item"><strong>Nombre:</strong> <?= htmlspecialchars($cliente['nombre']) ?></div>
                 <div class="detail-item"><strong>Usuario:</strong> <?= htmlspecialchars($cliente['usuario']) ?></div>
                 <div class="detail-item"><strong>Correo:</strong> <?= htmlspecialchars($cliente['correo']) ?></div>
-                <div class="detail-item"><strong>Teléfono:</strong> <?= htmlspecialchars($cliente['telefono']) ?></div>
+
 
                 <div class="actions">
                     <a href="clientes.php" class="btn-back">Volver</a>

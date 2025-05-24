@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
     exit();
 }
 
-// Verifica si hay ID válido
+// Verifica id
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     header("Location: clientes.php");
     exit();
@@ -17,16 +17,16 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $id = (int)$_GET['id'];
 $mensaje = '';
 
-// Procesar formulario de modificación
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = trim($_POST['nombre']);
     $usuario = trim($_POST['usuario']);
     $correo = trim($_POST['correo']);
-    $telefono = trim($_POST['telefono']);
+    // $telefono = trim($_POST['telefono']); por el momento esto esta desactivado para adaptarlo a la nueva base
 
     // lo cambia en la base de datos
-    $stmt = mysqli_prepare($connec, "UPDATE clientes SET nombre = ?, usuario = ?, correo = ?, telefono = ? WHERE id = ?");
-    mysqli_stmt_bind_param($stmt, "ssssi", $nombre, $usuario, $correo, $telefono, $id);
+    $stmt = mysqli_prepare($connec, "UPDATE clientes SET nombre = ?, usuario = ?, correo = ? WHERE id = ?");
+    mysqli_stmt_bind_param($stmt, "ssssi", $nombre, $usuario, $correo, $id);
 
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 
-$stmt = mysqli_prepare($connec, "SELECT nombre, usuario, correo, telefono FROM clientes WHERE id = ?");
+$stmt = mysqli_prepare($connec, "SELECT nombre, usuario, correo FROM clientes WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
@@ -85,9 +85,6 @@ mysqli_stmt_close($stmt);
 
             <label for="correo">Correo:</label>
             <input type="email" name="correo" id="correo" required value="<?php echo htmlspecialchars($cliente['correo']); ?>">
-
-            <label for="telefono">Teléfono:</label>
-            <input type="text" name="telefono" id="telefono" required value="<?php echo htmlspecialchars($cliente['telefono']); ?>">
 
             <input type="submit" value="Guardar cambios">
             <a href="clientes.php" class="volver">Cancelar</a>

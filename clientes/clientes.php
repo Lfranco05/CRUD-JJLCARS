@@ -19,8 +19,7 @@ if (!empty($buscar)) {
     $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM clientes WHERE 
         LOWER(nombre) LIKE ? OR 
         LOWER(usuario) LIKE ? OR 
-        LOWER(correo) LIKE ? OR 
-        LOWER(telefono) LIKE ?");
+        LOWER(correo) LIKE ? ");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($countStmt, "ssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm);
     mysqli_stmt_execute($countStmt);
@@ -37,14 +36,13 @@ $total_pages = ceil($total_clientes / $limit);
 
 // Obtener datos
 if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, telefono FROM clientes WHERE 
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, FROM clientes WHERE 
         LOWER(nombre) LIKE ? OR 
         LOWER(usuario) LIKE ? OR 
-        LOWER(correo) LIKE ? OR 
-        LOWER(telefono) LIKE ? LIMIT ? OFFSET ?");
+        LOWER(correo) LIKE ?  ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ssssii", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, telefono FROM clientes LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo FROM clientes LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
@@ -86,7 +84,6 @@ mysqli_stmt_close($stmt);
                         <th>Nombre</th>
                         <th>Usuario</th>
                         <th>Correo</th>
-                        <th>Teléfono</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -98,7 +95,6 @@ mysqli_stmt_close($stmt);
                                 <td><?php echo htmlspecialchars($fila['nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['usuario']); ?></td>
                                 <td><?php echo htmlspecialchars($fila['correo']); ?></td>
-                                <td><?php echo htmlspecialchars($fila['telefono']); ?></td>
                                 <td>
                                     <a href="ver_clientes.php?id=<?php echo $fila['id']; ?>" class="action-icon" title="Ver"><i class="fas fa-eye"></i></a>
                                     <a href="modificar_clientes.php?id=<?php echo $fila['id']; ?>" class="modify"><i class="fas fa-edit"></i></a>

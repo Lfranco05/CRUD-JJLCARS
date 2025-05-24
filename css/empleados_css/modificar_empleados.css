@@ -1,132 +1,131 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+body {
+    background-color: #eaeaea;
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
+    min-height: 100vh;
+    margin: 0;;
 }
 
+/* Fondo general */
 body {
-    background-color: #e5e7eb; /* gris muy claro */
+    background-color: #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px;
     min-height: 100vh;
 }
 
 /* Contenedor principal */
 .main-container {
-    margin-left: 250px;
-    padding: 40px 20px;
-    min-height: calc(100vh - 60px);
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
 }
 
 /* Contenedor del formulario */
 .form-container {
-    background: #f0f1f3;
-    border-radius: 15px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    padding: 40px;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 90%;
     max-width: 600px;
-    width: 100%;
-    color: #1e1e1e;
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Animación */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Título del formulario */
 .form-title {
-    font-size: 24px;
+    color: #7b2ff7;
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    font-size: 24px;
 }
 
-.form-title i {
-    margin-right: 10px;
-}
-
-/* Grupos del formulario */
+/* Grupos de formulario */
 .form-group {
     margin-bottom: 20px;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .form-group label {
+    font-weight: bold;
     display: block;
-    font-size: 14px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.form-group label i {
-    margin-right: 8px;
-    color: #777;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #f8f9fa;
     color: #333;
-    font-size: 15px;
-    transition: border-color 0.3s ease;
+    margin-bottom: 6px;
+}
+
+/* Campos de entrada */
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus {
-    border-color: #888;
+    border-color: #7b2ff7;
+    box-shadow: 0 0 5px rgba(123, 47, 247, 0.3);
     outline: none;
 }
 
 /* Botones */
 .form-buttons {
-    margin-top: 30px;
     display: flex;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    gap: 15px;
 }
 
 .btn-guardar,
 .btn-cancelar {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 6px;
+    display: inline-block;
+    padding: 12px 24px;
+    font-weight: bold;
     font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.3s ease, transform 0.2s ease;
+    border-radius: 12px;
     text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* Estilos de botones */
 .btn-guardar {
-    background-color: #4a4a4a;
+    background-color: #7b2ff7;
     color: white;
 }
 
 .btn-guardar:hover {
-    background-color: #2c2c2c;
-    transform: translateY(-2px);
+    background-color: #5a1dcf;
+    transform: scale(1.05);
 }
 
 .btn-cancelar {
-    background-color: #a0a0a0;
+    background-color: #9ca3af;
     color: white;
 }
 
 .btn-cancelar:hover {
-    background-color: #7a7a7a;
-    transform: translateY(-2px);
+    background-color: #6b7280;
+    transform: scale(1.05);
 }
