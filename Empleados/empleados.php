@@ -14,7 +14,7 @@ $offset = ($page - 1) * $limit;
 $buscar = isset($_GET['buscar']) ? trim(strtolower($_GET['buscar'])) : '';
 
 if (!empty($buscar)) {
-    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM empleados WHERE LOWER(Usuario) LIKE ? OR LOWER(Nombre) LIKE ?");
+    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM usuarios WHERE LOWER(Usuario) LIKE ? OR LOWER(Nombre) LIKE ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($countStmt, "ss", $searchTerm, $searchTerm);
     mysqli_stmt_execute($countStmt);
@@ -22,7 +22,7 @@ if (!empty($buscar)) {
     mysqli_stmt_fetch($countStmt);
     mysqli_stmt_close($countStmt);
 } else {
-    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM empleados");
+    $countQuery = mysqli_query($connec, "SELECT COUNT(*) as total FROM usuarios");
     $row = mysqli_fetch_assoc($countQuery);
     $total_usuarios = $row['total'];
 }
@@ -30,11 +30,11 @@ if (!empty($buscar)) {
 $total_pages = ceil($total_usuarios / $limit);
 
 if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, Usuario, Nombre, TipoUsuario FROM empleados WHERE LOWER(Usuario) LIKE ? OR LOWER(Nombre) LIKE ? LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, Usuario, Nombre, TipoUsuario FROM usuarios WHERE LOWER(Usuario) LIKE ? OR LOWER(Nombre) LIKE ? LIMIT ? OFFSET ?");
     $searchTerm = "%$buscar%";
     mysqli_stmt_bind_param($stmt, "ssii", $searchTerm, $searchTerm, $limit, $offset);
 } else {
-    $stmt = mysqli_prepare($connec, "SELECT id, Usuario, TipoUsuario, Nombre FROM empleados LIMIT ? OFFSET ?");
+    $stmt = mysqli_prepare($connec, "SELECT id, Usuario, TipoUsuario, Nombre FROM usuarios LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 

@@ -15,7 +15,7 @@ $usuario = [
 
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = intval($_GET['id']);
-    $stmt = mysqli_prepare($connec, "SELECT Usuario, Nombre, TipoUsuario FROM empleados WHERE id = ?");
+    $stmt = mysqli_prepare($connec, "SELECT Usuario, Nombre, TipoUsuario FROM usuarios WHERE id = ?");
     mysqli_stmt_bind_param($stmt, "i", $id);
     mysqli_stmt_execute($stmt);
     $resultado = mysqli_stmt_get_result($stmt);
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombreNuevo = $_POST['Nombre'];
     $tipoUsuarioNuevo = $_POST['TipoUsuario'];
 
-    $stmt = mysqli_prepare($connec, "UPDATE empleados SET Usuario = ?, Nombre = ?, TipoUsuario = ? WHERE id = ?");
+    $stmt = mysqli_prepare($connec, "UPDATE usuarios SET Usuario = ?, Nombre = ?, TipoUsuario = ? WHERE id = ?");
     mysqli_stmt_bind_param($stmt, "sssi", $usuarioNuevo, $nombreNuevo, $tipoUsuarioNuevo, $id);
 
     if (mysqli_stmt_execute($stmt)) {

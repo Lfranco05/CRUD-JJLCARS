@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $tipoUsuario = $_POST['tipoUsuario'];
 
-    $stmt = mysqli_prepare($connec, "INSERT INTO empleados (nombre, usuario, password, TipoUsuario) VALUES (?, ?, ?, ?)");
+    $stmt = mysqli_prepare($connec, "INSERT INTO usuarios (nombre, usuario, password, TipoUsuario) VALUES (?, ?, ?, ?)");
     mysqli_stmt_bind_param($stmt, "ssss", $nombre, $usuario, $password, $tipoUsuario);
 
     if (mysqli_stmt_execute($stmt)) {

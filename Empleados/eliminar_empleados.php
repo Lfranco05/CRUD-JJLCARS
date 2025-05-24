@@ -15,7 +15,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 $id = mysqli_real_escape_string($connec, $_GET['id']);
 
 
-$stmt = mysqli_prepare($connec, "DELETE FROM empleados WHERE id = ?");
+$stmt = mysqli_prepare($connec, "DELETE FROM usuarios WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 $resultado = mysqli_stmt_execute($stmt);
 

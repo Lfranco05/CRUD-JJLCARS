@@ -13,7 +13,7 @@ if (!isset($_GET['id'])) {
 }
 
 $id = mysqli_real_escape_string($connec, $_GET['id']);
-$stmt = mysqli_prepare($connec, "SELECT * FROM empleados WHERE id = ?");
+$stmt = mysqli_prepare($connec, "SELECT * FROM usuarios WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
@@ -53,12 +53,12 @@ if (!$Usuarios) {
 
                 <div class="detalle-item">
                     <label><i class="fa-regular fa-star"></i> Nombre</label>
-                    <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['nombre']); ?></div>
+                    <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['Nombre']); ?></div>
                 </div>
 
                 <div class="detalle-item">
                     <label><i class="fa-solid fa-cube"></i> Usuario</label>
-                    <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['usuario']); ?></div>
+                    <div class="detalle-valor"><?php echo htmlspecialchars($Usuarios['Usuario']); ?></div>
                 </div>
 
                 <div class="detalle-item">
