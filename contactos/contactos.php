@@ -78,15 +78,14 @@ $total_mensajes = mysqli_fetch_assoc($resultado_total)['total'];
                                 <td><?php echo htmlspecialchars($mensaje['mensaje']); ?></td>
                                 <td><?php echo date('d/m/Y H:i', strtotime($mensaje['fecha_registro'])); ?></td>
                                 <td class="actions">
-                                    <a href="ver_mensaje.php?id=<?php echo $mensaje['id']; ?>" class="btn btn-info">
-                                        <i class="fas fa-eye"></i> Ver
-                                    </a>
-                                    <a href="eliminar_mensaje.php?id=<?php echo $mensaje['id']; ?>" 
-                                       class="btn btn-danger"
-                                       onclick="return confirm('¿Está seguro de eliminar este mensaje?');">
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </a>
+                                <a href="ver_mensaje.php?id=<?php echo $mensaje['id']; ?>" class="action-icon" title="Ver">
+                                <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="eliminar_mensaje.php?id=<?php echo $mensaje['id']; ?>" class="action-icon" title="Eliminar" onclick="return confirm('¿Está seguro de eliminar este mensaje?');">
+                                <i class="fas fa-trash-alt"></i>
+                                </a>
                                 </td>
+
                             </tr>
                         <?php } ?>
                     </tbody>

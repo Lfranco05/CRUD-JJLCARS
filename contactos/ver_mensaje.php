@@ -64,7 +64,7 @@ if (!$mensaje) {
 
                 <div class="mensaje-campo">
                     <span class="campo-etiqueta">Fecha de envío:</span>
-                    <div class="campo-valor"><?php echo htmlspecialchars($mensaje['fecha_envio']); ?></div>
+                    <div class="campo-valor"><?php echo htmlspecialchars($mensaje['fecha_registro']); ?></div>
                 </div>
 
                 <div class="botones-accion">

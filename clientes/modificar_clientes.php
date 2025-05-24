@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // lo cambia en la base de datos
     $stmt = mysqli_prepare($connec, "UPDATE clientes SET nombre = ?, usuario = ?, correo = ? WHERE id = ?");
-    mysqli_stmt_bind_param($stmt, "ssssi", $nombre, $usuario, $correo, $id);
+    mysqli_stmt_bind_param($stmt, "ssss", $nombre, $usuario, $correo, $id);
 
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);

@@ -2,7 +2,7 @@
 session_start();
 include("../conexion.php");
 
-// Esta es la seguridad de inicio, evita saltarnos el iniciar sesion desde el link
+// Seguridad de inicio de sesión
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
     header("Location: login.php");
     exit();
@@ -11,44 +11,38 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
 $limit = 5;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
-
-// Búsqueda del cliente buajaj
 $buscar = isset($_GET['buscar']) ? trim(strtolower($_GET['buscar'])) : '';
 
 if (!empty($buscar)) {
-    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM clientes WHERE 
-        LOWER(nombre) LIKE ? OR 
-        LOWER(usuario) LIKE ? OR 
-        LOWER(correo) LIKE ? ");
     $searchTerm = "%$buscar%";
-    mysqli_stmt_bind_param($countStmt, "ssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm);
+
+    // Contar total clientes con búsqueda
+    $countStmt = mysqli_prepare($connec, "SELECT COUNT(*) FROM clientes WHERE LOWER(nombre) LIKE ? OR LOWER(usuario) LIKE ? OR LOWER(correo) LIKE ?");
+    mysqli_stmt_bind_param($countStmt, "sss", $searchTerm, $searchTerm, $searchTerm);
     mysqli_stmt_execute($countStmt);
     mysqli_stmt_bind_result($countStmt, $total_clientes);
     mysqli_stmt_fetch($countStmt);
     mysqli_stmt_close($countStmt);
+
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, TipoUsuario FROM clientes WHERE LOWER(nombre) LIKE ? OR LOWER(usuario) LIKE ? OR LOWER(correo) LIKE ? LIMIT ? OFFSET ?");
+    mysqli_stmt_bind_param($stmt, "sssii", $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
+
 } else {
+    // Contar total clientes sin búsqueda
     $res = mysqli_query($connec, "SELECT COUNT(*) AS total FROM clientes");
     $row = mysqli_fetch_assoc($res);
     $total_clientes = $row['total'];
-}
 
-$total_pages = ceil($total_clientes / $limit);
-
-// Obtener datos
-if (!empty($buscar)) {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, FROM clientes WHERE 
-        LOWER(nombre) LIKE ? OR 
-        LOWER(usuario) LIKE ? OR 
-        LOWER(correo) LIKE ?  ? OFFSET ?");
-    mysqli_stmt_bind_param($stmt, "ssssii", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $limit, $offset);
-} else {
-    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo FROM clientes LIMIT ? OFFSET ?");
+    // Obtener datos sin búsqueda con paginación
+    $stmt = mysqli_prepare($connec, "SELECT id, nombre, usuario, correo, TipoUsuario FROM clientes LIMIT ? OFFSET ?");
     mysqli_stmt_bind_param($stmt, "ii", $limit, $offset);
 }
 
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
 mysqli_stmt_close($stmt);
+
+$total_pages = ceil($total_clientes / $limit);
 ?>
 
 <!DOCTYPE html>

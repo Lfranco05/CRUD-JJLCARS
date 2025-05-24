@@ -9,25 +9,30 @@
 /* Fondo general */
 body {
     background-color: #e5e7eb;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
     padding: 40px 20px;
 }
 
-/* Contenedor principal */
+/* Contenedor de todo el contenido excepto barra lateral y navbar */
 .main-container {
-    width: 100%;
-    max-width: 800px;
-    padding: 40px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor de detalles */
+.detalles-container {
     background-color: #ffffff;
+    padding: 40px;
     border-radius: 20px;
+    max-width: 600px;
+    width: 100%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     animation: fadeIn 0.6s ease-in-out;
 }
 
-/* Animación */
+/* Animación suave de entrada */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -43,37 +48,35 @@ body {
     letter-spacing: 1px;
 }
 
-/* Detalles individuales */
+/* Cada fila de detalle */
 .detalle-item {
     margin-bottom: 20px;
 }
 
 .detalle-item label {
+    display: block;
     font-weight: bold;
     color: #374151;
-    font-size: 15px;
-    display: block;
     margin-bottom: 6px;
+    font-size: 15px;
 }
 
 .detalle-valor {
+    background-color: #f3f4f6;
     color: #4b5563;
+    padding: 12px 15px;
+    border-radius: 10px;
     font-size: 15px;
-    padding: 10px 15px;
-    background-color: #f9fafb;
-    border-radius: 12px;
-    border: 1px solid #d1d5db;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* Botón de volver */
+/* Botón volver */
 .botones-accion {
     text-align: center;
     margin-top: 30px;
 }
 
 .btn-volver {
-    display: inline-block;
     padding: 12px 22px;
     background-color: #7b2ff7;
     color: white;
@@ -81,6 +84,7 @@ body {
     text-decoration: none;
     font-size: 15px;
     transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-block;
 }
 
 .btn-volver:hover {
