@@ -2,7 +2,7 @@
 session_start();
 include_once("conexion.php");
 
-// Validar que se recibieron datos del formulario
+// Validar datos del formulario
 if (!isset($_POST['user']) || !isset($_POST['contrasena'])) {
     echo "<script>
         Swal.fire({
@@ -43,7 +43,7 @@ mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
 
 if ($fila = mysqli_fetch_assoc($resultado)) {
-    // Comparar contraseña sin hash
+    // Comparar contraseña sin hash por el momento
     if ($password === $fila['password']) {
         $_SESSION['usuarioingresando'] = true;
         $_SESSION['id'] = $fila['id'];
