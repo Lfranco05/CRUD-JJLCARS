@@ -46,7 +46,7 @@ $total_pages = ceil($total_citas / $limit);
     <title>Ventas - JJLCARS</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/barra_lateral.css">
-    <link rel="stylesheet" href="../../css/clientes_css/clientes.css">
+    <link rel="stylesheet" href="../../css/ventas_css/ventas.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -57,15 +57,14 @@ $total_pages = ceil($total_citas / $limit);
         <div class="main-container">
             <h1>Listado de Ventas</h1>
 
-            <div class="actions">
-                <a href="nueva_cita.php" class="add-button"><i class="fas fa-plus"></i> Nueva Cita</a>
-            </div>
-
             <div class="search-form">
                 <form method="get" action="ventas.php">
                     <input type="text" name="buscar" placeholder="Buscar por cliente o tipo de cita" value="<?php echo htmlspecialchars($buscar); ?>">
                     <input type="submit" value="Buscar">
                     <a href="ventas.php" class="back">Mostrar todos</a>
+                    <div class="actions">
+                    <a href="nueva_cita.php" class="add-button"><i class="fas fa-plus"></i> Nueva Cita</a>
+            </div>
                 </form>
             </div>
 
