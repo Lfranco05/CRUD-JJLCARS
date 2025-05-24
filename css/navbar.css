@@ -5,17 +5,17 @@
     right: 0;
     height: 60px;
     z-index: 1001;
-    background-color: #ffffff; /* Blanco puro */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06); /* Sombra más suave y extendida */
+    background-color: #ffffff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06); 
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 24px;
-    border-bottom: 1px solid #e0e0e0; /* Línea divisoria sutil */
+    border-bottom: 1px solid #e0e0e0; 
 }
 
 .navbar-brand {
-    color: #1f1f1f; /* Texto oscuro */
+    color: #000000; 
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;

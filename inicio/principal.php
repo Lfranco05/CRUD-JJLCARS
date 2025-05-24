@@ -114,26 +114,10 @@ if (!empty($_SESSION['avatar_path']) && strpos($_SESSION['avatar_path'], 'avatar
 
         <h3>Visión</h3>
         <p>
-            Ser la plataforma líder en soluciones automotrices digitales en América Latina, innovando constantemente para conectar a las personas con el vehículo de sus sueños.
+            Ser la plataforma líder en soluciones automotrices digitales en Guatemala, innovando constantemente para conectar a las personas con el vehículo de sus sueños.
         </p>
     </div>
     </div>
-
-
-    <!-- Moviemiento de raton para desplegar esta opcion  -->
-    <script>
-    window.addEventListener('scroll', function () {
-    document.querySelectorAll('.oculto-inicio').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        if (rect.top < windowHeight - 100 && rect.bottom > 100) {
-            el.classList.add('visible');
-        }
-    });
-    });
-    </script>
-
 
     <!-- Carrusel dentro de la pagina de incio  -->
 

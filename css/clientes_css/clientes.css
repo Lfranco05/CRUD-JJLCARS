@@ -159,11 +159,10 @@ td a.delete:hover {
     margin-top: 25px;
     font-size: 16px;
     color: #4b5563;
-    text-align: center;
+    text-align: left;
     animation: fadeIn 0.6s ease-in-out;
 }
 
-/* === Paginación === */
 .pagination {
     margin-top: 30px;
     display: flex;
@@ -189,40 +188,4 @@ td a.delete:hover {
 .pagination .disabled {
     background-color: #cbd5e1;
     cursor: not-allowed;
-}
-
-/* === Responsive Table (mobile) === */
-@media (max-width: 768px) {
-    table thead {
-        display: none;
-    }
-
-    table, table tbody, table tr, table td {
-        display: block;
-        width: 100%;
-    }
-
-    table tr {
-        margin-bottom: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-        padding: 10px;
-    }
-
-    table td {
-        text-align: right;
-        padding: 12px 15px;
-        position: relative;
-        font-size: 14px;
-    }
-
-    table td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 15px;
-        font-weight: bold;
-        text-transform: uppercase;
-        color: #6b7280;
-        font-size: 12px;
-    }
 }

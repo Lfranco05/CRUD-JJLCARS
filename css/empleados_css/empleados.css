@@ -1,4 +1,3 @@
-/* === Reset general === */
 * {
     margin: 0;
     padding: 0;
@@ -6,13 +5,13 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* === Estilo del cuerpo === */
+/*Estilo del cuerpo*/
 body {
     background-color: #e5e7eb;
     color: #1f2937;
 }
 
-/* === Contenedor principal === */
+/*Contenedor principal*/
 .main-container {
     margin-left: 250px;
     padding: 40px;
@@ -34,7 +33,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* === Formulario de búsqueda === */
+/*Formulario busqueda*/
 .search-form {
     background: #f9fafb;
     padding: 25px;
@@ -70,7 +69,7 @@ body {
     outline: none;
 }
 
-/* === Botones del formulario === */
+/*Botones formulario*/
 .search-form input[type="submit"],
 .search-form .back {
     padding: 12px 20px;
@@ -94,7 +93,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* === Tabla === */
+/*Tabla*/
 table {
     width: 100%;
     border-collapse: collapse;
@@ -131,7 +130,7 @@ tbody tr:hover {
     background-color: #f9fafb;
 }
 
-/* === Íconos de acciones === */
+/*Iconos acciones*/
 .action-icon {
     margin-right: 10px;
     color: #4b5563;
@@ -145,16 +144,16 @@ tbody tr:hover {
     transform: scale(1.1);
 }
 
-/* === Total usuarios === */
+/*Total usuarios*/
 .total-users {
     margin-top: 25px;
     font-size: 16px;
     color: #4b5563;
-    text-align: center;
+    text-align: left;
     animation: fadeIn 0.6s ease-in-out;
 }
 
-/* === Paginación === */
+/*Paginación*/
 .pagination {
     margin-top: 30px;
     display: flex;
