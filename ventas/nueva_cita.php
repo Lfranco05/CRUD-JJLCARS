@@ -14,11 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipoCompra = trim($_POST['tipoCompra']);
     $precio = floatval($_POST['precio']);
     $nombre = trim($_POST['nombre']);
+    $correo = trim($_POST['correo']);
+    $fecha = $_POST['fecha'];
+    $hora = $_POST['hora'];
     $status = "Pendiente";
 
-    if ($tipoCita && $tipoCompra && $precio > 0 && $nombre) {
-        $stmt = mysqli_prepare($connec, "INSERT INTO citas (tipoCita, tipoCompra, precio, nombre, status) VALUES (?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt, "ssdss", $tipoCita, $tipoCompra, $precio, $nombre, $status);
+    if ($tipoCita && $tipoCompra && $precio > 0 && $nombre && $correo && $fecha && $hora) {
+        $stmt = mysqli_prepare($connec, "INSERT INTO citas (tipoCita, tipoCompra, precio, nombre, correo, fecha, hora, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt, "ssdsssss", $tipoCita, $tipoCompra, $precio, $nombre, $correo, $fecha, $hora, $status);
 
         if (mysqli_stmt_execute($stmt)) {
             header("Location: ventas.php");
@@ -60,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="tipoCita">Tipo de Cita</label>
                     <select name="tipoCita" id="tipoCita" required>
                         <option value="">Seleccione</option>
-                        <option value="Servicio">Serivicio</option>
+                        <option value="Servicio">Servicio</option>
                         <option value="Cotizacion">Cotizacion</option>
                         <option value="Test de manejo">Test de manejo</option>
                     </select>
@@ -68,8 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="tipoCompra">Tipo de Compra</label>
                     <select name="tipoCompra" id="tipoCompra" required>
                         <option value="">Seleccione</option>
-                        <option value="Contado">Contado</option>
-                        <option value="Crédito">Crédito</option>
+                        <option value="Servicio menor">Servicio menor</option>
+                        <option value="Servicio mayor">Servicio mayor</option>
+                        <option value="Revision de frenos">Revision de frenos</option>
+                        <option value="Cotizacion de vehiculo">Cotizacion de vehiculo</option>
+                        <option value="Test de manejo">Test de manejo</option>
                     </select>
 
                     <label for="precio">Precio</label>
@@ -77,6 +83,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <label for="nombre">Nombre del Cliente</label>
                     <input type="text" name="nombre" maxlength="100" required>
+
+                    <label for="correo">Correo del Cliente</label>
+                    <input type="email" name="correo" maxlength="100" required>
+
+                    <label for="fecha">Fecha de la Cita</label>
+                    <input type="date" name="fecha" required>
+
+                    <label for="hora">Hora de la Cita</label>
+                    <input type="time" name="hora" required>
 
                     <input type="submit" value="Guardar Cita">
                 </form>
