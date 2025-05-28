@@ -71,7 +71,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <div class="menu-section">
         <h3>PANEL</h3>
-        <a href="../clientes/dashboard.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
+        <a href="../proyeccion_ventas/proyeccion_ventas.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
             <i class="fas fa-chart-line"></i> Proyecciones de ventas
         </a>
         <a href="../clientes/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
