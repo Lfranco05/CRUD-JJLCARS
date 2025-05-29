@@ -1,0 +1,21 @@
+/* Estos son los colores que vamos a usar */
+
+/* Fondo principal */
+:root {
+    --color-azul-oscuro: #071739;
+
+    /* Sidebar, headers, bordes sutiles */
+    --color-azul-gris: #4B6382;
+
+    /* Inputs, secciones secundarias */
+    --color-celeste: #A4B5C4;
+
+    /* Fondos de tarjetas, fondo contenedor */
+    --color-gris-claro: #CDD5DB;
+
+    /*  Botones secundarios, etiquetas */
+    --color-marron: #A68868;
+
+    /* Botones principales, títulos */
+    --color-beige: #E3C39D;
+}
