@@ -3,20 +3,26 @@ session_start();
 include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['registrar'])) {
+    // Limpiar datos del formulario
     $Usuario = mysqli_real_escape_string($connec, trim($_POST['username']));
     $Nombre = mysqli_real_escape_string($connec, trim($_POST['nom_usuario']));
-    $password = mysqli_real_escape_string($connec, trim($_POST['password']));
+    $password = trim($_POST['password']); // No aplicar escape aquí, se encriptará
     $TipoUsuario = mysqli_real_escape_string($connec, trim($_POST['rol']));
 
+    // Verificar si el usuario ya existe
     $verificar = mysqli_query($connec, "SELECT * FROM usuarios WHERE Usuario = '$Usuario'");
     if (mysqli_num_rows($verificar) > 0) {
         echo "<script>alert('Este usuario ya está registrado'); window.location.href='registrar.php';</script>";
         exit();
     }
 
+    // Encriptar contraseña
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insertar nuevo usuario en la base de datos
     $sql = "INSERT INTO usuarios (Usuario, password, Nombre, TipoUsuario) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($connec, $sql);
-    mysqli_stmt_bind_param($stmt, "ssss", $Usuario, $password, $Nombre, $TipoUsuario);
+    mysqli_stmt_bind_param($stmt, "ssss", $Usuario, $passwordHash, $Nombre, $TipoUsuario);
 
     if (mysqli_stmt_execute($stmt)) {
         echo "<script>alert('Usuario registrado exitosamente'); window.location.href='login.php';</script>";

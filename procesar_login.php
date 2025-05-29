@@ -2,7 +2,7 @@
 session_start();
 include_once("conexion.php");
 
-// Validar datos del formulario
+// Verificar que se reciban los datos del formulario
 if (!isset($_POST['user']) || !isset($_POST['contrasena'])) {
     echo "<script>
         Swal.fire({
@@ -17,10 +17,11 @@ if (!isset($_POST['user']) || !isset($_POST['contrasena'])) {
     exit();
 }
 
-// Limpiar y validar datos
+// Limpiar datos recibidos
 $username = mysqli_real_escape_string($connec, trim($_POST['user']));
 $password = trim($_POST['contrasena']);
 
+// Validar campos vacíos
 if (empty($username) || empty($password)) {
     echo "<script>
         Swal.fire({
@@ -35,16 +36,18 @@ if (empty($username) || empty($password)) {
     exit();
 }
 
-// Consulta preparada en la tabla 'usuarios'
+// Buscar el usuario en la base de datos
 $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario, correo FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $sql);
 mysqli_stmt_bind_param($stmt, "s", $username);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
 
+// Si el usuario existe
 if ($fila = mysqli_fetch_assoc($resultado)) {
-    // Comparar contraseña sin hash por el momento
-    if ($password === $fila['password']) {
+    // Verificar la contraseña encriptada
+    if (password_verify($password, $fila['password'])) {
+        // Guardar datos del usuario en la sesión
         $_SESSION['usuarioingresando'] = true;
         $_SESSION['id'] = $fila['id'];
         $_SESSION['Usuario'] = $fila['Usuario'];
@@ -52,18 +55,11 @@ if ($fila = mysqli_fetch_assoc($resultado)) {
         $_SESSION['TipoUsuario'] = $fila['TipoUsuario'];
         $_SESSION['correo'] = $fila['correo'];
 
-        // Recordarme
-        if (isset($_POST['recordar'])) {
-            setcookie('remember_user', $username, time() + (30 * 24 * 60 * 60), '/');
-            setcookie('remember_pass', base64_encode($password), time() + (30 * 24 * 60 * 60), '/');
-        } else {
-            setcookie('remember_user', '', time() - 3600, '/');
-            setcookie('remember_pass', '', time() - 3600, '/');
-        }
-
+        // Redirigir al panel principal
         header("Location: inicio/principal.php");
         exit();
     } else {
+        // Contraseña incorrecta
         echo "<script>
             Swal.fire({
                 icon: 'error',
@@ -76,6 +72,7 @@ if ($fila = mysqli_fetch_assoc($resultado)) {
         </script>";
     }
 } else {
+    // Usuario no encontrado
     echo "<script>
         Swal.fire({
             icon: 'error',
@@ -88,6 +85,7 @@ if ($fila = mysqli_fetch_assoc($resultado)) {
     </script>";
 }
 
+// Cerrar conexiones
 mysqli_stmt_close($stmt);
 mysqli_close($connec);
 ?>

@@ -2,6 +2,7 @@
 session_start();
 include("conexion.php");
 
+// Si ya se inicio sesion antes esta cosa manda al inicio.
 if (isset($_SESSION["usuarioingresando"]) && $_SESSION["usuarioingresando"] === true) {
     header("Location: inicio/principal.php");
     exit();
@@ -9,8 +10,10 @@ if (isset($_SESSION["usuarioingresando"]) && $_SESSION["usuarioingresando"] === 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $username = mysqli_real_escape_string($connec, trim($_POST['username']));
-    $password = mysqli_real_escape_string($connec, trim($_POST['password']));
+    $password = trim($_POST['password']);
+    $rol = mysqli_real_escape_string($connec, trim($_POST['rol']));
 
+    // Buscar usuario por nombre
     $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario FROM usuarios WHERE Usuario = ?";
     $stmt = mysqli_prepare($connec, $sql);
     mysqli_stmt_bind_param($stmt, "s", $username);
@@ -18,7 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
     $resultado = mysqli_stmt_get_result($stmt);
     
     if ($fila = mysqli_fetch_assoc($resultado)) {
-        if ($password === $fila['password']) {
+        // Verificar contraseña y rol sean los correctos, falta filtrar inf por rol buajajja
+        if (password_verify($password, $fila['password']) && $rol === $fila['TipoUsuario']) {
+            // Iniciar sesión
             $_SESSION['usuarioingresando'] = true;
             $_SESSION['id'] = $fila['id'];
             $_SESSION['Usuario'] = $fila['Usuario'];
@@ -28,10 +33,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
             header("Location: inicio/principal.php");
             exit();
         } else {
-            echo "<script>alert('Usuario o contraseña incorrectos');</script>";
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Usuario, contraseña o rol incorrectos',
+                    confirmButtonColor: '#3085d6'
+                });
+            </script>";
         }
     } else {
-        echo "<script>alert('Usuario o contraseña incorrectos');</script>";
+        echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Usuario, contraseña o rol incorrectos',
+                confirmButtonColor: '#3085d6'
+            });
+        </script>";
     }
 
     mysqli_stmt_close($stmt);
@@ -50,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
 </head>
 <body class="login-body">
 
-<!-- Video del carrito -->
+<!-- Video del carrito, sin funcionar debido al peso del video, git no acepta mas de 100 mb -->
 <video autoplay muted loop class="video-background">
     <source src="FondoLogin/FondoLogin.mp4" type="video/mp4">
 </video>
