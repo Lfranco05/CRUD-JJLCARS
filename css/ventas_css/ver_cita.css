@@ -1,0 +1,28 @@
+.detalle-cita {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+}
+
+.detalle-cita p {
+    margin: 15px 0;
+}
+
+.btn-volver {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #7b2ff7;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.btn-volver:hover {
+    background-color: #5d20c6;
+}

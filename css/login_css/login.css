@@ -5,18 +5,16 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Fondo del body */
 .login-body {
-    background-color: #1b1f3b;
+    background-color: #071739; /* fondo oscuro principal */
     height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #CDD5DB;
 }
 
-/* Fondo de video */
 .video-background {
     position: fixed;
     top: 0;
@@ -25,33 +23,31 @@
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.3);
+    filter: brightness(0.25);
 }
 
-/* Contenedor del formulario */
 .login-container {
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(12px);
+    background: rgba(11, 19, 39, 0.85); /* leve transparencia con fondo */
+    backdrop-filter: blur(14px);
     padding: 40px;
     border-radius: 20px;
     width: 90%;
     max-width: 450px;
-    box-shadow: 0 0 25px rgba(123, 47, 247, 0.3);
+    box-shadow: 0 0 30px rgba(75, 99, 130, 0.4);
     animation: fadeIn 0.6s ease-in-out;
     text-align: center;
+    border: 1px solid #4B6382;
 }
 
-/* Animación de entrada */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Título y subtítulo */
 .login-container h2 {
     font-size: 28px;
     margin-bottom: 10px;
-    color: #7b2ff7;
+    color: #E3C39D;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -59,10 +55,9 @@
 .login-subtitle {
     font-size: 14px;
     margin-bottom: 25px;
-    color: #ccc;
+    color: #A4B5C4;
 }
 
-/* Campos del formulario */
 .form-group {
     text-align: left;
     margin-bottom: 20px;
@@ -71,32 +66,31 @@
 label {
     display: block;
     margin-bottom: 8px;
-    color: #7b2ff7;
+    color: #E3C39D;
     font-weight: bold;
 }
 
 input, select {
     width: 100%;
     padding: 12px;
-    border: none;
+    border: 1px solid #4B6382;
     border-radius: 8px;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: #A4B5C4;
+    color: #071739;
     font-size: 14px;
     outline: none;
-    transition: background-color 0.3s ease, border 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 input::placeholder {
-    color: #999;
+    color: #4B6382;
 }
 
 input:focus, select:focus {
-    background-color: #2a2a40;
-    border: 1px solid #7b2ff7;
+    background-color: #CDD5DB;
+    border-color: #E3C39D;
 }
 
-/* Mostrar/ocultar contraseña */
 .password-container {
     position: relative;
 }
@@ -107,10 +101,9 @@ input:focus, select:focus {
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #7b2ff7;
+    color: #A68868;
 }
 
-/* Botones */
 .button-group {
     display: flex;
     flex-direction: column;
@@ -132,27 +125,28 @@ input:focus, select:focus {
     text-decoration: none;
 }
 
-/* Botón de registro */
+/* Botón registro */
 .register-btn {
-    background-color: #7b2ff7;
-    color: white;
+    background-color: #E3C39D;
+    color: #071739;
+    border: 2px solid transparent;
 }
 
 .register-btn:hover {
-    background-color: #5e1fd4;
+    background-color: #A68868;
+    color: white;
     transform: translateY(-2px);
 }
 
-/* Botón de login */
+/* Botón login */
 .login-btn {
     background-color: transparent;
-    color: #7b2ff7;
-    border: 2px solid #7b2ff7;
-    text-align: center;
+    color: #E3C39D;
+    border: 2px solid #E3C39D;
 }
 
 .login-btn:hover {
-    background-color: #7b2ff7;
-    color: black;
+    background-color: #E3C39D;
+    color: #071739;
     transform: translateY(-2px);
 }
