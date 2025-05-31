@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = mysqli_prepare($connec, "INSERT INTO citas (tipoCita, tipoCompra, precio, nombre, correo, fecha, hora, status, vehiculo_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
     mysqli_stmt_bind_param($stmt, "ssdsssssi", $tipoCita, $tipoCompra, $precio, $nombre, $correo, $fecha, $hora, $status, $vehiculo_id);
 
+    
     if (mysqli_stmt_execute($stmt)) {
         $mensaje = "Cita registrada exitosamente.";
     } else {
@@ -152,11 +153,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="hora">Hora de la Cita</label>
                 <input type="time" name="hora" required>
 
-                <input type="submit" value="Guardar Cita">
+                <div class="form-buttons">
+                    <button type="submit" class="guardar">Guardar</button>
+                    <a href="ventas.php" class="cerrar">Cerrar</a>
+                </div>
+
             </form>
 
             <div class="volver">
-                <a href="ventas.php">← Volver a Ventas</a>
             </div>
         </div>
     </div>

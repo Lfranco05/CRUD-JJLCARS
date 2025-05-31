@@ -1,0 +1,96 @@
+body {
+    background: #eceff1;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form-container {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    padding: 40px 32px 32px 32px;
+    max-width: 480px;
+    width: 100%;
+    margin: 32px auto;
+}
+.form-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 32px;
+    letter-spacing: 1px;
+}
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 18px;
+    font-weight: 500;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="number"],
+.form-container input[type="date"],
+.form-container input[type="time"],
+.form-container select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    transition: border 0.2s, box-shadow 0.2s;
+    outline: none;
+    background: #fafbfc;
+}
+.form-container input:focus,
+.form-container select:focus {
+    border-color: #7b2ff7;
+    box-shadow: 0 0 8px #c3a6fa;
+}
+.form-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 32px;
+}
+.form-buttons button,
+.form-buttons a {
+    flex: 1;
+    padding: 14px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.form-buttons .guardar {
+    background: #7b2ff7;
+    color: #fff;
+}
+.form-buttons .guardar:hover {
+    background: #5f1ec6;
+}
+.form-buttons .cerrar {
+    background: #6c757d;
+    color: #fff;
+}
+.form-buttons .cerrar:hover {
+    background: #495057;
+}
+.mensaje-error {
+    color: #7b2ff7;
+    text-align: center;
+    margin-bottom: 18px;
+    font-weight: 500;
+}
