@@ -53,7 +53,7 @@ body {
 }
 .form-container input:focus,
 .form-container select:focus {
-    border-color: #7b2ff7;
+    border-color: #A68868;
     box-shadow: 0 0 8px #c3a6fa;
 }
 .form-buttons {
@@ -75,11 +75,11 @@ body {
     transition: background 0.2s;
 }
 .form-buttons .guardar {
-    background: #7b2ff7;
+    background: #A68868;
     color: #fff;
 }
 .form-buttons .guardar:hover {
-    background: #5f1ec6;
+    background: #A68868;
 }
 .form-buttons .cerrar {
     background: #6c757d;
@@ -89,7 +89,7 @@ body {
     background: #495057;
 }
 .mensaje-error {
-    color: #7b2ff7;
+    color: #A68868;
     text-align: center;
     margin-bottom: 18px;
     font-weight: 500;
