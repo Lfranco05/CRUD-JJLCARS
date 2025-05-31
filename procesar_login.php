@@ -35,7 +35,7 @@ if (empty($username) || empty($password)) {
     </script>";
     exit();
 }
-
+//Ayuda Dios
 // Buscar el usuario en la base de datos
 $sql = "SELECT id, Usuario, Nombre, password, TipoUsuario, correo FROM usuarios WHERE Usuario = ?";
 $stmt = mysqli_prepare($connec, $sql);
