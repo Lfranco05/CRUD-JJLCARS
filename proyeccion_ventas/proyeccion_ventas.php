@@ -7,8 +7,6 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
     exit();
 }
 
-// Consulta: ventas aprobadas, esta cosa de aca se asegura que se tomen en cuenta solo las citas completadas, podriamos decir que 
-// son las que ya cobraron
 $query = "
     SELECT 
         DATE_FORMAT(fecha, '%Y-%m') AS mes, 
@@ -41,7 +39,6 @@ while ($row = mysqli_fetch_assoc($resultado)) {
 
 sort($categorias);
 
-// colores waso falta css
 $datasets = [];
 $colores = [
     "Servicio menor" => "rgba(123, 47, 247, 0.6)",
@@ -77,11 +74,14 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
         .main-container {
             padding: 2rem;
             background: #f9f9f9;
+            max-width: 1100px; /* Ancho ajustado */
+            margin: 0 auto;
         }
         canvas {
-            max-width: 900px;
-            margin: 2rem auto;
+            width: 100%;
+            height: 500px; /* Altura ajustada */
             display: block;
+            margin: 2rem auto;
         }
         h2 {
             text-align: center;
