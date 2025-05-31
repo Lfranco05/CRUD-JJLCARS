@@ -65,7 +65,7 @@ body {
 
 .form-group input:focus {
     outline: none;
-    border-color: #7b2ff7;
+    border-color: #475569;
     box-shadow: 0 0 8px rgba(123, 47, 247, 0.3);
 }
 
@@ -91,13 +91,13 @@ body {
 }
 
 .btn-submit {
-    background-color: #7b2ff7;
+    background-color: #A68868;
     color: white;
     margin-right: 10px;
 }
 
 .btn-submit:hover {
-    background-color: #9d4dfd;
+    background-color: #A68868;
     transform: scale(1.03);
 }
 

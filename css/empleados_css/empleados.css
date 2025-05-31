@@ -64,7 +64,7 @@ body {
 }
 
 .search-form input[type="text"]:focus {
-    border-color: #7b2ff7;
+    border-color: #92400e;
     box-shadow: 0 0 8px rgba(123, 47, 247, 0.3);
     outline: none;
 }
@@ -73,7 +73,7 @@ body {
 .search-form input[type="submit"],
 .search-form .back {
     padding: 12px 20px;
-    background-color: #7b2ff7;
+    background-color: #A68868;
     color: white;
     border-radius: 10px;
     font-size: 15px;
@@ -84,7 +84,7 @@ body {
 }
 
 .search-form .back {
-    background-color: #9d4dfd;
+    background-color: #475569;
 }
 
 .search-form input[type="submit"]:hover,

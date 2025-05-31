@@ -40,14 +40,14 @@ h1 {
 }
 
 .search-form input[type="text"]:focus {
-    border-color: #7b2ff7;
+    border-color: #475569;
     outline: none;
     box-shadow: 0 0 5px rgba(123, 47, 247, 0.3);
 }
 
 .btn-buscar,
 .btn-mostrar {
-    background-color: #7b2ff7;
+    background-color: #475569;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -60,7 +60,7 @@ h1 {
 
 .btn-buscar:hover,
 .btn-mostrar:hover {
-    background-color: #5a1dcf;
+    background-color: #475569;
     transform: scale(1.05);
 }
 
