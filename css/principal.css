@@ -2,10 +2,10 @@
 :root {
     --color-azul-oscuro: #071739;
     --color-azul-gris: #4B6382;
-    --color-celeste: #A4B5C4;
-    --color-gris-claro: #CDD5DB;
-    --color-marron: #A68868;
-    --color-beige: #E3C39D;
+    --color-celeste: #f8f8f8;
+    --color-gris-claro: #ffffff;
+    --color-marron: #161614;
+    --color-beige: #071739;
     --sombra: 0 8px 24px rgba(0, 0, 0, 0.3);
     --borde-redondeado: 20px;
     --animacion: fadeIn 0.8s ease-in-out;
