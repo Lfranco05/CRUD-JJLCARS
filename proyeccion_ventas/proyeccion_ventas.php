@@ -71,6 +71,7 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
     <title>Proyección de Ventas por Categoría</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/barra_lateral.css">
+    <link rel="stylesheet" href="../css/proyecciones_css/proyeccion_ventas.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .main-container {

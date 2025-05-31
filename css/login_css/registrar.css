@@ -7,7 +7,7 @@
 
 /* Fondo del body */
 .login-body {
-    background-color: #071739; /* Azul profundo */
+    background-color: #071739; 
     height: 100vh;
     overflow: hidden;
     display: flex;
@@ -37,7 +37,7 @@
     max-width: 450px;
     box-shadow: 0 0 25px rgba(75, 99, 130, 0.3);
     animation: fadeIn 0.6s ease-in-out;
-    color: #CDD5DB; /* gris suave */
+    color: #CDD5DB; 
     text-align: center;
 }
 
@@ -51,7 +51,7 @@
 .login-container h2 {
     font-size: 28px;
     margin-bottom: 10px;
-    color: #E3C39D; /* beige claro */
+    color: #E3C39D; 
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -59,7 +59,7 @@
 .login-subtitle {
     font-size: 14px;
     margin-bottom: 25px;
-    color: #A4B5C4; /* celeste-gris */
+    color: #A4B5C4; 
 }
 
 /* Campos del formulario */
