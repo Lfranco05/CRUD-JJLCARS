@@ -1,19 +1,40 @@
-/* === Estilo para el video de bienvenida === */
+/* === Variables de color === */
+:root {
+    --color-azul-oscuro: #071739;
+    --color-azul-gris: #4B6382;
+    --color-celeste: #A4B5C4;
+    --color-gris-claro: #CDD5DB;
+    --color-marron: #A68868;
+    --color-beige: #E3C39D;
+    --sombra: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --borde-redondeado: 20px;
+    --animacion: fadeIn 0.8s ease-in-out;
+}
+
+/* === Fondo general === */
+body {
+    background-color: var(--color-azul-oscuro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+/* === Video de bienvenida === */
 .video-card {
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra);
     height: 300px;
-    margin-bottom: 30px;
-    animation: fadeIn 1s ease-in-out;
+    margin-bottom: 40px;
+    animation: var(--animacion);
 }
 
 .video-card video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 .overlay-text {
@@ -21,132 +42,100 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
     text-align: center;
+    color: white;
     text-shadow: 0 0 10px rgba(0,0,0,0.8);
 }
 
 .overlay-text h1 {
-    font-size: 42px;
+    font-size: 48px;
     margin-bottom: 10px;
+    color: var(--color-beige);
     letter-spacing: 2px;
-    color: #fff;
-    animation: fadeInDown 0.8s ease-in-out;
 }
 
 .overlay-text p {
     font-size: 18px;
-    color: #f3f4f6;
-    animation: fadeInUp 0.8s ease-in-out 0.2s;
+    color: var(--color-gris-claro);
 }
 
-@keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.oculto-inicio {
-    opacity: 0;
-    transform: translateY(40px);
-    pointer-events: none;
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.oculto-inicio.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-
-/* === Carrusel pantalla de inicio, boton inicio === */
+/* === Carrusel === */
 .carrusel {
     position: relative;
     overflow: hidden;
     margin-top: 40px;
-    border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(15, 6, 6, 0.1);
-    background: #ffffff;
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra);
+    background: var(--color-azul-griss);
     padding: 20px;
 }
 
 .carrusel-track {
     display: flex;
     transition: transform 0.6s ease-in-out;
-    will-change: transform;
+    gap: 20px;
 }
 
 .carrusel-item {
     min-width: 100%;
     box-sizing: border-box;
-    padding: 20px;
     text-align: center;
+    background-color: var(--color-celeste);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .carrusel-item img {
     width: 100%;
     max-height: 280px;
-    object-fit: contain;
-    border-radius: 16px;
+    object-fit: scale-down;
+    border-radius: 12px;
     margin-bottom: 15px;
-    box-shadow: 0 4px 12px rgb(255, 255, 255);
 }
 
 .carrusel-item h4 {
-    font-size: 20px;
-    color: #111827;
-    margin-bottom: 10px;
+    font-size: 22px;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 8px;
 }
 
 .carrusel-item p {
     font-size: 14px;
-    color: #4b5563;
-    max-width: 600px;
-    margin: 0 auto;
+    color: #333;
 }
 
+/* Botones de carrusel */
 .carrusel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
-    padding: 12px 16px;
+    padding: 10px 14px;
     border-radius: 50%;
     cursor: pointer;
-    z-index: 10;
     transition: background 0.3s;
+    z-index: 10;
 }
 
 .carrusel-btn:hover {
-    background: rgba(0,0,0,0.8);
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.carrusel-btn.prev {
-    left: 10px;
-}
+.carrusel-btn.prev { left: 10px; }
+.carrusel-btn.next { right: 10px; }
 
-.carrusel-btn.next {
-    right: 10px;
-}
-
-/* === Historia,mision,vision,saber que mas poner === */
+/* === Tarjeta de empresa === */
 .info-card.empresa {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    background-color: var(--color-gris-claro);
+    color: #000;
     padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border-radius: var(--borde-redondeado);
+    box-shadow: var(--sombra);
     margin-top: 3rem;
-    animation: fadeInUp 0.8s ease forwards;
-    opacity: 0;
-    transform: translateY(20px);
+    animation: var(--animacion);
 }
 
 .empresa-img {
@@ -159,13 +148,13 @@
 
 .empresa h2 {
     text-align: center;
-    color: #7b2ff7;
-    margin-bottom: 1rem;
+    color: var(--color-beige);
+    margin-bottom: 1.5rem;
 }
 
 .empresa-contenido h3 {
+    color: var(--color-marron);
     margin-top: 1.5rem;
-    color: #9c4dff;
 }
 
 .empresa-contenido p {
@@ -174,7 +163,8 @@
     text-align: justify;
 }
 
-@keyframes fadeInUp {
+/* === Animaciones === */
+@keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }

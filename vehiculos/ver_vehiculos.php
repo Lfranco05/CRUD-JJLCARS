@@ -7,7 +7,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 
 $id = (int)$_GET['id'];
 
-$stmt = mysqli_prepare($connec, "SELECT marca, modelo, descripcion, precio, imagen, fecha_agregado FROM vehiculos WHERE id = ?");
+$stmt = mysqli_prepare($connec, "SELECT marca, modelo, descripcion, precio, imagen FROM vehiculos WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $id);
 mysqli_stmt_execute($stmt);
 $resultado = mysqli_stmt_get_result($stmt);
@@ -51,12 +51,10 @@ if (!$vehiculo) {
             <label>Precio:</label>
             <p>$<?= number_format($vehiculo['precio'], 2) ?></p>
 
-            <label>Fecha en la que fue agregado:</label>
-            <p><?= htmlspecialchars($vehiculo['fecha_agregado']) ?></p>
 
-            <?php if (!empty($vehiculo['imagen']) && file_exists("../imagenes/" . $vehiculo['imagen'])): ?>
+            <?php if (!empty($vehiculo['imagen']) && file_exists("../Imagen/" . $vehiculo['imagen'])): ?>
                 <label>Imagen:</label>
-                <img src="../imagenes/<?= htmlspecialchars($vehiculo['imagen']) ?>" alt="Imagen del vehículo">
+                <img src="../Imagen/<?= htmlspecialchars($vehiculo['imagen']) ?>" alt="Imagen del vehículo">
             <?php else: ?>
                 <p><em>Sin imagen disponible</em></p>
             <?php endif; ?>

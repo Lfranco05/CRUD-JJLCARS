@@ -7,14 +7,13 @@ if (isset($_POST['enviar'])) {
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
     $inventario = $_POST['inventario'];
-    $fecha_agregado = date('Y-m-d');
 
    $nombreImagen = basename($_FILES['imagen']['name']);
-    $rutaDestino = "../imagenes/" . $nombreImagen;
+    $rutaDestino = "../Imagen/" . $nombreImagen;
 
     if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
-    $stmt = mysqli_prepare($connec, "INSERT INTO vehiculos (marca, modelo, descripcion, precio, imagen, fecha_agregado, inventario) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    mysqli_stmt_bind_param($stmt, "sssdsis", $marca, $modelo, $descripcion, $precio, $nombreImagen, $fecha_agregado, $inventario);
+    $stmt = mysqli_prepare($connec, "INSERT INTO vehiculos (marca, modelo, descripcion, precio, imagen, inventario) VALUES (?, ?, ?, ?, ?, ?)");
+    mysqli_stmt_bind_param($stmt, "sssdsi", $marca, $modelo, $descripcion, $precio, $nombreImagen, $inventario);
    
         $resultado = mysqli_stmt_execute($stmt); 
 

@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include_once(__DIR__ . "/../conexion.php");
 
-// Verificar si el usuario completo la verificacion
+// Verificar que el usuario este verificado, seguridad va muchis.
 $username = $_SESSION['Usuario'] ?? '';
 
 // Obtener avatar y nombre del usuario
@@ -71,7 +71,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
     <div class="menu-section">
         <h3>PANEL</h3>
-        <a href="../clientes/dashboard.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
+        <a href="../proyeccion_ventas/proyeccion_ventas.php" class="<?php echo $current_page == 'proyeccion_ventas.php' ? 'active' : ''; ?>">
             <i class="fas fa-chart-line"></i> Proyecciones de ventas
         </a>
         <a href="../clientes/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
@@ -87,7 +87,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <a href="../Empleados/empleados.php" class="<?php echo $current_page == 'empleados.php' ? 'active' : ''; ?>">
             <i class="fas fa-users"></i> Empleados
         </a>
-        <a href="../ventas/clientes.php" class="<?php echo $current_page == 'clientes.php' ? 'active' : ''; ?>">
+        <a href="../ventas/ventas.php" class="<?php echo $current_page == 'ventas.php' ? 'active' : ''; ?>">
             <i class="fas fa-shopping-cart"></i> Ventas
         </a>
     </div>

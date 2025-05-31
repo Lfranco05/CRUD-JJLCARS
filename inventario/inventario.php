@@ -35,7 +35,7 @@ if (!$resultado) {
             <div class="inventario-container">
                 <?php while ($vehiculo = mysqli_fetch_assoc($resultado)) { ?>
                     <div class="vehiculo-card">
-                        <img src="../imagenes/<?php echo htmlspecialchars($vehiculo['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($vehiculo['marca']); ?>">
+                        <img src="../Imagen/<?php echo htmlspecialchars($vehiculo['imagen']); ?>" alt="Imagen de <?php echo htmlspecialchars($vehiculo['marca']); ?>">
                         <div class="vehiculo-info">
                             <p><strong>ID:</strong> <?php echo $vehiculo['id']; ?></p>
                             <p><strong>Marca:</strong> <?php echo htmlspecialchars($vehiculo['marca']); ?></p>

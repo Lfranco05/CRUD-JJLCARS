@@ -1,3 +1,22 @@
+<!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+ <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+  <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+   <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+    <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+     <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+      <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+       <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+        <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+         <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+          <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+           <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+            <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+             <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+              <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+               <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+                <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+                 <!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->
+                  
 <?php
 session_start();
 include("../conexion.php");
@@ -10,7 +29,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($connec, $_GET['id']);
     
-    $sql = "DELETE FROM contacto WHERE id = ?";
+    $sql = "DELETE FROM citas WHERE id = ?";
     $stmt = mysqli_prepare($connec, $sql);
     mysqli_stmt_bind_param($stmt, "i", $id);
     
@@ -24,4 +43,5 @@ if (isset($_GET['id'])) {
 } else {
     header("Location: contactos.php");
 }
-?>
+?> 
+<!-- Esta cosa funciona si, solo que lo veo redundante ajksjadjaksd -->

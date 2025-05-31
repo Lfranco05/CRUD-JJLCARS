@@ -1,3 +1,13 @@
+/* Variables */
+:root {
+    --azul-oscuro: #071739;
+    --azul-gris: #4B6382;
+    --celeste: #A4B5C4;
+    --marron: #A68868;
+    --beige: #E3C39D;
+    --texto-claro: #f4f4f4;
+}
+
 /* Estilos base */
 * {
     margin: 0;
@@ -7,25 +17,25 @@
 }
 
 body {
-    background-color: #f4f4f4;
+    background-color: #F6F1E9; /* Fondo claro neutral */
     min-height: 100vh;
     padding-top: 60px;
-    color: #2f2f2f;
+    color: #071739; /* Texto principal */
 }
 
 /* Barra lateral */
 .sidebar {
     width: 250px;
     height: 100vh;
-    background-color: #ffffff;
-    color: #2f2f2f;
+    background-color: #071739; /* Azul noche */
+    color: #E3C39D; /* Texto claro suave */
     position: fixed;
     left: 0;
     top: 0;
     transition: all 0.3s ease;
     z-index: 1000;
     padding-top: 60px;
-    border-right: 1px solid #e0e0e0;
+    border-right: 1px solid #4B6382; /* Borde azul grisáceo */
 }
 
 .sidebar.collapsed {
@@ -41,7 +51,7 @@ body {
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
-    background-color: #f9f9f9;
+    background-color: #F6F1E9;
 }
 
 .main-container.expanded {
@@ -55,9 +65,9 @@ body {
     left: 260px;
     top: 70px;
     z-index: 1001;
-    background: #dddddd;
+    background: #D98E73; /* Coral desaturado */
     border: none;
-    color: #333;
+    color: white;
     padding: 10px;
     cursor: pointer;
     border-radius: 8px;
@@ -93,7 +103,7 @@ body {
 .profile {
     text-align: center;
     padding: 20px 0;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #4B6382;
 }
 
 .avatar-container {
@@ -104,7 +114,7 @@ body {
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    background-color: #f0f0f0;
+    background-color: #A4B5C4; /* Azul pastel */
     transition: transform 0.3s ease;
 }
 
@@ -124,7 +134,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(50, 50, 50, 0.5);
+    background: rgba(7, 23, 57, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -141,7 +151,7 @@ body {
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
+    background: var(--marron);
 }
 
 .upload-btn i {
@@ -155,7 +165,7 @@ body {
 }
 
 .menu-section h3 {
-    color: #999;
+    color: #A4B5C4;
     font-size: 0.75em;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -167,18 +177,18 @@ body {
     align-items: center;
     padding: 10px 12px;
     font-size: 0.9em;
-    color: #333;
+    color: #071739;
     text-decoration: none;
     transition: all 0.3s ease;
     border-radius: 8px;
     margin-bottom: 5px;
-    background: #f0f0f0;
+    background: #E3C39D;
 }
 
 .menu-section a:hover,
 .menu-section a.active {
-    background: #2f2f2f;
-    color: #fff;
+    background: #C7A24E; /* Mostaza suave */
+    color: #071739;
 }
 
 .menu-section a i {
@@ -189,7 +199,7 @@ body {
 
 /* Botón de toggle refinado */
 .sidebar-toggle {
-    background: #ccc;
+    background: #D98E73;
     padding: 8px;
     font-size: 16px;
     border-radius: 8px;
