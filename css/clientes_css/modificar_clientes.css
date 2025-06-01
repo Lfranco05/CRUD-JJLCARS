@@ -31,7 +31,7 @@ body {
 .main-container h1 {
     text-align: center;
     font-size: 28px;
-    color: #7b2ff7;
+    color: #A68868;
     margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -74,7 +74,7 @@ form input[type="email"] {
 
 form input[type="text"]:focus,
 form input[type="email"]:focus {
-    border-color: #7b2ff7;
+    border-color: #A68868;
     box-shadow: 0 0 0 2px rgba(123, 47, 247, 0.3);
     outline: none;
 }
@@ -83,7 +83,7 @@ form input[type="email"]:focus {
 form input[type="submit"] {
     margin-top: 30px;
     padding: 14px;
-    background-color: #7b2ff7;
+    background-color: #A68868;
     color: white;
     border: none;
     border-radius: 10px;

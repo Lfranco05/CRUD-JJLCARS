@@ -41,7 +41,7 @@ sort($categorias);
 
 $datasets = [];
 $colores = [
-    "Servicio menor" => "rgba(123, 47, 247, 0.6)",
+    "Servicio menor" => "rgba(47, 247, 137, 0.6)",
     "Servicio mayor" => "rgba(255, 99, 132, 0.6)",
     "Revision de frenos" => "rgba(54, 162, 235, 0.6)",
     "Cotizacion de vehiculo" => "rgba(255, 206, 86, 0.6)",
