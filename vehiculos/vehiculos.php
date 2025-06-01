@@ -83,7 +83,6 @@ mysqli_stmt_close($stmt);
                         <th>Descripción</th>
                         <th>Precio</th>
                         <th>Imagen</th>
-                        <th>Fecha de actualización</th>
                         <th>Inventario</th>
                         <th>Acciones</th>
                     </tr>
