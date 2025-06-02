@@ -1,3 +1,13 @@
+:root {
+    --azul-oscuro: #1b1f3b;
+    --azul-hover: #111827;
+    --celeste: #60a5fa;
+    --gris: #d1d5db;
+    --beige: #f6f1e9;
+    --marron: #8b5e3c;
+}
+
+/* General */
 * {
     margin: 0;
     padding: 0;
@@ -5,10 +15,9 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Estilo del cuerpo */
 body {
-    background-color: #e5e7eb;
-    color: #1f2937;
+    background-color: var(--gris);
+    color: var(--azul-oscuro);
 }
 
 /* Contenedor principal */
@@ -16,7 +25,7 @@ body {
     margin-left: 250px;
     padding: 40px;
     min-height: calc(100vh - 60px);
-    background-color: #f3f4f6;
+    background-color: var(--beige);
     animation: fadeIn 0.6s ease-in-out;
     border-radius: 16px;
 }
@@ -27,45 +36,22 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Título principal */
+/* Título */
 .main-container h1 {
     font-size: 32px;
-    color: #1f2937;
+    color: var(--azul-oscuro);
     margin-bottom: 30px;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-/* Botón Nueva Cita */
-.actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-.add-button {
-    background-color: #A68868;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-size: 15px;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.add-button:hover {
-    background-color: #2c2c2c;
-    transform: translateY(-2px);
-}
-
 /* Formulario de búsqueda */
 .search-form {
-    background: #ffffff;
+    background: white;
     padding: 25px;
     border-radius: 16px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 20px rgba(220, 231, 6, 0.06);
     margin-bottom: 30px;
     display: flex;
     justify-content: center;
@@ -83,23 +69,25 @@ body {
 .search-form input[type="text"] {
     padding: 12px 18px;
     border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    border: 1px solid var(--gris);
+    background-color: white;
     font-size: 15px;
     min-width: 220px;
     transition: all 0.3s ease;
 }
 
 .search-form input[type="text"]:focus {
-    border-color: #A68868;
-    box-shadow: 0 0 8px rgba(123, 47, 247, 0.3);
+    border-color: var(--celeste);
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
     outline: none;
 }
 
+/* Botones de búsqueda y acción */
 .search-form input[type="submit"],
-.search-form .back {
+.search-form .back,
+.search-form .add-button {
     padding: 12px 20px;
-    background-color: #475569;
+    background-color: var(--azul-oscuro); 
     color: white;
     border-radius: 10px;
     font-size: 15px;
@@ -107,23 +95,32 @@ body {
     cursor: pointer;
     text-decoration: none;
     transition: background 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.search-form .back {
-    background-color: #475569;
+.search-form .back,
+.search-form .add-button {
+    background-color: var(--marron); 
 }
 
-.search-form input[type="submit"]:hover,
-.search-form .back:hover {
-    background-color: #2c2c2c;
+.search-form input[type="submit"]:hover {
+    background-color: var(#111827); 
     transform: translateY(-2px);
 }
 
-/* Tabla de ventas */
+.search-form .back:hover,
+.search-form .add-button:hover {
+    background-color: var(#111827); 
+    transform: translateY(-2px);
+}
+
+/* Tabla */
 table {
     width: 100%;
     border-collapse: collapse;
-    background: #ffffff;
+    background: white;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
@@ -131,17 +128,17 @@ table {
 }
 
 thead {
-    background-color: #f3f4f6;
+    background-color: var(--gris);
 }
 
 thead th {
     padding: 18px;
     text-align: left;
     font-weight: 600;
-    color: #4b5563;
+    color: var(--azul-oscuro);
     font-size: 15px;
     text-transform: uppercase;
-    border-bottom: 2px solid #e5e7eb;
+    border-bottom: 2px solid var(--beige);
 }
 
 tbody td {
@@ -157,37 +154,37 @@ tbody tr:hover {
 }
 
 /* Select estado */
-tbody select {
-    padding: 6px 10px;
+tbody td select {
+    padding: 8px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    border: 1px solid var(--gris);
+    background-color: var(--beige);
+    color: var(--azul-oscuro);
     font-size: 14px;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-tbody select:hover,
-tbody select:focus {
-    border-color: #7b2ff7;
+tbody td select:focus {
+    border-color: var(--celeste);
     outline: none;
 }
 
-/* Iconos de acción */
+/* Iconos */
 .action-icon {
     margin-right: 10px;
-    color: #4b5563;
+    color: var(--azul-oscuro);
     transition: color 0.2s ease, transform 0.2s ease;
     font-size: 16px;
     cursor: pointer;
 }
 
 .action-icon:hover {
-    color: #2c2c2c;
+    color: var(--celeste);
     transform: scale(1.1);
 }
 
 .delete {
-    color: #ef4444;
+    color: var(--azul-oscuro);
     transition: transform 0.2s ease;
 }
 
@@ -195,7 +192,7 @@ tbody select:focus {
     transform: scale(1.1);
 }
 
-/* Total de citas */
+/* Total citas */
 .total-users {
     margin-top: 25px;
     font-size: 16px;
@@ -215,7 +212,7 @@ tbody select:focus {
 
 .pagination a {
     padding: 10px 20px;
-    background-color: #6b7280;
+    background-color: var(--azul-oscuro);
     color: white;
     border-radius: 10px;
     text-decoration: none;
@@ -223,11 +220,12 @@ tbody select:focus {
 }
 
 .pagination a:hover {
-    background-color: #513737;
+    background-color: var(--azul-hover);
     transform: translateY(-2px);
 }
 
 .pagination .disabled {
-    background-color: #cbd5e1;
+    background-color: var(--gris);
     cursor: not-allowed;
+    pointer-events: none;
 }

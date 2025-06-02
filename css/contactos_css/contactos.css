@@ -1,6 +1,20 @@
+:root {
+    --azul-oscuro: #475569;
+    --azul-hover: #2c2c2c;
+    --marron: #8b5e3c;
+    --violeta: #7b2ff7;
+    --violeta-hover: #5a1dcf;
+    --rojo: #e74c3c;
+    --rojo-hover: #c0392b;
+    --fondo: #f3f3f8;
+    --blanco: #fff;
+    --gris-claro: #f4f4f4;
+    --gris-borde: #e0e0e0;
+}
+
 body {
     font-family: "Segoe UI", sans-serif;
-    background-color: #f3f3f8;
+    background-color: var(--fondo);
     margin: 0;
     padding: 0;
 }
@@ -22,6 +36,7 @@ h1 {
     font-weight: 700;
 }
 
+/* Formulario de búsqueda */
 .search-form {
     display: flex;
     gap: 10px;
@@ -40,15 +55,16 @@ h1 {
 }
 
 .search-form input[type="text"]:focus {
-    border-color: #475569;
+    border-color: var(--azul-oscuro);
     outline: none;
     box-shadow: 0 0 5px rgba(123, 47, 247, 0.3);
 }
 
+/* Botones base */
 .btn-buscar,
-.btn-mostrar {
-    background-color: #475569;
-    color: #fff;
+.btn-mostrar,
+.btn-info,
+.btn-danger {
     border: none;
     padding: 10px 20px;
     border-radius: 12px;
@@ -56,19 +72,53 @@ h1 {
     font-weight: bold;
     transition: background 0.3s ease, transform 0.2s ease;
     text-decoration: none;
+    color: var(--blanco);
+    display: inline-block;
+    font-size: 14px;
 }
 
-.btn-buscar:hover,
-.btn-mostrar:hover {
-    background-color: #475569;
+/* Botón Buscar - Azul oscuro */
+.btn-buscar {
+    background-color: var(--azul-oscuro);
+}
+.btn-buscar:hover {
+    background-color: var(--azul-hover);
     transform: scale(1.05);
 }
 
+/* Botón Mostrar Todos - Marrón con hover azul */
+.btn-mostrar {
+    background-color: var(--marron);
+}
+.btn-mostrar:hover {
+    background-color: var(--azul-hover);
+    transform: scale(1.05);
+}
+
+/* Botón Info - Violeta */
+.btn-info {
+    background-color: var(--violeta);
+}
+.btn-info:hover {
+    background-color: var(--violeta-hover);
+    transform: scale(1.05);
+}
+
+/* Botón Eliminar - Rojo */
+.btn-danger {
+    background-color: var(--rojo);
+}
+.btn-danger:hover {
+    background-color: var(--rojo-hover);
+    transform: scale(1.05);
+}
+
+/* Tabla */
 .table-container {
     overflow-x: auto;
     border-radius: 16px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    background-color: #fff;
+    background-color: var(--blanco);
     padding: 10px;
 }
 
@@ -79,13 +129,13 @@ table {
 }
 
 thead {
-    background-color: #f4f4f4;
+    background-color: var(--gris-claro);
     color: #333;
 }
 
 th, td {
     padding: 14px 16px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--gris-borde);
 }
 
 th {
@@ -103,6 +153,7 @@ tbody tr:hover {
     transition: background-color 0.3s;
 }
 
+/* Acciones */
 .actions a {
     margin-right: 10px;
     display: inline-block;
@@ -113,24 +164,7 @@ tbody tr:hover {
     transition: all 0.3s ease;
 }
 
-.btn-info {
-    background-color: #7b2ff7;
-    color: #fff;
-}
-
-.btn-info:hover {
-    background-color: #5a1dcf;
-}
-
-.btn-danger {
-    background-color: #e74c3c;
-    color: #fff;
-}
-
-.btn-danger:hover {
-    background-color: #c0392b;
-}
-
+/* Total mensajes */
 .total-messages {
     margin-top: 20px;
     font-size: 16px;
