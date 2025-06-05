@@ -1,6 +1,9 @@
 <?php
 session_start();
 include("../conexion.php");
+include("../verificar_acceso.php");
+
+verificarRol(['gerente', 'vendedor']); // gerente y vendedor pueden acceder
 
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
     header("Location: login.php");
@@ -63,8 +66,8 @@ $total_pages = ceil($total_citas / $limit);
                     <input type="submit" value="Buscar">
                     <a href="ventas.php" class="back">Mostrar todos</a>
                     <div class="actions">
-                    <a href="nueva_cita.php" class="add-button"><i class="fas fa-plus"></i> Nueva Cita</a>
-            </div>
+                        <a href="nueva_cita.php" class="add-button"><i class="fas fa-plus"></i> Nueva Cita</a>
+                    </div>
                 </form>
             </div>
 

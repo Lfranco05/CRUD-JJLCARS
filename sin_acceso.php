@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso denegado papu</title>
+</head>
+<body>
+    <h2>Acceso denegado</h2>
+    <p>No tienes permisos para ver esta página.</p>
+    <a href="../inicio/principal.php">Volver al inicio</a>
+</body>
+</html>

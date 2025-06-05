@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("../conexion.php");
+include("../verificar_acceso.php");
+verificarRol(['gerente']);
 
 // Seguridad xd
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
