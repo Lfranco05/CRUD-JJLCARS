@@ -16,14 +16,21 @@ if (!empty($buscar)) {
     $where = "WHERE nombre LIKE '%$buscar%' OR correo LIKE '%$buscar%' OR tipoCita LIKE '%$buscar%' OR tipoCompra LIKE '%$buscar%'";
 }
 
-// Obtener citas
-$sql = "SELECT * FROM citas $where ORDER BY fecha DESC, hora DESC";
+// Paginación
+$limit = 5; // Número de resultados por página
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max($page, 1);
+$offset = ($page - 1) * $limit;
+
+// Obtener citas con paginación
+$sql = "SELECT * FROM citas $where ORDER BY fecha DESC, hora DESC LIMIT $limit OFFSET $offset";
 $resultado = mysqli_query($connec, $sql);
 
-// Total de citas
+// Total de citas (para paginación)
 $sql_total = "SELECT COUNT(*) as total FROM citas $where";
 $resultado_total = mysqli_query($connec, $sql_total);
 $total_citas = mysqli_fetch_assoc($resultado_total)['total'];
+$total_pages = ceil($total_citas / $limit);
 ?>
 
 <!DOCTYPE html>
@@ -78,9 +85,11 @@ $total_citas = mysqli_fetch_assoc($resultado_total)['total'];
                                 <a href="ver_cita.php?id=<?php echo $cita['id']; ?>" class="action-icon" title="Ver detalles">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <!-- <a href="eliminar_mensaje.php?id=<?php echo $cita['id']; ?>" class="action-icon" title="Eliminar" onclick="return confirm('¿Está seguro de eliminar esta cita?');">
+                                <!--
+                                <a href="eliminar_mensaje.php?id=<?php echo $cita['id']; ?>" class="action-icon" title="Eliminar" onclick="return confirm('¿Está seguro de eliminar esta cita?');">
                                     <i class="fas fa-trash-alt"></i>
-                                </a> -->
+                                </a>
+                                -->
                             </td>
                         </tr>
                     <?php } ?>
@@ -89,7 +98,20 @@ $total_citas = mysqli_fetch_assoc($resultado_total)['total'];
         </div>
 
         <div class="total-messages">
-            Total de citas programadas: <?php echo $total_citas; ?>
+            <p class="total-users">Total de citas: <?php echo $total_citas; ?></p>
+            <div class="pagination">
+                <?php if ($page > 1): ?>
+                    <a href="?page=<?php echo $page - 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Anterior</a>
+                <?php else: ?>
+                    <a href="#" class="disabled">Anterior</a>
+                <?php endif; ?>
+
+                <?php if ($page < $total_pages): ?>
+                    <a href="?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
+                <?php else: ?>
+                    <a href="#" class="disabled">Siguiente</a>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>

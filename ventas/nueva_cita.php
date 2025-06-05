@@ -35,10 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     if (mysqli_stmt_execute($stmt)) {
-        $mensaje = "Cita registrada exitosamente.";
+    header("Location: ventas.php");
+    exit();
     } else {
-        $mensaje = "Error al registrar la cita.";
+    $mensaje = "Error al registrar la cita.";
     }
+
 }
 ?>
 
