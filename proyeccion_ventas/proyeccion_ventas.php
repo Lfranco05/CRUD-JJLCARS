@@ -108,7 +108,7 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
     <style>
         .main-container {
             padding: 2rem;
-            background: #f9f9f9;
+            background: #ffffff;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -228,7 +228,7 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
                     label: 'Total de Ventas',
                     data: <?php echo json_encode($totalesMensuales); ?>,
                     fill: false,
-                    borderColor: 'rgb(0, 255, 30)',
+                    borderColor: 'rgb(145, 177, 71)',
                     backgroundColor: 'rgba(54, 162, 235, 0.4)',
                     tension: 0.3
                 }]

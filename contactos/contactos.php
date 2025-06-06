@@ -238,7 +238,7 @@ $total_pages = ceil($total_citas / $limit);
     <?php include('../barras/barra_lateral.php'); ?>
 
     <div class="main-container">
-        <h1>Citas Programadas</h1>
+        <h1>CITAS PROGRAMADAS</h1>
 
         <div class="search-form">
             <form method="get" action="contactos.php">

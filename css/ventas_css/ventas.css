@@ -5,6 +5,7 @@
     --gris: #d1d5db;
     --beige: #f6f1e9;
     --marron: #8b5e3c;
+    --blanco: #ffffff; 
 }
 
 /* General */
@@ -16,7 +17,7 @@
 }
 
 body {
-    background-color: var(--gris);
+    background-color: var(--blanco); /* ← fondo blanco aplicado */
     color: var(--azul-oscuro);
 }
 
@@ -25,7 +26,7 @@ body {
     margin-left: 250px;
     padding: 40px;
     min-height: calc(100vh - 60px);
-    background-color: var(--gris);
+    background-color: var(--blanco); /* ← fondo blanco aplicado */
     animation: fadeIn 0.6s ease-in-out;
     border-radius: 16px;
 }
@@ -48,7 +49,7 @@ body {
 
 /* Formulario de búsqueda */
 .search-form {
-    background: white;
+    background: var(--blanco);
     padding: 25px;
     border-radius: 16px;
     box-shadow: 0 6px 20px rgba(220, 231, 6, 0.06);
@@ -70,7 +71,7 @@ body {
     padding: 12px 18px;
     border-radius: 10px;
     border: 1px solid var(--gris);
-    background-color: white;
+    background-color: var(--blanco);
     font-size: 15px;
     min-width: 220px;
     transition: all 0.3s ease;
@@ -88,7 +89,7 @@ body {
 .search-form .add-button {
     padding: 12px 20px;
     background-color: var(--azul-oscuro); 
-    color: white;
+    color: var(--blanco);
     border-radius: 10px;
     font-size: 15px;
     border: none;
@@ -106,13 +107,13 @@ body {
 }
 
 .search-form input[type="submit"]:hover {
-    background-color: var(#111827); 
+    background-color: var(--azul-hover); 
     transform: translateY(-2px);
 }
 
 .search-form .back:hover,
 .search-form .add-button:hover {
-    background-color: var(#111827); 
+    background-color: var(--azul-hover); 
     transform: translateY(-2px);
 }
 
@@ -120,7 +121,7 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    background: var(--blanco);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
@@ -213,7 +214,7 @@ tbody td select:focus {
 .pagination a {
     padding: 10px 20px;
     background-color: var(--azul-oscuro);
-    color: white;
+    color: var(--blanco);
     border-radius: 10px;
     text-decoration: none;
     transition: background 0.3s ease, transform 0.2s ease;
