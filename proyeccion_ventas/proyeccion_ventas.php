@@ -9,6 +9,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
     exit();
 }
 
+// Ventas por categorías
 $query = "
     SELECT 
         DATE_FORMAT(fecha, '%Y-%m') AS mes, 
@@ -19,7 +20,6 @@ $query = "
     GROUP BY mes, tipoCompra 
     ORDER BY mes ASC
 ";
-
 $resultado = mysqli_query($connec, $query);
 
 $datos = [];
@@ -29,6 +29,8 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     $mes = $row['mes'];
     $tipo = $row['tipoCompra'];
     $total = $row['total'];
+
+    if ($tipo === "Test de manejo") continue; 
 
     if (!isset($datos[$tipo])) {
         $datos[$tipo] = [];
@@ -46,8 +48,7 @@ $colores = [
     "Servicio menor" => "rgba(47, 247, 137, 0.6)",
     "Servicio mayor" => "rgba(255, 99, 132, 0.6)",
     "Revision de frenos" => "rgba(54, 162, 235, 0.6)",
-    "Cotizacion de vehiculo" => "rgba(255, 206, 86, 0.6)",
-    "Test de manejo" => "rgba(75, 192, 192, 0.6)"
+    "Cotizacion de vehiculo" => "rgba(255, 206, 86, 0.6)"
 ];
 
 foreach ($datos as $tipoCompra => $ventasPorMes) {
@@ -62,12 +63,44 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
         "backgroundColor" => $colores[$tipoCompra] ?? "rgba(153, 102, 255, 0.6)"
     ];
 }
+
+// Conteo de estados
+$estadoQuery = "SELECT status, COUNT(*) AS cantidad FROM citas GROUP BY status";
+$estadoResult = mysqli_query($connec, $estadoQuery);
+
+$estados = [];
+$cantidades = [];
+
+while ($row = mysqli_fetch_assoc($estadoResult)) {
+    $estados[] = ucfirst($row['status']);
+    $cantidades[] = $row['cantidad'];
+}
+
+// Total de ventas por mes
+$totalQuery = "
+    SELECT 
+        DATE_FORMAT(fecha, '%Y-%m') AS mes, 
+        SUM(precio) AS total 
+    FROM citas 
+    WHERE status = 'Aprobada' 
+    GROUP BY mes 
+    ORDER BY mes ASC
+";
+$totalResult = mysqli_query($connec, $totalQuery);
+
+$mesesTotales = [];
+$totalesMensuales = [];
+
+while ($row = mysqli_fetch_assoc($totalResult)) {
+    $mesesTotales[] = $row['mes'];
+    $totalesMensuales[] = $row['total'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Proyección de Ventas por Categoría</title>
+    <title>Proyección de Ventas</title>
     <link rel="stylesheet" href="../css/navbar.css">
     <link rel="stylesheet" href="../css/barra_lateral.css">
     <link rel="stylesheet" href="../css/proyecciones_css/proyeccion_ventas.css">
@@ -76,18 +109,18 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
         .main-container {
             padding: 2rem;
             background: #f9f9f9;
-            max-width: 1100px; /* Ancho ajustado */
+            max-width: 1100px;
             margin: 0 auto;
         }
         canvas {
             width: 100%;
-            height: 500px; /* Altura ajustada */
+            max-height: 500px;
             display: block;
-            margin: 2rem auto;
+            margin: 3rem auto;
         }
         h2 {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-top: 2rem;
         }
     </style>
 </head>
@@ -99,13 +132,19 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
         <div class="main-container">
             <h2>Proyección de Ventas por Categoría</h2>
             <canvas id="ventasPorTipo"></canvas>
+
+            <h2>Distribución de Citas por Estado</h2>
+            <canvas id="estadoCitas"></canvas>
+
+            <h2>Resumen Total de Ventas por Mes</h2>
+            <canvas id="totalMensual"></canvas>
         </div>
     </div>
 
     <script>
+        // Gráfico de ventas por categoría y mes
         const ctx = document.getElementById('ventasPorTipo').getContext('2d');
-
-        const ventasChart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: <?php echo json_encode($categorias); ?>,
@@ -137,6 +176,85 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
                         callbacks: {
                             label: function(context) {
                                 return context.dataset.label + ": $" + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico de estado de citas
+        const ctx2 = document.getElementById('estadoCitas').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: <?php echo json_encode($estados); ?>,
+                datasets: [{
+                    label: 'Estado de Citas',
+                    data: <?php echo json_encode($cantidades); ?>,
+                    backgroundColor: [
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: 'rgba(255,255,255,0.9)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ": " + context.parsed + " citas";
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Grafica de linea vkaksjajda
+        const ctx3 = document.getElementById('totalMensual').getContext('2d');
+        new Chart(ctx3, {
+            type: 'line',
+            data: {
+                labels: <?php echo json_encode($mesesTotales); ?>,
+                datasets: [{
+                    label: 'Total de Ventas',
+                    data: <?php echo json_encode($totalesMensuales); ?>,
+                    fill: false,
+                    borderColor: 'rgb(0, 255, 30)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.4)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Ventas en $'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Mes'
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return "Total: $" + context.parsed.y.toLocaleString();
                             }
                         }
                     }
