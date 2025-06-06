@@ -25,7 +25,7 @@ body {
     margin-left: 250px;
     padding: 40px;
     min-height: calc(100vh - 60px);
-    background-color: var(--beige);
+    background-color: var(--gris);
     animation: fadeIn 0.6s ease-in-out;
     border-radius: 16px;
 }

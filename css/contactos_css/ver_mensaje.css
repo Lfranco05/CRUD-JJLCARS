@@ -19,7 +19,7 @@ body {
 
 .mensaje-container h2 {
     text-align: center;
-    color: #7b2ff7;
+    color: #4B6382;
     font-size: 26px;
     margin-bottom: 30px;
 }
@@ -51,7 +51,7 @@ body {
 }
 
 .btn-volver {
-    background-color: #7b2ff7;
+    background-color: #4B6382;
     color: white;
     padding: 12px 25px;
     border: none;
@@ -62,7 +62,7 @@ body {
 }
 
 .btn-volver:hover {
-    background-color: #6a24d9;
+    background-color: #4B6382;
     transform: scale(1.05);
 }
 

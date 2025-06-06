@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background-color: #eee;
         }
         .vehiculo-item.seleccionado {
-            border-color: #7b2ff7;
+            border-color: #E3C39D;
             background-color: #f0e8ff;
         }
         .vehiculo-item img {

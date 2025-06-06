@@ -8,7 +8,7 @@
 
 /* === Fondo del cuerpo === */
 body {
-    background-color: #e5e7eb;
+    background-color: #CDD5DB;
     min-height: 100vh;
 }
 
@@ -41,7 +41,7 @@ body {
 .details-card h2 {
     text-align: center;
     font-size: 28px;
-    color: #7b2ff7;
+    color: #4B6382;
     margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -68,7 +68,7 @@ body {
 
 .btn-back {
     padding: 12px 22px;
-    background-color: #7b2ff7;
+    background-color: #4B6382;
     color: white;
     border-radius: 10px;
     text-decoration: none;
