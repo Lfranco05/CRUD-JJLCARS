@@ -1,7 +1,7 @@
 :root {
     --azul-oscuro: #1b1f3b;
     --celeste: #60a5fa;
-    --gris: #d1d5db;
+    --gris: #CDD5DB; /* actualizado al nuevo color de fondo */
     --beige: #f3f4f6;
     --marron: #8b5e3c;
 }
@@ -15,7 +15,7 @@
 }
 
 body {
-    background-color: var(--gris);
+    background-color: #CDD5DB; /* color de fondo actualizado */
     color: var(--azul-oscuro);
 }
 
@@ -23,7 +23,7 @@ body {
     margin-left: 250px;
     padding: 40px;
     min-height: calc(100vh - 60px);
-    background-color: var(--beige);
+    background-color: var(-white);
     animation: fadeIn 0.6s ease-in-out;
     border-radius: 16px;
 }

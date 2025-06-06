@@ -7,7 +7,7 @@
 
 /*Fondo*/
 body {
-    background-color: #e5e7eb; /* gris claro */
+    background-color: #CDD5DB !important; /* color actualizado */
     color: #1f2937; /* gris oscuro para texto */
     display: flex;
     justify-content: center;
@@ -110,5 +110,3 @@ body {
     background-color: #374151;
     transform: scale(1.03);
 }
-
-

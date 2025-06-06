@@ -2,10 +2,11 @@
 :root {
     --color-azul-oscuro: #071739;
     --color-azul-gris: #4B6382;
-    --color-celeste: #f8f8f8;
-    --color-gris-claro: #ffffff;
-    --color-marron: #161614;
-    --color-beige: #071739;
+    --color-celeste: #A4B5C4;
+    --color-gris-claro: #CDD5DB;
+    --color-marron: #A68868;
+    --color-beige: #E3C39D;
+    --color-blanco: #ffffff;
     --sombra: 0 8px 24px rgba(0, 0, 0, 0.3);
     --borde-redondeado: 20px;
     --animacion: fadeIn 0.8s ease-in-out;
@@ -35,6 +36,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: var(--borde-redondeado); /* ← Borde redondeado aplicado directamente al video */
 }
 
 .overlay-text {
@@ -44,7 +46,7 @@ body {
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 10px rgb(255, 255, 255);
 }
 
 .overlay-text h1 {
@@ -66,7 +68,7 @@ body {
     margin-top: 40px;
     border-radius: var(--borde-redondeado);
     box-shadow: var(--sombra);
-    background: var(--color-azul-griss);
+    background: var(--color-blanco); 
     padding: 20px;
 }
 
@@ -80,7 +82,7 @@ body {
     min-width: 100%;
     box-sizing: border-box;
     text-align: center;
-    background-color: var(--color-celeste);
+    background-color: var(--color-blanco);
     border-radius: 16px;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -129,7 +131,7 @@ body {
 
 /* === Tarjeta de empresa === */
 .info-card.empresa {
-    background-color: var(--color-gris-claro);
+    background-color: var(--color-blanco);
     color: #000;
     padding: 2rem;
     border-radius: var(--borde-redondeado);

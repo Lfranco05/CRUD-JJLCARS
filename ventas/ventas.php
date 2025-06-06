@@ -124,7 +124,7 @@ $total_pages = ceil($total_citas / $limit);
                 <?php if ($page < $total_pages): ?>
                     <a href="?page=<?php echo $page + 1; ?>&buscar=<?php echo urlencode($buscar); ?>">Siguiente</a>
                 <?php else: ?>
-                    <a href="#" class="disabled">Siguiente</a>
+                    <a href="#" class="disabled">Siguient</a>
                 <?php endif; ?>
             </div>
         </div>
