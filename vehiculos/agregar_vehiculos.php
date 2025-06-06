@@ -1,5 +1,7 @@
 <?php
 include("../conexion.php");
+include("../verificar_acceso.php");
+verificarRol(['gerente']);
 
 if (isset($_POST['enviar'])) {
     $marca = $_POST['marca'];

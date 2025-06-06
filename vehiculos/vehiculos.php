@@ -1,6 +1,9 @@
 <?php
 session_start();
 include("../conexion.php");
+include("../verificar_acceso.php");
+verificarRol(['gerente']);
+
 // Esta es la seguridad de inicio, evita saltarnos el iniciar sesion desde el link
 if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !== true) {
     header("Location: login.php");

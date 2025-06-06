@@ -197,7 +197,7 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Ventas en $'
+                            
                         }
                     },
                     x: {

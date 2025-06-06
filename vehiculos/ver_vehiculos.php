@@ -1,5 +1,7 @@
 <?php
 include("../conexion.php");
+include("../verificar_acceso.php");
+verificarRol(['gerente']);
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "ID inválido.";
     exit();
