@@ -9,7 +9,7 @@ if (!isset($_SESSION['usuarioingresando']) || $_SESSION['usuarioingresando'] !==
     exit();
 }
 
-// Ventas por categorías por mes 
+// Ventas por categorías
 $query = "
     SELECT 
         DATE_FORMAT(fecha, '%Y-%m') AS mes, 
@@ -30,7 +30,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
     $tipo = $row['tipoCompra'];
     $total = $row['total'];
 
-    if ($tipo === "Test de manejo") continue;
+    if ($tipo === "Test de manejo") continue; 
 
     if (!isset($datos[$tipo])) {
         $datos[$tipo] = [];
@@ -40,6 +40,7 @@ while ($row = mysqli_fetch_assoc($resultado)) {
         $categorias[] = $mes;
     }
 }
+
 sort($categorias);
 
 $datasets = [];
@@ -49,11 +50,13 @@ $colores = [
     "Revision de frenos" => "rgba(54, 162, 235, 0.6)",
     "Cotizacion de vehiculo" => "rgba(255, 206, 86, 0.6)"
 ];
+
 foreach ($datos as $tipoCompra => $ventasPorMes) {
     $datosMensuales = [];
     foreach ($categorias as $mes) {
-        $datosMensuales[] = $ventasPorMes[$mes] ?? 0;
+        $datosMensuales[] = isset($ventasPorMes[$mes]) ? $ventasPorMes[$mes] : 0;
     }
+
     $datasets[] = [
         "label" => $tipoCompra,
         "data" => $datosMensuales,
@@ -61,34 +64,36 @@ foreach ($datos as $tipoCompra => $ventasPorMes) {
     ];
 }
 
-// Conteo de estados de las citas aksjkdajkd
+// Conteo de estados
 $estadoQuery = "SELECT status, COUNT(*) AS cantidad FROM citas GROUP BY status";
 $estadoResult = mysqli_query($connec, $estadoQuery);
 
 $estados = [];
 $cantidades = [];
+
 while ($row = mysqli_fetch_assoc($estadoResult)) {
     $estados[] = ucfirst($row['status']);
     $cantidades[] = $row['cantidad'];
 }
 
-// Total de ventas por día
+// Total de ventas por mes
 $totalQuery = "
     SELECT 
-        DATE(fecha) AS dia, 
+        DATE_FORMAT(fecha, '%Y-%m') AS mes, 
         SUM(precio) AS total 
     FROM citas 
     WHERE status = 'Aprobada' 
-    GROUP BY dia 
-    ORDER BY dia ASC
+    GROUP BY mes 
+    ORDER BY mes ASC
 ";
 $totalResult = mysqli_query($connec, $totalQuery);
 
-$diasTotales = [];
-$totalesDiarios = [];
+$mesesTotales = [];
+$totalesMensuales = [];
+
 while ($row = mysqli_fetch_assoc($totalResult)) {
-    $diasTotales[] = $row['dia'];
-    $totalesDiarios[] = $row['total'];
+    $mesesTotales[] = $row['mes'];
+    $totalesMensuales[] = $row['total'];
 }
 ?>
 <!DOCTYPE html>
@@ -103,33 +108,19 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
     <style>
         .main-container {
             padding: 2rem;
-            background: #f6f1e9;
-            max-width: 1300px;
+            background: #ffffff;
+            max-width: 1100px;
             margin: 0 auto;
         }
-        .grafica-principal canvas {
-            width: 100% !important;
-            height: 500px !important;
-        }
-        .graficas-secundarias {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            justify-content: center;
-            margin-top: 3rem;
-        }
-        .grafica-secundaria {
-            flex: 1;
-            min-width: 400px;
-        }
         canvas {
+            width: 100%;
+            max-height: 500px;
             display: block;
-            margin: auto;
+            margin: 3rem auto;
         }
         h2 {
             text-align: center;
             margin-top: 2rem;
-            color: #333;
         }
     </style>
 </head>
@@ -140,25 +131,20 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
 
         <div class="main-container">
             <h2>Proyección de Ventas por Categoría</h2>
-            <div class="grafica-principal">
-                <canvas id="ventasPorTipo"></canvas>
-            </div>
+            <canvas id="ventasPorTipo"></canvas>
 
-            <div class="graficas-secundarias">
-                <div class="grafica-secundaria">
-                    <h2>Distribución de Citas por Estado</h2>
-                    <canvas id="estadoCitas"></canvas>
-                </div>
-                <div class="grafica-secundaria">
-                    <h2>Resumen Diario de Ventas</h2>
-                    <canvas id="totalMensual"></canvas>
-                </div>
-            </div>
+            <h2>Distribución de Citas por Estado</h2>
+            <canvas id="estadoCitas"></canvas>
+
+            <h2>Resumen Total de Ventas por Mes</h2>
+            <canvas id="totalMensual"></canvas>
         </div>
     </div>
 
     <script>
-        new Chart(document.getElementById('ventasPorTipo').getContext('2d'), {
+        // Gráfico de ventas por categoría y mes
+        const ctx = document.getElementById('ventasPorTipo').getContext('2d');
+        new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: <?php echo json_encode($categorias); ?>,
@@ -188,18 +174,23 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: ctx => ctx.dataset.label + ": $" + ctx.parsed.y.toLocaleString()
+                            label: function(context) {
+                                return context.dataset.label + ": $" + context.parsed.y.toLocaleString();
+                            }
                         }
                     }
                 }
             }
         });
 
-        new Chart(document.getElementById('estadoCitas').getContext('2d'), {
+        // Gráfico de estado de citas
+        const ctx2 = document.getElementById('estadoCitas').getContext('2d');
+        new Chart(ctx2, {
             type: 'pie',
             data: {
                 labels: <?php echo json_encode($estados); ?>,
                 datasets: [{
+                    label: 'Estado de Citas',
                     data: <?php echo json_encode($cantidades); ?>,
                     backgroundColor: [
                         'rgba(255, 206, 86, 0.6)',
@@ -214,27 +205,31 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
                 responsive: true,
                 plugins: {
                     legend: {
-                        position: 'bottom'
+                        position: 'bottom',
                     },
                     tooltip: {
                         callbacks: {
-                            label: ctx => ctx.label + ": " + ctx.parsed + " citas"
+                            label: function(context) {
+                                return context.label + ": " + context.parsed + " citas";
+                            }
                         }
                     }
                 }
             }
         });
 
-        new Chart(document.getElementById('totalMensual').getContext('2d'), {
+        // Grafica de linea vkaksjajda
+        const ctx3 = document.getElementById('totalMensual').getContext('2d');
+        new Chart(ctx3, {
             type: 'line',
             data: {
-                labels: <?php echo json_encode($diasTotales); ?>,
+                labels: <?php echo json_encode($mesesTotales); ?>,
                 datasets: [{
-                    label: 'Total de Ventas Diarias',
-                    data: <?php echo json_encode($totalesDiarios); ?>,
+                    label: 'Total de Ventas',
+                    data: <?php echo json_encode($totalesMensuales); ?>,
                     fill: false,
-                    borderColor: 'rgb(0, 150, 255)',
-                    backgroundColor: 'rgba(0, 150, 255, 0.2)',
+                    borderColor: 'rgb(145, 177, 71)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.4)',
                     tension: 0.3
                 }]
             },
@@ -251,14 +246,16 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
                     x: {
                         title: {
                             display: true,
-                            text: 'Día'
+                            text: 'Mes'
                         }
                     }
                 },
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: ctx => "Total: $" + ctx.parsed.y.toLocaleString()
+                            label: function(context) {
+                                return "Total: $" + context.parsed.y.toLocaleString();
+                            }
                         }
                     }
                 }
