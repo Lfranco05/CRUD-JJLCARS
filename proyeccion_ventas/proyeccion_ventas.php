@@ -107,7 +107,7 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            background-color: #ffffff;
+            background-color: #f6f1e9;
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -145,7 +145,7 @@ while ($row = mysqli_fetch_assoc($totalResult)) {
         .chart-container {
             flex: 1;
             min-width: 45%;
-            background-color: #CDD5DB;
+            background-color: #f3f4f6;
             padding: 1rem;
             border-radius: 12px;
             box-shadow: 0 0 8px rgba(0,0,0,0.05);

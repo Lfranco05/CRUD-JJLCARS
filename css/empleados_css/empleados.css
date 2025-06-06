@@ -1,7 +1,7 @@
 :root {
     --azul-oscuro: #1b1f3b;
     --celeste: #60a5fa;
-    --gris: #CDD5DB; /* actualizado al nuevo color de fondo */
+    --gris: #CDD5DB; 
     --beige: #f3f4f6;
     --marron: #8b5e3c;
 }
@@ -15,7 +15,7 @@
 }
 
 body {
-    background-color: #CDD5DB; /* color de fondo actualizado */
+    background-color: #f6f1e9; /* color de fondo actualizado amigues */
     color: var(--azul-oscuro);
 }
 

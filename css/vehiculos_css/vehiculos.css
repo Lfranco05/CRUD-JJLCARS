@@ -15,7 +15,7 @@
 }
 
 body {
-    background-color: var(--gris);
+    background-color: #f6f1e9; /* color de fondo actualizado amigues */
     color: var(--azul-oscuro);
 }
 
@@ -24,7 +24,8 @@ body {
     margin-left: 250px;
     padding: 40px;
     min-height: calc(100vh - 60px);
-    background-color: var(--beige);
+    background-color: #f6f1e9; /* color de fondo actualizado amigues */
+
     animation: fadeIn 0.6s ease-in-out;
     border-radius: 16px;
 }

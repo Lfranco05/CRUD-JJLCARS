@@ -3,7 +3,7 @@
     --azul-hover: #111827;
     --celeste: #60a5fa;
     --gris: #d1d5db;
-    --beige: #f6f1e9;
+    --beige: #f8e3c0;
     --marron: #8b5e3c;
     --blanco: #ffffff; 
 }
@@ -17,7 +17,7 @@
 }
 
 body {
-    background-color: var(--blanco); /* ← fondo blanco aplicado */
+    background-color: #f6f1e9; /* color de fondo actualizado amigues */
     color: var(--azul-oscuro);
 }
 
@@ -26,7 +26,7 @@ body {
     margin-left: 250px;
     padding: 40px;
     min-height: calc(100vh - 60px);
-    background-color: var(--blanco); /* ← fondo blanco aplicado */
+    background-color: #f6f1e9;
     animation: fadeIn 0.6s ease-in-out;
     border-radius: 16px;
 }
