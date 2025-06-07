@@ -76,6 +76,7 @@ mysqli_stmt_close($stmt);
                     <input type="submit" value="Buscar">
                     <a href="empleados.php" class="back">Mostrar todos</a>
                     <a href="agregar_empleados.php" class="back">Agregar empleado</a>
+                    <a href="reiniciar_contrasena.php" class="back">Reiniciar contraseña</a>
                 </form>
             </div>
             <table>
