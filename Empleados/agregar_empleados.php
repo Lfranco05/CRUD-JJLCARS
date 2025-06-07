@@ -6,8 +6,11 @@ verificarRol(['gerente']);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
+    $passwordPlano = $_POST['password'];
     $tipoUsuario = $_POST['tipoUsuario'];
+
+    // Cifrado de la contraseña
+    $password = password_hash($passwordPlano, PASSWORD_DEFAULT);
 
     $stmt = mysqli_prepare($connec, "INSERT INTO usuarios (nombre, usuario, password, TipoUsuario) VALUES (?, ?, ?, ?)");
     mysqli_stmt_bind_param($stmt, "ssss", $nombre, $usuario, $password, $tipoUsuario);
@@ -28,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               </script>";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -62,9 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="password" required />
             </div>
 
-            <div class="form-group">
-                <label>Tipo de Usuario:</label>
-                <input type="text" name="tipoUsuario" required />
+           <div class="form-group">
+              <label>Tipo de Usuario:</label>
+                <select name="tipoUsuario" required>
+                 <option value="">Seleccione un rol</option>
+                 <option value="gerente">Gerente</option>
+                 <option value="vendedor">Vendedor</option>
+                 </select>
             </div>
 
             <div class="form-buttons">

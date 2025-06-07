@@ -15,7 +15,7 @@ body {
     background: #ffffff;
     padding: 30px 40px;
     border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 18px #A68868;
     width: 90%;
     max-width: 600px;
     transition: transform 0.3s ease;
@@ -51,7 +51,7 @@ body {
     border-radius: 10px;
     margin-bottom: 20px;
     font-weight: 600;
-    box-shadow: 0 2px 6px rgba(30, 58, 138, 0.1);
+    box-shadow: 0 2px 6px #A68868;
 }
 
 /* Etiquetas */
@@ -78,8 +78,8 @@ form select {
 
 form input:focus,
 form select:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 6px rgba(59, 130, 246, 0.3);
+    border-color: #A68868;
+    box-shadow: 0 0 6px #A68868;
     outline: none;
 }
 
@@ -88,7 +88,7 @@ form input[type="submit"],
 a.cancelar {
     display: inline-block;
     margin-top: 28px;
-    background-color: #1e40af;
+    background-color: #A68868;
     color: #ffffff;
     padding: 10px 24px;
     border: none;
@@ -107,7 +107,7 @@ a.cancelar {
 }
 
 form input[type="submit"]:hover {
-    background-color: #1e3a8a;
+    background-color: #A68868;
     transform: scale(1.05);
 }
 

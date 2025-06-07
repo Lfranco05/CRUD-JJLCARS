@@ -16,7 +16,7 @@ body {
 .form-container {
     background: #fff;
     border-radius: 20px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px #A68868;
     padding: 40px 32px 32px 32px;
     max-width: 480px;
     width: 100%;
@@ -54,7 +54,7 @@ body {
 .form-container input:focus,
 .form-container select:focus {
     border-color: #A68868;
-    box-shadow: 0 0 8px #c3a6fa;
+    box-shadow: 0 0 8px #A68868;
 }
 .form-buttons {
     display: flex;

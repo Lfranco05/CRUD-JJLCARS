@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Acceso denegado papu</title>
+    <title>Acceso denegado</title>
 </head>
 <body>
     <h2>Acceso denegado</h2>

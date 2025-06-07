@@ -99,7 +99,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['enviar'])) {
 
         <div class="button-group">
             <button type="submit" name="enviar" class="login-btn">Ingresar</button>
-            <a href="registrar.php" class="register-btn">Crear Cuenta</a>
         </div>
     </form>
 </div>
